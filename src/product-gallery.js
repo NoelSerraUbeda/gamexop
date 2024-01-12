@@ -22,7 +22,7 @@ class ProductGallery extends HTMLElement {
       {
         id: 1,
         path: "/juegos/call-of-duty",
-        categoryId: 1,
+        categoryId: 12,
         price: 100,
         priceBeforeDiscount: 120,
         percentage: 20,
@@ -51,7 +51,7 @@ class ProductGallery extends HTMLElement {
       {
         id: 3,
         path: "/juegos/persona-5",
-        categoryId: 2,
+        categoryId: 5,
         price: 100,
         locale: {
           title: "Persona 5",
@@ -99,10 +99,114 @@ class ProductGallery extends HTMLElement {
           url: "http://localhost:5173/public/street-fighter.jpg",
           alt: "Street Fighter 6"
         }
+      } ,
+      {
+        id: 7,
+        path: "/juegos/Hades",
+        categoryId: 1,
+        price:100,
+        locale: {
+          title: "Hades",
+        },
+        image: {
+          url: "http://localhost:5173/public/hades.jpg",
+          alt: "Hades"
+        }
+      },
+      {
+        id: 8,
+        path: "/juegos/Terraria",
+        categoryId: 6,
+        price:100,
+        locale: {
+          title: "Terraria",
+        },
+        image: {
+          url: "http://localhost:5173/public/terraria.jpg",
+          alt: "Terraria"
+        }
+      },
+      {
+        id: 9,
+        path: "/juegos/Octopath-traveler-2",
+        categoryId: 5,
+        price:100,
+        locale: {
+          title: "Octopath Traveler 2",
+        },
+        image: {
+          url: "http://localhost:5173/public/octopath-2.jpg",
+          alt: "Octopath Traveler 2"
+        }
+      },
+      {
+        id: 10,
+        path: "/juegos/Triangle-strategy",
+        categoryId: 5,
+        price:100,
+        locale: {
+          title: "Triangle Strategy",
+        },
+        image: {
+          url: "http://localhost:5173/public/triangle.jpg",
+          alt: "Triangle Strategy"
+        }
+      },
+      {
+        id: 11,
+        path: "/juegos/Chained Echoes",
+        categoryId: 5,
+        price:100,
+        locale: {
+          title: "Chained Echoes",
+        },
+        image: {
+          url: "http://localhost:5173/public/chained-echoes.jpg",
+          alt: "Chained Echoes"
+        }
+      },
+      {
+        id: 12,
+        path: "/juegos/hollow-knight",
+        categoryId: 3,
+        price:100,
+        locale: {
+          title: "Hollow Knight",
+        },
+        image: {
+          url: "http://localhost:5173/public/hollow-knight.jpg",
+          alt: "Hollow Knigth"
+        }
+      },
+      {
+        id: 13,
+        path: "/juegos/gato-roboto",
+        categoryId: 4,
+        price:100,
+        locale: {
+          title: "Gato Roboto",
+        },
+        image: {
+          url: "http://localhost:5173/public/gato-roboto.jpg",
+          alt: "Gato Roboto"
+        }
+      },
+      {
+        id: 14,
+        path: "/juegos/monster-hunter-world",
+        categoryId: 3,
+        price:100,
+        locale: {
+          title: "Monster Hunter World",
+        },
+        image: {
+          url: "http://localhost:5173/public/monster-hunter.jpg",
+          alt: "Monster Hunter World"
+        }
       }
     ];
-  }
-
+  };
+  
   render (products = this.products) {
     this.shadow.innerHTML =
     /*html*/`
@@ -131,6 +235,7 @@ class ProductGallery extends HTMLElement {
         flex-direction: column;
         justify-content: center;
         overflow: hidden;
+        filter: brightness(0.8);
       }
 
       .product:hover {
@@ -330,9 +435,9 @@ class ProductGallery extends HTMLElement {
   async loadPreview (element) {  
 
     this.video = {
-      url: "http://localhost:5173/public/call-of-duty.webm",
+      url: "",
       alt: "Call of Duty",
-      cover: "http://localhost:5173/public/call-of-duty-modern-warfare-3-xl.jpg"
+      cover: ""
     }
 
     const videoElement = document.createElement('video')

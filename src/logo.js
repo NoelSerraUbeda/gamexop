@@ -11,7 +11,7 @@ class Logo extends HTMLElement {
 
   async loadData () {
     this.data = {
-      title: "GameXop",
+      title: "",
       image: {
         url: "http://localhost:5173/public/logo.svg",
         alt: "Logo de GameXop"
@@ -34,8 +34,8 @@ class Logo extends HTMLElement {
       }
 
       .logo img{
-        height: 3rem;
-        width: 3rem;
+        height: 7rem;
+        width: 7rem;
       }
 
       .logo h1{
