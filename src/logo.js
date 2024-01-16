@@ -34,17 +34,16 @@ class Logo extends HTMLElement {
       }
 
       .logo img{
-        height: 7rem;
-        width: 7rem;
+        height: 6rem;
+        width: 6rem;
       }
 
       .logo h1{
         color: hsl(0, 0%, 100%);
-        font-family: 'Ubuntu', sans-serif;
-        font-size: 1.2rem;
+        font-family: "Consolas", monospace;
+        font-size: 3rem;
         font-weight: 700;
         margin: 0;
-        text-shadow: 2px 0 0 hsl(284deg 100% 50%), -2px 0 0 hsl(284deg 100% 50%), 0 2px 0 hsl(284deg 100% 50%), 0 -2px 0 hsl(284deg 100% 50%), 1px 1px hsl(284deg 100% 50%), -1px -1px 0 hsl(284deg 100% 50%), 1px -1px 0 hsl(284deg 100% 50%), -1px 1px 0 hsl(284deg 100% 50%);
       }
     </style>
 

@@ -16,73 +16,63 @@ class CategoryFilter extends HTMLElement {
       {
         id: 1,
         title: "Acción",
-        backgroundColor: "#ff5c6b",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 2,
         title: "Arcade",
-        backgroundColor: "#d59040",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 3,
         title: "Aventura",
-        backgroundColor: "#8d8d34",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 4,
         title: "Puzzles",
-        backgroundColor: "#6bc57f",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 5,
         title: "Rol",
-        backgroundColor: "#ff8590",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 6,
         title: "Construcción",
-        backgroundColor: "#843a3a",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 7,
         title: "Deportes",
-        backgroundColor: "#64b4d8",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 8,
-        title: "Simuladores de carrera",
-        backgroundColor: "#8e50bc",
+        title: "Simuladores",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 9,
         title: "Lucha",
-        backgroundColor: "#4246cb",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 10,
         title: "Terror",
-        backgroundColor: "#208240",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 11,
-        title: "Cooperativos",
-        backgroundColor: "#b36215",
+        title: "Shooter",
+        backgroundColor: "darkslateblue",
       },
       {
         id: 12,
-        title: "Shooter",
-        backgroundColor: "#ff5c6b",
-      },
-      {
-        id: 13,
-        title: "Terror",
-        backgroundColor: "#208240",
-      },
-      {
-        id: 14,
         title: "Cooperativos",
-        backgroundColor: "#b36215",
-      }
+        backgroundColor: "darkslateblue",
+      },
     ];
   }
 
@@ -129,7 +119,7 @@ class CategoryFilter extends HTMLElement {
 
       .category {
         align-items: center;
-        background-color: hsl(272 40% 35%);
+        background-color: darkslateblue;
         border-radius: 1rem;
         box-shadow: inset 0 0 1rem hsl(0deg 0% 0%);
         cursor: pointer;
@@ -137,6 +127,7 @@ class CategoryFilter extends HTMLElement {
         flex: 0 0 100px;
         justify-content: center;
         padding: 0 1rem;
+        filter: brightness(0.8);
       }
 
       .category:hover {

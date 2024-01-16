@@ -22,7 +22,7 @@ class ProductGallery extends HTMLElement {
       {
         id: 1,
         path: "/juegos/call-of-duty",
-        categoryId: 12,
+        categoryId: 11,
         price: 100,
         priceBeforeDiscount: 120,
         percentage: 20,
@@ -54,11 +54,11 @@ class ProductGallery extends HTMLElement {
         categoryId: 5,
         price: 100,
         locale: {
-          title: "Persona 5",
+          title: "Persona 5 Royal",
         },
         image: {
           url: "http://localhost:5173/public/persona-5.jpg",
-          alt: "Persona 5"
+          alt: "Persona 5 Royal"
         }
       },
       {
@@ -78,9 +78,10 @@ class ProductGallery extends HTMLElement {
         id: 5,
         path: "/juegos/starfield",
         categoryId: 3,
-        price: 8,
+        price: 32,
         priceBeforeDiscount: 40,
         percentage: 20,
+        endOfDiscount: "31 de diciembre",
         locale: {
           title: "Starfield",
         },
@@ -92,7 +93,7 @@ class ProductGallery extends HTMLElement {
       {
         id: 6,
         path: "/juegos/street-fighter-6",
-        categoryId: 3,
+        categoryId: 9,
         price: 100,
         locale: {
           title: "Street Fighter 6",
@@ -200,6 +201,7 @@ class ProductGallery extends HTMLElement {
         price: 80,
         priceBeforeDiscount: 100,
         percentage: 20,
+        endOfDiscount: "31 de diciembre",
         locale: {
           title: "Monster Hunter World",
         },
@@ -221,18 +223,18 @@ class ProductGallery extends HTMLElement {
 
       .product-gallery {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: 1rem;
         overflow-x: auto;
         scroll-behavior: smooth;
         -ms-overflow-style: none;  
-        padding: 0 1rem;
+        padding: 1rem 2rem;
         scrollbar-width: none;  
       }
 
       .product {
         align-items: center;
-        border: 0.2rem solid hsl(0, 0%, 100%);
+        border:none;
         border-radius: 0.5rem;
         cursor: pointer;
         display: flex;
@@ -240,10 +242,12 @@ class ProductGallery extends HTMLElement {
         justify-content: center;
         overflow: hidden;
         filter: brightness(0.8);
+        transition: transform 0.5s ease;
       }
 
       .product:hover {
-        border: 0.2rem solid hsl(272 40% 35%);
+        border-color:hsl(272 40% 35%);
+        transform: scale(1.03);
         filter: brightness(1.2);
       }
       
