@@ -78,7 +78,9 @@ class ProductGallery extends HTMLElement {
         id: 5,
         path: "/juegos/starfield",
         categoryId: 3,
-        price: 100,
+        price: 8,
+        priceBeforeDiscount: 40,
+        percentage: 20,
         locale: {
           title: "Starfield",
         },
@@ -195,7 +197,9 @@ class ProductGallery extends HTMLElement {
         id: 14,
         path: "/juegos/monster-hunter-world",
         categoryId: 3,
-        price:100,
+        price: 80,
+        priceBeforeDiscount: 100,
+        percentage: 20,
         locale: {
           title: "Monster Hunter World",
         },
