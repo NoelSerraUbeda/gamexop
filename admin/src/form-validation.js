@@ -5,7 +5,9 @@ export default (() => {
 
   // Reset
   const resetValue = () => {
-    document.querySelectorAll('.tab-content.active input').forEach(element => element.value = '')
+    document.querySelectorAll('.tab-content.active input').forEach(element => {
+      element.value = ''
+    })
   }
 
   // Validar datos
