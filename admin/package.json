@@ -14,5 +14,8 @@
   },
   "dependencies": {
     "webfontloader": "^1.6.28"
+  },
+  "eslintConfig": {
+    "extends": "/node_modules/standard/eslintrc.json"
   }
 }
