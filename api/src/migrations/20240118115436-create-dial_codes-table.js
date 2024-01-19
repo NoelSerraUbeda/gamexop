@@ -15,7 +15,9 @@ module.exports = {
         references: {
           model: 'countries',
           key: 'id'
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       dialCode: {
         allowNull: false,
@@ -32,6 +34,10 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
+    })
+
+    await queryInterface.addIndex('dial_codes', ['countryId'], {
+      name: 'dial_codes_countryId_fk'
     })
   },
 

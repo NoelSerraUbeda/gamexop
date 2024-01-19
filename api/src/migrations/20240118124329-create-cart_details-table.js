@@ -56,6 +56,10 @@ module.exports = {
           key: 'id'
         }
       },
+      productName: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       basePrice: {
         allowNull: false,
         type: Sequelize.DECIMAL
@@ -79,6 +83,30 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
+    })
+
+    await queryInterface.addIndex('cart_details', ['cartId'], {
+      name: 'cart_details_cartId_fk'
+    })
+
+    await queryInterface.addIndex('cart_details', ['productId'], {
+      name: 'cart_details_productId_fk'
+    })
+
+    await queryInterface.addIndex('cart_details', ['localeId'], {
+      name: 'cart_details_localeId_fk'
+    })
+
+    await queryInterface.addIndex('cart_details', ['priceId'], {
+      name: 'cart_details_priceId_fk'
+    })
+
+    await queryInterface.addIndex('cart_details', ['priceDiscountId'], {
+      name: 'cart_details_priceDiscountId_fk'
+    })
+
+    await queryInterface.addIndex('cart_details', ['taxId'], {
+      name: 'cart_details_taxId_fk'
     })
   },
 
