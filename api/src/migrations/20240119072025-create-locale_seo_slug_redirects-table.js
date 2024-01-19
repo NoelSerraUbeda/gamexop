@@ -38,8 +38,8 @@ module.exports = {
       }
     })
 
-    await queryInterface.addIndex('locale_sep_slugs', ['localeSeoSlugId'], {
-      name: 'locale_sep_slugs_localeSeoSlugId_fk'
+    await queryInterface.addIndex('locale_seo_slug_redirects', ['localeSeoSlugId'], {
+      name: 'locale_sep_slug_redirects_localeSeoSlugId_fk'
     })
   },
 

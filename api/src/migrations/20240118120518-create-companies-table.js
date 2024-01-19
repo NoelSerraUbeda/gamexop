@@ -84,8 +84,8 @@ module.exports = {
       name: 'companies_cityId_fk'
     })
 
-    await queryInterface.addIndex('companies', ['dial_codeId'], {
-      name: 'companies_dial_codeId_fk'
+    await queryInterface.addIndex('companies', ['dialcodeId'], {
+      name: 'companies_dialCodeId_fk'
     })
   },
 

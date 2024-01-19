@@ -48,7 +48,7 @@ module.exports = {
           key: 'id'
         }
       },
-      taxtId: {
+      taxId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {

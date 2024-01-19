@@ -70,8 +70,8 @@ module.exports = {
       }
     })
 
-    await queryInterface.addIndex('images', ['image_configurationId'], {
-      name: 'images_image_configurationId_fk'
+    await queryInterface.addIndex('images', ['imageConfigurationId'], {
+      name: 'images_imageConfigurationId_fk'
     })
   },
 
