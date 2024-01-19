@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tickets', {
+    await queryInterface.createTable('fingerprints', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,34 +10,32 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       customerId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'customers',
-          key: 'id'
-        }
+        type: Sequelize.INTEGER
       },
-      saleId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'sales',
-          key: 'id'
-        }
-      },
-      returnId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'returns',
-          key: 'id'
-        }
-      },
-      reference: {
+      fingerPrint: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      path: {
-        allowNull: false,
+      cityId: {
+        type: Sequelize.INTEGER
+      },
+      browser: {
         type: Sequelize.STRING
+      },
+      browserVersion: {
+        type: Sequelize.STRING
+      },
+      os: {
+        type: Sequelize.STRING
+      },
+      osVersion: {
+        type: Sequelize.STRING
+      },
+      screenHeight: {
+        type: Sequelize.INTEGER
+      },
+      screenWidth: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -54,6 +52,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tickets')
+    await queryInterface.dropTable('fingerprints')
   }
 }

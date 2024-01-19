@@ -14,11 +14,19 @@ module.exports = {
         type: Sequelize.UUID
       },
       customerId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'customers',
+          key: 'id'
+        }
       },
       fingerprintId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'fingerprints',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

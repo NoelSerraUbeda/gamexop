@@ -11,15 +11,27 @@ module.exports = {
       },
       countryId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'countries',
+          key: 'id'
+        }
       },
       cityId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'cities',
+          key: 'id'
+        }
       },
       dialCodeId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'dial_codes',
+          key: 'id'
+        }
       },
       postalCode: {
         allowNull: false,

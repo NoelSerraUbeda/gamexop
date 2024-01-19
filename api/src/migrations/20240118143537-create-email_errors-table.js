@@ -2,20 +2,12 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('sale_errors', {
+    await queryInterface.createTable('email_errors', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
-      paymentMethodId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'payment_methods',
-          key: 'id'
-        }
       },
       customerId: {
         allowNull: false,
@@ -25,19 +17,15 @@ module.exports = {
           key: 'id'
         }
       },
-      cartId: {
+      emailId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'carts',
+          model: 'emails',
           key: 'id'
         }
       },
-      errorCode: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      errorMessage: {
+      error: {
         type: Sequelize.TEXT
       },
       createdAt: {
@@ -55,6 +43,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('sale_errors')
+    await queryInterface.dropTable('email_errors')
   }
 }

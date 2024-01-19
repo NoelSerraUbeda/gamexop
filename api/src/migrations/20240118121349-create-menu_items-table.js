@@ -11,13 +11,25 @@ module.exports = {
       },
       menuId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'menus',
+          key: 'id'
+        }
       },
       localeSeoId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'locale_seos',
+          key: 'id'
+        }
       },
       localeSeoSlugId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'locale_seo_slugs',
+          key: 'id'
+        }
       },
       parent: {
         type: Sequelize.INTEGER

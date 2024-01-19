@@ -11,7 +11,11 @@ module.exports = {
       },
       countryId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'countries',
+          key: 'id'
+        }
       },
       type: {
         allowNull: false,

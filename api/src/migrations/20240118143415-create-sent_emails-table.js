@@ -11,11 +11,19 @@ module.exports = {
       },
       customerId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'customers',
+          key: 'id'
+        }
       },
       emailId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'emails',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

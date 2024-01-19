@@ -5,15 +5,25 @@ module.exports = {
     await queryInterface.createTable('prices', {
       id: {
         allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
         type: Sequelize.INTEGER
       },
       productId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'products',
+          key: 'id'
+        }
       },
       taxId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'taxes',
+          key: 'id'
+        }
       },
       basePrice: {
         allowNull: false,

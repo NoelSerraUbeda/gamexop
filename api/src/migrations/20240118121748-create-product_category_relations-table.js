@@ -5,15 +5,25 @@ module.exports = {
     await queryInterface.createTable('product_category_relations', {
       id: {
         allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
         type: Sequelize.INTEGER
       },
       productCategoryId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'product_categories',
+          key: 'id'
+        }
       },
       productId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'products',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

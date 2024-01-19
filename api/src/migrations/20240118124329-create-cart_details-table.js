@@ -11,26 +11,50 @@ module.exports = {
       },
       cartId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'carts',
+          key: 'id'
+        }
       },
       productId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'products',
+          key: 'id'
+        }
       },
       localeId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'locales',
+          key: 'id'
+        }
       },
       priceId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'prices',
+          key: 'id'
+        }
       },
       priceDiscountId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'price_discounts',
+          key: 'id'
+        }
       },
       taxtId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'taxes',
+          key: 'id'
+        }
       },
       basePrice: {
         allowNull: false,

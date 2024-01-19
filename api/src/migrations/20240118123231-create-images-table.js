@@ -19,7 +19,11 @@ module.exports = {
       },
       imageConfigurationId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'image_configurations',
+          key: 'id'
+        }
       },
       name: {
         allowNull: false,

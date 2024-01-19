@@ -11,15 +11,27 @@ module.exports = {
       },
       saleId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'sales',
+          key: 'id'
+        }
       },
       customerId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'customers',
+          key: 'id'
+        }
       },
       paymentMethodId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'payment_methods',
+          key: 'id'
+        }
       },
       reference: {
         allowNull: false,

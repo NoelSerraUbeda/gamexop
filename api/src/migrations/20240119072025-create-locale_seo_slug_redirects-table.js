@@ -2,23 +2,28 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('email_errors', {
+    await queryInterface.createTable('locale_seo_slug_redirects', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      customerId: {
+      localeSeoSlugId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'locale_seo_slugs',
+          key: 'id'
+        }
       },
-      emailId: {
+      languageAlias: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
-      error: {
-        type: Sequelize.TEXT
+      oldUrl: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -35,6 +40,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('email_errors')
+    await queryInterface.dropTable('locale_seo_slug_redirects')
   }
 }

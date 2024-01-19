@@ -2,14 +2,20 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('prices_discounts', {
+    await queryInterface.createTable('price_discounts', {
       id: {
         allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
         type: Sequelize.INTEGER
       },
       priceId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'prices',
+          key: 'id'
+        }
       },
       percentage: {
         allowNull: false,
@@ -44,6 +50,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('prices_discounts')
+    await queryInterface.dropTable('price_discounts')
   }
 }

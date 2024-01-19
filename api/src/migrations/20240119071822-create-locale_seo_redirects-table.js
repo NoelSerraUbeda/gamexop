@@ -2,43 +2,28 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('sale_errors', {
+    await queryInterface.createTable('locale_seo_redirects', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      paymentMethodId: {
+      localeSeoId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'payment_methods',
+          model: 'locale_seos',
           key: 'id'
-        }
+        } 
       },
-      customerId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'customers',
-          key: 'id'
-        }
-      },
-      cartId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'carts',
-          key: 'id'
-        }
-      },
-      errorCode: {
+      languageAlias: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      errorMessage: {
-        type: Sequelize.TEXT
+      oldUrl: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -55,6 +40,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('sale_errors')
+    await queryInterface.dropTable('locale_seo_redirects')
   }
 }
