@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const Faq = sequelize.define('Faq', {
+  const User = sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -9,15 +9,15 @@ module.exports = function (sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena el campo "Nombre".'
-        }
-      }
     },
-    order: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -37,7 +37,7 @@ module.exports = function (sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'faqs',
+    tableName: 'users',
     timestamps: true,
     paranoid: true,
     indexes: [
@@ -52,9 +52,9 @@ module.exports = function (sequelize, DataTypes) {
     ]
   })
 
-  Faq.associate = function (models) {
+  User.associate = function (models) {
 
   }
 
-  return Faq
+  return User
 }
