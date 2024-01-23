@@ -71,12 +71,27 @@ module.exports = function (sequelize, DataTypes) {
           fields: [
             { name: 'id' }
           ]
+        },
+        {
+          name: 'fingerprints_customerId_fk',
+          using: 'BTREE',
+          fields: [
+            { name: 'customerId' },
+          ]
+        },
+        {
+          name: 'fingerprints_cityId_fk',
+          using: 'BTREE',
+          fields: [
+            { name: 'cityId' },
+          ]
         }
       ]
     })
   
     Fingerprint.associate = function (models) {
-  
+      Fingerprint.belongsTo(models.Customer, { as: 'customer', foreignKey: 'customerId' })
+      Fingerprint.belongsTo(models.City, { as: 'city', foreignKey: 'cityId' })
     }
   
     return Fingerprint

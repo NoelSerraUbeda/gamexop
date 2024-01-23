@@ -74,12 +74,59 @@ module.exports = function (sequelize, DataTypes) {
         fields: [
           { name: 'id' }
         ]
+      },
+      {
+        name: 'sale_details_saleId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'saleId' },
+        ]
+      },
+      {
+        name: 'sale_details_productId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'productId' },
+        ]
+      },
+      {
+        name: 'sale_details_localeId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'localeId' },
+        ]
+      },
+      {
+        name: 'sale_details_priceId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'priceId' },
+        ]
+      },
+      {
+        name: 'sale_details_priceDiscountId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'priceDiscountId' },
+        ]
+      },
+      {
+        name: 'sale_details_taxId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'taxId' },
+        ]
       }
     ]
   })
 
   SaleDetails.associate = function (models) {
-
+    SaleDetails.belongsTo(models.Sale, { as: 'sale', foreignKey: 'saleId' })
+    SaleDetails.belongsTo(models.Product, { as: 'product', foreignKey: 'productId' })
+    SaleDetails.belongsTo(models.Locale, { as: 'locale', foreignKey: 'localetId' })
+    SaleDetails.belongsTo(models.Price, { as: 'price', foreignKey: 'pricetId' })
+    SaleDetails.belongsTo(models.PriceDiscount, { as: 'priceDiscount', foreignKey: 'priceDiscountId' })
+    SaleDetails.belongsTo(models.Tax, { as: 'tax', foreignKey: 'taxtId' })
   }
 
   return SaleDetails

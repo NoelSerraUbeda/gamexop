@@ -66,12 +66,35 @@ module.exports = function (sequelize, DataTypes) {
         fields: [
           { name: 'id' }
         ]
-      }
+      },
+      {
+        name: 'menu_items_menuId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'menuId' },
+        ]
+      },
+      {
+        name: 'menu_items_localeSeoId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'localeSeoId' },
+        ]
+      },
+      {
+        name: 'menu_items_localeSeoSlugId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'localeSeoSlugId' },
+        ]
+      },
     ]
   })
 
   MenuItem.associate = function (models) {
-
+    MenuItem.belongsTo(models.Menu, { as: 'menu', foreignKey: 'menuId' })
+    MenuItem.belongsTo(models.LocaleSeo, { as: 'localeSeo', foreignKey: 'localeSeoId' })
+    MenuItem.belongsTo(models.LocaleSeoSlug, { as: 'localeSeoSlug', foreignKey: 'localeSeoSlugId' })
   }
 
   return MenuItem

@@ -48,12 +48,20 @@ module.exports = function (sequelize, DataTypes) {
         fields: [
           { name: 'id' }
         ]
-      }
+      },
+      {
+        name: 'users_email_index',
+        unique: true,
+        using: 'BTREE',
+        fields: [
+          { name: 'email' }
+        ]
+      },
     ]
   })
 
   User.associate = function (models) {
-
+    User.hasMany(models.AdminTracking, { as: 'adminTrackings', foreignKey: 'userId' })
   }
 
   return User

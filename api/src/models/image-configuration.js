@@ -53,6 +53,15 @@ module.exports = function (sequelize, DataTypes) {
         fields: [
           { name: 'id' }
         ]
+      },
+      {
+        name: 'image_configurations_entity_name_mediaQuery_index',
+        using: 'BTREE',
+        fields: [
+          { name: 'entity' },
+          { name: 'name' },
+          { name: 'mediaQuery' }
+        ]
       }
     ]
   })

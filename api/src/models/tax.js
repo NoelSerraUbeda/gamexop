@@ -55,12 +55,19 @@ module.exports = function (sequelize, DataTypes) {
         fields: [
           { name: 'id' }
         ]
+      },
+      {
+        name: 'taxes_countryId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'countryId' },
+        ]
       }
     ]
   })
 
   Tax.associate = function (models) {
-
+    Tax.belongsTo(models.Country, { as: 'country', foreignKey: 'countryId' })
   }
 
   return Tax

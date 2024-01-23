@@ -43,12 +43,27 @@ module.exports = function (sequelize, DataTypes) {
         fields: [
           { name: 'id' }
         ]
+      },
+      {
+        name: 'sent_emails_customerId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'customerId' },
+        ]
+      },
+      {
+        name: 'sent_emails_emailId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'emailId' },
+        ]
       }
     ]
   })
 
   SentEmail.associate = function (models) {
-
+    SentEmail.belongsTo(models.Customer, { as: 'customer', foreignKey: 'customerId' })
+    SentEmail.belongsTo(models.Email, { as: 'email', foreignKey: 'emailId' })
   }
 
   return SentEmail

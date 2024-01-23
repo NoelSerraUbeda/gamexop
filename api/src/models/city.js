@@ -43,12 +43,19 @@ module.exports = function (sequelize, DataTypes) {
           fields: [
             { name: 'id' }
           ]
-        }
+        },
+        {
+          name: 'cities_countryId_fk',
+          using: 'BTREE',
+          fields: [
+            { name: 'countryId' },
+          ]
+        },
       ]
     })
   
     City.associate = function (models) {
-  
+      City.belongsTo(models.Country, { as: 'country', foreignKey: 'countryId' })
     }
   
     return City

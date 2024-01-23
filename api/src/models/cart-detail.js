@@ -73,12 +73,51 @@ module.exports = function (sequelize, DataTypes) {
         fields: [
           { name: 'id' }
         ]
-      }
+      },
+      {
+        name: 'cart_details_cartId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'cartId' },
+        ]
+      },
+      {
+        name: 'cart_details_productId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'productId' },
+        ]
+      },
+      {
+        name: 'cart_details_localeId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'localeId' },
+        ]
+      },
+      {
+        name: 'cart_details_priceId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'priceId' },
+        ]
+      },
+      {
+        name: 'cart_details_taxId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'taxId' },
+        ]
+      },
     ]
   })
 
   CartDetail.associate = function (models) {
-
+    CartDetail.belongsTo(models.Cart, { as: 'cart', foreignKey: 'cartId' })
+    CartDetail.belongsTo(models.Product, { as: 'product', foreignKey: 'productId' })
+    CartDetail.belongsTo(models.Locale, { as: 'locale', foreignKey: 'localeId' })
+    CartDetail.belongsTo(models.Price, { as: 'price', foreignKey: 'priceId' })
+    CartDetail.belongsTo(models.Tax, { as: 'tax', foreignKey: 'taxId' })
   }
 
   return CartDetail
