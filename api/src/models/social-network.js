@@ -32,7 +32,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     }, {
       sequelize,
-      tableName: 'social-networks',
+      tableName: 'social_networks',
       timestamps: true,
       paranoid: true,
       indexes: [

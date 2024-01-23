@@ -55,6 +55,16 @@ module.exports = function (sequelize, DataTypes) {
           fields: [
             { name: 'id' }
           ]
+        },
+        {
+          name: 'locales_languageAlias_entity_entityId_key_index',
+          using: 'BTREE',
+          fields: [
+            { name: 'languageAlias' },
+            { name: 'entity' },
+            { name: 'entityKey' },
+            { name: 'key' }
+          ]
         }
       ]
     })
