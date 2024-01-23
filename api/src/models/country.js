@@ -57,7 +57,7 @@ module.exports = function (sequelize, DataTypes) {
     })
   
     Country.associate = function (models) {
-  
+      Country.hasMany(models.City, { as: 'city', foreignKey: 'countryId' })
     }
   
     return Country

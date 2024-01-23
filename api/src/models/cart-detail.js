@@ -118,6 +118,7 @@ module.exports = function (sequelize, DataTypes) {
     CartDetail.belongsTo(models.Locale, { as: 'locale', foreignKey: 'localeId' })
     CartDetail.belongsTo(models.Price, { as: 'price', foreignKey: 'priceId' })
     CartDetail.belongsTo(models.Tax, { as: 'tax', foreignKey: 'taxId' })
+    CartDetail.hasMany(models.Cart, { as: 'cart', foreignKey: 'cartDetailId' })
   }
 
   return CartDetail
