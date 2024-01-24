@@ -23,8 +23,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false
       },
       value: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.TEXT,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -71,6 +70,8 @@ module.exports = function (sequelize, DataTypes) {
   
     Locale.associate = function (models) {
       Locale.hasMany(models.CartDetail, { as: 'cartDetail', foreignKey: 'localeId' })
+      Locale.hasMany(models.ReturnDetail, { as: 'returnDetail', foreignKey: 'localeId' })
+      Locale.hasMany(models.SaleDetails, { as: 'saleDetails', foreignKey: 'localeId' })
     }
   
     return Locale

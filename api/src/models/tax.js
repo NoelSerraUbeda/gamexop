@@ -68,7 +68,10 @@ module.exports = function (sequelize, DataTypes) {
 
   Tax.associate = function (models) {
     Tax.belongsTo(models.Country, { as: 'country', foreignKey: 'countryId' })
+
     Tax.hasMany(models.CartDetail, { as: 'cartDetail', foreignKey: 'taxId' })
+    Tax.hasMany(models.ReturnDetail, { as: 'returnDetail', foreignKey: 'taxId' })
+    Tax.hasMany(models.SaleDetails, { as: 'saleDetails', foreignKey: 'taxId' })
   }
 
   return Tax

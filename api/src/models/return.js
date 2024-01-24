@@ -100,6 +100,11 @@ module.exports = function (sequelize, DataTypes) {
     Return.belongsTo(models.Sale, { as: 'sale', foreignKey: 'saleId' })
     Return.belongsTo(models.Customer, { as: 'customer', foreignKey: 'customerId' })
     Return.belongsTo(models.PaymentMethod, { as: 'paymentMethod', foreignKey: 'paymentMethodId' })
+
+    Return.hasMany(models.Invoices, { as: 'invoices', foreignKey: 'returnId' })
+    Return.hasMany(models.ReturnDetail, { as: 'returnDetail', foreignKey: 'returnId' })
+    Return.hasMany(models.ReturnError, { as: 'returnError', foreignKey: 'returnId' })
+    Return.hasMany(models.Ticket, { as: 'ticket', foreignKey: 'returnId' })
   }
 
   return Return

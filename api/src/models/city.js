@@ -56,6 +56,7 @@ module.exports = function (sequelize, DataTypes) {
   
     City.associate = function (models) {
       City.belongsTo(models.Country, { as: 'country', foreignKey: 'countryId' })
+      City.hasMany(models.Customer, { as: 'customer', foreignKey: 'cityId' })    
     }
   
     return City

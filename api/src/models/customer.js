@@ -113,8 +113,20 @@ module.exports = function (sequelize, DataTypes) {
       Customer.belongsTo(models.Country, { as: 'country', foreignKey: 'countryId' })
       Customer.belongsTo(models.City, { as: 'city', foreignKey: 'cityId' })
       Customer.belongsTo(models.DialCode, { as: 'dialCode', foreignKey: 'dialCodeId' })
+      
       Customer.hasMany(models.ApiTracking, { as: 'apiTracking', foreignKey: 'customerId' })
       Customer.hasMany(models.Cart, { as: 'cart', foreignKey: 'customerId' })
+      Customer.hasMany(models.CustomerTracking, { as: 'customerTracking', foreignKey: 'customerId' })
+      Customer.hasMany(models.Email, { as: 'email', foreignKey: 'customerId' })
+      Customer.hasMany(models.Fingerprint, { as: 'fingerprint', foreignKey: 'customerId' })
+      Customer.hasMany(models.Invoices, { as: 'invoices', foreignKey: 'customerId' })
+      Customer.hasMany(models.PageTracking, { as: 'pageTracking', foreignKey: 'customerId' })
+      Customer.hasMany(models.ReturnError, { as: 'returnError', foreignKey: 'customerId' })
+      Customer.hasMany(models.Return, { as: 'return', foreignKey: 'customerId' })
+      Customer.hasMany(models.SaleError, { as: 'saleError', foreignKey: 'customerId' })
+      Customer.hasMany(models.Sale, { as: 'sale', foreignKey: 'customerId' })
+      Customer.hasMany(models.SentEmail, { as: 'sentEmail', foreignKey: 'customerId' })
+      Customer.hasMany(models.Ticket, { as: 'ticket', foreignKey: 'customerId' })
     }
   
     return Customer

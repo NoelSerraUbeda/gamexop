@@ -67,6 +67,7 @@ module.exports = function (sequelize, DataTypes) {
   })
 
   ImageConfiguration.associate = function (models) {
+    ImageConfiguration.hasMany(models.Image, { as: 'image', foreignKey: 'imageConfigurationId' })
 
   }
 
