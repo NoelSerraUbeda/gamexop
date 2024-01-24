@@ -70,6 +70,7 @@ module.exports = function (sequelize, DataTypes) {
 
     PriceDiscount.hasMany(models.ReturnDetail, { as: 'returnDetail', foreignKey: 'priceDiscountId' })
     PriceDiscount.hasMany(models.SaleDetails, { as: 'saleDetails', foreignKey: 'priceDiscountId' })
+    PriceDiscount.hasMany(models.CartDetail, { as: 'cartDetail', foreignKey: 'priceDiscountId' })
   }
 
   return PriceDiscount

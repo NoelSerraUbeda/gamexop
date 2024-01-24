@@ -103,6 +103,13 @@ module.exports = function (sequelize, DataTypes) {
         ]
       },
       {
+        name: 'cart_details_priceDiscountId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'priceDiscount' },
+        ]
+      },
+      {
         name: 'cart_details_taxId_fk',
         using: 'BTREE',
         fields: [
@@ -117,7 +124,9 @@ module.exports = function (sequelize, DataTypes) {
     CartDetail.belongsTo(models.Product, { as: 'product', foreignKey: 'productId' })
     CartDetail.belongsTo(models.Locale, { as: 'locale', foreignKey: 'localeId' })
     CartDetail.belongsTo(models.Price, { as: 'price', foreignKey: 'priceId' })
+    CartDetail.belongsTo(models.PriceDiscount, { as: 'priceDiscount', foreignKey: 'priceDiscountId' })
     CartDetail.belongsTo(models.Tax, { as: 'tax', foreignKey: 'taxId' })
+
     CartDetail.hasMany(models.Cart, { as: 'cart', foreignKey: 'cartDetailId' })
   }
 
