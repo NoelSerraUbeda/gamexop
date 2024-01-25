@@ -29,7 +29,12 @@ module.exports = function (sequelize, DataTypes) {
     },
     event: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,

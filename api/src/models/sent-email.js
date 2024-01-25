@@ -9,10 +9,20 @@ module.exports = function (sequelize, DataTypes) {
     customerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     emailId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     createdAt: {
       type: DataTypes.DATE,

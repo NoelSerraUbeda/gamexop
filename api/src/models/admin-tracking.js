@@ -9,18 +9,44 @@ module.exports = function (sequelize, DataTypes) {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        },
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     entity: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     entityId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        },
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     action: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,

@@ -9,18 +9,38 @@ module.exports = function (sequelize, DataTypes) {
     saleId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     productId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     localeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     priceId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     priceDiscountId: {
       type: DataTypes.INTEGER,
@@ -28,22 +48,47 @@ module.exports = function (sequelize, DataTypes) {
     taxId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     productName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     basePrice: {
       type: DataTypes.DECIMAL(6, 2),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     taxPrice: {
       type: DataTypes.DECIMAL(6, 2),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,

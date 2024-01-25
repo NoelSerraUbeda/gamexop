@@ -9,22 +9,47 @@ module.exports = function (sequelize, DataTypes) {
       countryId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       cityId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       dialCodeId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       fiscalName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       comercialName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       vat: {
         type: DataTypes.STRING,
@@ -32,20 +57,41 @@ module.exports = function (sequelize, DataTypes) {
       },
       comercialAddress: {
         type: DataTypes.STRING,
-        allowNull: true
       },
       fiscalAddress: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       postalCode: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       email: {
         type: DataTypes.STRING,
+        unique: {
+          args: true,
+          msg: 'Este correo electrónico ya está en uso.'
+        },
         allowNull: false,
-        unique: true
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          },
+          isEmail: {
+            args: true,
+            msg: 'El campo debe ser una dirección de correo electrónico válida.'
+          }
+        }
       },
       web: {
         type: DataTypes.STRING

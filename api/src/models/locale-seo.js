@@ -8,26 +8,55 @@ module.exports = function (sequelize, DataTypes) {
     },
     languageAlias: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     url: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     description: {
       type: DataTypes.STRING
     },
     redirection: {
       type: DataTypes.BOOLEAN,
-      defaultValue: 0
+      defaultValue: false,
+      validate: {
+        isValidBoolean(value) {
+          if (typeof value !== 'boolean') {
+            throw new Error('El campo redirection debe ser un valor booleano.');
+          }
+        }
+      }
     },
     menu: {
       type: DataTypes.BOOLEAN,
-      defaultValue: 1
+      defaultValue: true, 
+      validate: {
+        isValidBoolean(value) {
+          if (typeof value !== 'boolean') {
+            throw new Error('El campo menu debe ser un valor booleano.');
+          }
+        }
+      }
     },
     changeFrequency: {
       type: DataTypes.STRING
@@ -37,7 +66,14 @@ module.exports = function (sequelize, DataTypes) {
     },
     sitemap: {
       type: DataTypes.BOOLEAN,
-      defaultValue: 1
+      defaultValue: true,
+      validate: {
+        isValidBoolean(value) {
+          if (typeof value !== 'boolean') {
+            throw new Error('El campo sitemap debe ser un valor booleano.');
+          }
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,

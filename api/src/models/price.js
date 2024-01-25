@@ -16,7 +16,14 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DECIMAL
     },
     current: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      validate: {
+        isValidBoolean(value) {
+          if (value !== undefined && typeof value !== 'boolean') {
+            throw new Error('El campo current debe ser un valor booleano.');
+          }
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,

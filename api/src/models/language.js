@@ -8,12 +8,25 @@ module.exports = function (sequelize, DataTypes) {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       alias: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: {
+          args: true,
+          msg: 'Este alias ya está en uso.'
+        },
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       createdAt: {
         type: DataTypes.DATE,

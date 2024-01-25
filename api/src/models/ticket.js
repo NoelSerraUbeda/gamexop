@@ -9,22 +9,41 @@ module.exports = function (sequelize, DataTypes) {
     customerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     saleId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     returnId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
     },
     reference: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     path: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     createdAt: {
       type: DataTypes.DATE,

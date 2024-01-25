@@ -20,27 +20,57 @@ module.exports = function (sequelize, DataTypes) {
     },
     reference: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     totalPrice: {
       type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
+      allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     totalBasePrice: {
       type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
+      allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     totalTaxPrice: {
       type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
+      allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     saleDate: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     saleTime: {
       type: DataTypes.TIME,
-      allowNull: false
+      allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -104,6 +134,8 @@ module.exports = function (sequelize, DataTypes) {
   })
 
   Sale.associate = function (models) {
+    Sale.belongsToMany(models.Product, { through: models.SaleDetail, as: 'products', foreignKey: 'saleId' })
+    
     Sale.belongsTo(models.Cart, { as: 'cart', foreignKey: 'cartId' })
     Sale.belongsTo(models.Customer, { as: 'customer', foreignKey: 'customerId' })
     Sale.belongsTo(models.PaymentMethod, { as: 'paymentMethod', foreignKey: 'paymentMethodId' })

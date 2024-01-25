@@ -11,19 +11,51 @@ module.exports = function (sequelize, DataTypes) {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena el campo "Nombre".'
+          },
+          is: {
+            args: /^[a-z0-9\sáéíóúüñÁÉÍÓÚÜÑ]+$/i,
+            msg: 'Por favor, rellena el campo "Nombre" con un nombre válido, sin caracteres especiales.'
+          }
+        }
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false
+        unique: {
+          args: true,
+          msg: 'Este correo electrónico ya está en uso.'
+        },
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          },
+          isEmail: {
+            args: true,
+            msg: 'El campo debe ser una dirección de correo electrónico válida.'
+          }
+        }
       },
       subject: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }   
       },
       message: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }   
       },
       createdAt: {
         type: DataTypes.DATE,

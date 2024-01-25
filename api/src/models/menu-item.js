@@ -9,6 +9,11 @@ module.exports = function (sequelize, DataTypes) {
     menuId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     localeSeoId: {
       type: DataTypes.INTEGER,
@@ -21,7 +26,12 @@ module.exports = function (sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     description: {
       type: DataTypes.STRING
@@ -31,11 +41,23 @@ module.exports = function (sequelize, DataTypes) {
     },
     private: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isValidBoolean(value) {
+          if (typeof value !== 'boolean') {
+            throw new Error('El campo private debe ser un valor booleano.');
+          }
+        }
+      }
     },
     order: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
+      validate: {
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,

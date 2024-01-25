@@ -9,10 +9,24 @@ module.exports = function (sequelize, DataTypes) {
       countryId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena todos los campos.'
+          }
+        }
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Por favor, rellena el campo "Nombre".'
+          },
+          is: {
+            args: /^[a-z0-9\sáéíóúüñÁÉÍÓÚÜÑ]+$/i,
+            msg: 'Por favor, rellena el campo "Nombre" con un nombre válido, sin caracteres especiales.'
+          }
+        }
       },
       createdAt: {
         type: DataTypes.DATE,

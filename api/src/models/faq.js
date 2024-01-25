@@ -8,11 +8,21 @@ module.exports = function (sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     order: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      defaultValue: 0,
+      validate: {
+        isInt: {
+          msg: 'El valor del campo order debe ser un número entero.'
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,

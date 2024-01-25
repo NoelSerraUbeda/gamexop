@@ -8,11 +8,25 @@ module.exports = function (sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena el campo "Nombre".'
+        },
+        is: {
+          args: /^[a-z0-9\sáéíóúüñÁÉÍÓÚÜÑ]+$/i,
+          msg: 'Por favor, rellena el campo "Nombre" con un nombre válido, sin caracteres especiales.'
+        }
+      }
     },
     code: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }  
     },
     percentage: {
       type: DataTypes.DECIMAL

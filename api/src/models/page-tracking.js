@@ -20,23 +20,50 @@ module.exports = function (sequelize, DataTypes) {
     },
     path: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     ip: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     isRobot: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isValidBoolean(value) {
+          if (typeof value !== 'boolean') {
+            throw new Error('El campo isRobot debe ser un valor booleano.');
+          }
+        }
+      }
     },
     startTime: {
       type: DataTypes.DOUBLE,
-      allowNull: false
-    },
+      allowNull: false,
+      validate: {
+        isFloat: {
+          msg: 'El campo startTime debe ser un número de punto flotante.'
+        }
+      }
+    }, 
     endTime: {
       type: DataTypes.DOUBLE,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isFloat: {
+          msg: 'El campo endTime debe ser un número de punto flotante.'
+        }
+      }
     },
     latencyMS: {
       type: DataTypes.INTEGER,

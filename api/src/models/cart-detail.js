@@ -9,40 +9,103 @@ module.exports = function (sequelize, DataTypes) {
     cartId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        },
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     productId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        },
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     localeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        },
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     priceId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        },
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     priceDiscountId: {
       type: DataTypes.INTEGER,
+      validate: {
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     taxId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        },
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     productName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     basePrice: {
       type: DataTypes.DECIMAL(6, 2),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     taxPrice: {
       type: DataTypes.DECIMAL(6, 2)
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        },
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,

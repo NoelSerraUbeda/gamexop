@@ -9,6 +9,11 @@ module.exports = function (sequelize, DataTypes) {
     priceId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        }
+      }
     },
     percentage: {
       type: DataTypes.DECIMAL
@@ -17,7 +22,14 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DECIMAL
     },
     current: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      validate: {
+        isValidBoolean(value) {
+          if (value !== undefined && typeof value !== 'boolean') {
+            throw new Error('El campo current debe ser un valor booleano.');
+          }
+        }
+      }
     },
     startsAt: {
       type: DataTypes.DATE

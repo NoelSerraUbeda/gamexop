@@ -8,14 +8,32 @@ module.exports = function (sequelize, DataTypes) {
     },
     uuid: {
       type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
-      defaultValue: DataTypes.UUIDV4
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena todos los campos.'
+        },
+        isUUID: {
+          msg: 'El campo no cumple las reglas de formato'
+        }
+      }
     },
     customerId: {
       type: DataTypes.INTEGER,
+      validate: {
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     fingerprintId: {
       type: DataTypes.INTEGER,
+      validate: {
+        isInt: {
+          msg: 'El campo order debe ser un número entero.'
+        }
+      }
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -68,9 +86,13 @@ module.exports = function (sequelize, DataTypes) {
     Cart.belongsTo(models.Customer, { as: 'customer', foreignKey: 'customerId' })
     Cart.belongsTo(models.Fingerprint, { as: 'fingerprint', foreignKey: 'fingerprintId' })
 
+    Cart.belongsToMany(models.Product, { through: models.CartDetail, as: 'products', foreignKey: 'cartId' })
+
     Cart.hasMany(models.CartDetail, { as: 'cartDetail', foreignKey: 'cartId' })
     Cart.hasMany(models.SaleError, { as: 'saleError', foreignKey: 'cartId' })
     Cart.hasMany(models.Sale, { as: 'sale', foreignKey: 'cartId' })
+
+    Cart.hasOne(models.Sale, { as: 'sale', foreignKey: 'cartId' })
   }
 
   return Cart
