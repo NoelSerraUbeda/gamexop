@@ -175,7 +175,7 @@ header {
   overflow: hidden;
   height: 3.3rem;
   width: 48rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .tabs ul {
@@ -649,6 +649,34 @@ span.correct {
   color: var(--correct);
   font-weight: 900;
 }
+
+.area {
+  display: none;
+}
+
+.area.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.area-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.area-section label {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: hsl(0, 0%, 96%);
+  font-weight: bolder;
+  text-indent: 10px;
+  margin-top: 0.5rem;
+  font-size: 22px;
+}
+
+.area-section input {
+  width: 48rem;
+}
+
 
 @media only screen and (max-width: 1550px) {
 

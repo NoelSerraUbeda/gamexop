@@ -126,13 +126,19 @@
         <div class="crud-pages">
           <p>0 registros en total</p>
           <ul>
-            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-left-bold</title><path d="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z" /></svg></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>arrow-left-bold</title>
+                <path d="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z" />
+              </svg></li>
             <li class="actual-page">1</li>
             <li>2</li>
             <li>3</li>
             <li>...</li>
             <li>20</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-right-bold</title><path d="M4,15V9H12V4.16L19.84,12L12,19.84V15H4Z" /></svg></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>arrow-right-bold</title>
+                <path d="M4,15V9H12V4.16L19.84,12L12,19.84V15H4Z" />
+              </svg></li>
           </ul>
           <p>Página 1 de 1</p>
         </div>
@@ -163,19 +169,31 @@
                 <label for="repeat-password">Repeat Password</label>
                 <input type="password" data-minlength="8">
               </div>
-              <div class="lang">
+              <div class="language-tabs">
                 <div class="tabs">
                   <ul>
-                    <li class="tab selected" data-tab="general">Es</li>
-                    <li class="tab" data-tab="images">En</li>
+                    <li class="tab selected" data-tab="es">Es</li>
+                    <li class="tab" data-tab="en">En</li>
                   </ul>
                 </div>
-                <div class="form-section">
-                  <label for="name">Name</label>
-                  <input type="text" class="name long" data-onlyletters>
+              </div>
+              <div class="area active" data-tab="es">
+                <div class="area-section">
+                  <label>Name</label>
+                  <input type="text" class="long" name="locale['title.{{~language}}']">
                 </div>
-                <div class="form-section">
-                  <label for="name">Description</label>
+                <div class="area-section ">
+                  <label>Description</label>
+                  <textarea></textarea>
+                </div>
+              </div>
+              <div class="area" data-tab="en">
+                <div class="area-section">
+                  <label>Name</label>
+                  <input type="text" class="long">
+                </div>
+                <div class="area-section">
+                  <label>Description</label>
                   <textarea></textarea>
                 </div>
               </div>
