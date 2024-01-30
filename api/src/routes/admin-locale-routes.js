@@ -1,6 +1,6 @@
 module.exports = (app, upload) => {
   const router = require('express').Router()
-  const controller = require('../controllers/admin/locale.js')
+  const controller = require('../controllers/admin/locale-controller.js')
 
   router.post('/', controller.create)
   router.get('/', controller.findAll)

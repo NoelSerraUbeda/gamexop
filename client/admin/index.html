@@ -102,14 +102,37 @@
               <h3>EMAIL: <span>PedroCorreo@gmail.com</span></h3>
             </div>
           </div>
+          <div class="crud-card">
+            <div class="crud-card-buttons">
+              <button class="delete"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <title>Delete</title>
+                  <path
+                    d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"
+                    fill="white" />
+                </svg></button>
+              <button class="edit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <title>Edit</title>
+                  <path
+                    d="M10 20H6V4H13V9H18V12.1L20 10.1V8L14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20M20.2 13C20.3 13 20.5 13.1 20.6 13.2L21.9 14.5C22.1 14.7 22.1 15.1 21.9 15.3L20.9 16.3L18.8 14.2L19.8 13.2C19.9 13.1 20 13 20.2 13M20.2 16.9L14.1 23H12V20.9L18.1 14.8L20.2 16.9Z"
+                    fill="white" />
+                </svg></button>
+            </div>
+            <div class="crud-card-data">
+              <h3>NOMBRE: <span>Pedro</span></h3>
+              <h3>EMAIL: <span>PedroCorreo@gmail.com</span></h3>
+            </div>
+          </div>
         </div>
         <div class="crud-pages">
+          <p>0 registros en total</p>
           <ul>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-left-bold</title><path d="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z" /></svg></li>
             <li class="actual-page">1</li>
             <li>2</li>
             <li>3</li>
             <li>...</li>
             <li>20</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>arrow-right-bold</title><path d="M4,15V9H12V4.16L19.84,12L12,19.84V15H4Z" /></svg></li>
           </ul>
           <p>Página 1 de 1</p>
         </div>
@@ -120,6 +143,7 @@
           <span class="correct">Todo Correcto</span>
           <span class="error">Faltan datos o son incorrectos</span>
         </div>
+
         <div class="crud-form-area">
           <form>
             <div class="tab-content active" data-tab="general">
@@ -138,6 +162,22 @@
               <div class="form-section">
                 <label for="repeat-password">Repeat Password</label>
                 <input type="password" data-minlength="8">
+              </div>
+              <div class="lang">
+                <div class="tabs">
+                  <ul>
+                    <li class="tab selected" data-tab="general">Es</li>
+                    <li class="tab" data-tab="images">En</li>
+                  </ul>
+                </div>
+                <div class="form-section">
+                  <label for="name">Name</label>
+                  <input type="text" class="name long" data-onlyletters>
+                </div>
+                <div class="form-section">
+                  <label for="name">Description</label>
+                  <textarea></textarea>
+                </div>
               </div>
             </div>
             <div class="tab-content custom-file-input" data-tab="images">

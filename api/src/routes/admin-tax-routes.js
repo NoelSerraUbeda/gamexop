@@ -1,6 +1,6 @@
 module.exports = (app, upload) => {
   const router = require('express').Router()
-  const controller = require('../controllers/admin/tax.js')
+  const controller = require('../controllers/admin/tax-controller.js')
 
   router.post('/', controller.create)
   router.get('/', controller.findAll)

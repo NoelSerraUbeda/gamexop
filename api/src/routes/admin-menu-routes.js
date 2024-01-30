@@ -1,6 +1,6 @@
 module.exports = (app, upload) => {
   const router = require('express').Router()
-  const controller = require('../controllers/admin/menu.js')
+  const controller = require('../controllers/admin/menu-controller.js')
 
   router.post('/', controller.create)
   router.get('/', controller.findAll)
