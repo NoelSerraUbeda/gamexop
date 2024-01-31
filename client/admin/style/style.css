@@ -174,8 +174,12 @@ header {
   border-radius: 5px;
   overflow: hidden;
   height: 3.3rem;
-  width: 48rem;
+  width: 45rem;
   margin-bottom: 0.5rem;
+}
+
+.language-tabs .tabs {
+  width: 52rem;
 }
 
 .tabs ul {
@@ -300,16 +304,16 @@ header {
   justify-content: space-between;
   border-radius: 15px;
   padding-right: 40px;
-  margin-left: -70px;
   height: 3.5rem;
   display: flex;
   width: 40%;
   position: fixed;
   bottom: 1.5rem;
+  left: 2.5rem;
 }
 
 .crud-pages p {
-margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .crud-pages ul {
@@ -320,19 +324,19 @@ margin-left: 1rem;
   align-items: center;
 }
 
-.crud-pages ul svg{
+.crud-pages ul svg {
   width: 2rem;
   fill: var(--dark);
   margin-top: 0.5rem;
   cursor: pointer;
 }
 
-.crud-pages ul svg:hover{
+.crud-pages ul svg:hover {
   fill: var(--light);
 }
 
-.crud-pages ul li{
-font-size: 20px;
+.crud-pages ul li {
+  font-size: 20px;
 }
 
 .actual-page {
@@ -398,7 +402,7 @@ font-size: 20px;
   padding-top: 10px;
   flex-wrap: wrap;
   display: none;
-  width: 52rem;
+  width: 55rem;
   gap: 15px;
 }
 
@@ -413,7 +417,7 @@ input[type="file"] {
   border-radius: 5px;
   font-size: 22px;
   height: 2rem;
-  width: 46rem;
+  width: 100%;
 }
 
 .image {
@@ -480,7 +484,7 @@ textarea {
   font-size: 22px;
   outline: none;
   height: 30px;
-  width: 365px;
+  width: 25rem;
   padding: 0px;
 }
 
@@ -575,41 +579,6 @@ button:hover::before {
   left: 0;
 }
 
-
-.custom-file-input {
-  position: relative;
-  overflow: hidden;
-}
-
-.custom-file-input input {
-  position: absolute;
-  font-size: 100px;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0;
-}
-
-.custom-file-input label {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4.5rem 0;
-  background-color: var(--border);
-  border-radius: 15px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.custom-file-input svg {
-  z-index: 7;
-  width: 40%;
-  fill: var(--white);
-}
-
-
 .messageContainer {
   box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
   background: linear-gradient(to left, var(--light), var(--dark));
@@ -625,7 +594,7 @@ button:hover::before {
   padding: 20px;
   display: none;
   right: -50rem;
-  bottom: 0%;
+  bottom: 5%;
   display: flex;
   transition: transform 0.5s ease;
 }
@@ -674,9 +643,76 @@ span.correct {
 }
 
 .area-section input {
-  width: 48rem;
+  width: 52rem;
+  text-align: start;
+  padding: 0.5rem;
 }
 
+/* Image form */
+
+.file {
+  position: relative;
+  overflow: hidden;
+}
+
+.file input {
+  position: absolute;
+  font-size: 100px;
+  height: 60%;
+  width: 30%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.file label {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 15rem;
+  background-color: var(--border);
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.file label p{
+  text-align: center;
+}
+
+.image-label:hover {
+  transform: scale(1.05);
+}
+
+
+.file svg {
+  z-index: 7;
+  width: 40%;
+  fill: var(--white);
+}
+
+.image-section {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+}
+
+.image-section label {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: hsl(0, 0%, 96%);
+  font-weight: bolder;
+  text-indent: 10px;
+  margin-top: 0.5rem;
+  font-size: 22px;
+}
+
+.image-section input {
+  display: none;
+}
 
 @media only screen and (max-width: 1550px) {
 
