@@ -10,12 +10,9 @@
   },
   "devDependencies": {
     "standard": "^17.1.0",
-    "vite": "^5.0.11"
+    "vite": "^5.0.12"
   },
   "dependencies": {
     "webfontloader": "^1.6.28"
-  },
-  "eslintConfig": {
-    "extends": "/node_modules/standard/eslintrc.json"
   }
 }
