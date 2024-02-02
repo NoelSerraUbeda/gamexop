@@ -19,6 +19,34 @@ class Gallery extends HTMLElement {
         img.classList.add('selected')
       })
     })
+
+    const fileDiv = this.shadow.querySelector('.file')
+    fileDiv.addEventListener('click', () => {
+      const fileInput = this.shadow.querySelector('.imagen')
+      fileInput.click()
+    })
+
+    const input = this.shadow.querySelector('.imagen')
+    const buttonInput = this.shadow.querySelector('.buttonInput')
+
+    buttonInput.addEventListener('click', (event) => {
+      input.click()
+    })
+
+    input.addEventListener('change', (event) => {
+      const selectedFile = event.target.files[0]
+      if (selectedFile) {
+        alert(`Selected file: ${selectedFile.name}`)
+      }
+    })
+
+    const modal = this.shadow.querySelector('.modal-gallery-back')
+    document.addEventListener('showGalleryModal', event => {
+      modal.classList.add('active')
+    })
+
+    const closeButton = this.shadow.querySelector('.close-button')
+    closeButton.addEventListener('click', () => modal.classList.remove('active'))
   }
 
   render () {
@@ -71,7 +99,6 @@ class Gallery extends HTMLElement {
        
         svg {
           position:absolute;
-          cursor: pointer;
           height:6rem;
           left:1rem;
           top:0rem;
@@ -81,6 +108,7 @@ class Gallery extends HTMLElement {
         .modal-gallery-title{
           margin-bottom:2rem;
           text-shadow: 1px 1px 2px black;
+          cursor: default;
         }
 
         .close-button {
@@ -116,14 +144,12 @@ class Gallery extends HTMLElement {
           display:flex;
           align-items:center;
           justify-content:center;
-          cursor: pointer;
+          cursor: default;
           padding: 25px;
           background-color:green;
           color:white;
         }
-        .tab.active{
-          background-color:#4DD0FA;
-        }
+
         .modal-gallery-title{
           display:flex;
           justify-content:center;
@@ -162,7 +188,6 @@ class Gallery extends HTMLElement {
         }
 
         .avatar {
-          transition: transform 0.3s ease;
           background-color: darkgreen;
           justify-content: center;
           align-items: center;
@@ -175,10 +200,6 @@ class Gallery extends HTMLElement {
           height: 190px;
           width: 190px;
           margin: 10px;
-        }
-
-        .avatar:hover{
-          transform:scale(1.02)
         }
 
         .avatar img {
@@ -255,11 +276,6 @@ class Gallery extends HTMLElement {
           border:none;
         }
 
-        .images-preview img {
-          width: 180px; 
-          height: 180px; 
-        }
-
         label {
           font-size:30px;
         }
@@ -272,6 +288,26 @@ class Gallery extends HTMLElement {
           transform:scale(1.05)
         }
 
+        .file {
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background-color:lightgreen;
+          border:darkgreen dashed 5px;
+          transition: transform 0.3s ease;
+        }
+
+        
+        .file:hover{
+          background-color:lightgrey;
+          transform:scale(1.02)
+        }
+
+        .file svg{
+          width:5rem;
+          fill:white;
+          position:static;
+        }
       </style>
       
       <div class="modal-gallery-back">
@@ -285,13 +321,19 @@ class Gallery extends HTMLElement {
           <div class="modal-gallery-title">Images</div>
           <div class="tabs">
             <div class="tab active" data-tab="gallery">Gallery</div>
-            <div class="tab" data-tab="images">Upload</div>
           </div>
       
       
           <div class="tab-content active" data-tab="gallery">
             <div class="tab-content-images">
               <div class="avatar-container">
+                <div class="upload">
+                  <div class="avatar file">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+                  </div>
+                </div>
+              
+              
                 <div class="img">
                   <div class="avatar">
                     <img src="https://i.imgflip.com/5ltiyp.png" alt="Imagen meme">
@@ -330,54 +372,17 @@ class Gallery extends HTMLElement {
               <button class="buttonInput">Upload image</button>
               <input type="file" class="imagen" name="imagen" accept="image/*">
             </div>
-            <div class="images-preview">
-              <div class="avatar">
-                <img src="https://i.redd.it/ux74bsifrpda1.jpg"alt="Imagen meme">
-              </div>
-            </div>
           </div>
         </div>
       </div>
     `
     const input = this.shadow.querySelector('.imagen')
     const buttonInput = this.shadow.querySelector('.buttonInput')
-    const previewDiv = this.shadow.querySelector('.images-preview')
 
     buttonInput.addEventListener('click', (event) => {
       input.click()
     })
 
-    input.addEventListener('change', (event) => {
-      // Verifica si se seleccionó algún archivo
-      if (input.files && input.files[0]) {
-        const reader = new FileReader()
-        reader.onload = function (e) {
-          const imgPreview = document.createElement('img')
-          imgPreview.src = e.target.result
-          previewDiv.innerHTML = ''
-          previewDiv.appendChild(imgPreview)
-        }
-        reader.readAsDataURL(input.files[0])
-      }
-    })
-
-    const main = this.shadow.querySelector('.modal-gallery')
-    main?.addEventListener('click', (event) => {
-      if (event.target.closest('.tab')) {
-        if (event.target.closest('.tab').classList.contains('active')) {
-          return
-        }
-
-        const tabClicked = event.target.closest('.tab')
-        const tabActive = tabClicked.parentElement.querySelector('.active')
-
-        tabClicked.classList.add('active')
-        tabActive.classList.remove('active')
-
-        this.shadow.querySelector(`.tab-content.active[data-tab="${tabActive.dataset.tab}"]`).classList.remove('active')
-        this.shadow.querySelector(`.tab-content[data-tab="${tabClicked.dataset.tab}"]`).classList.add('active')
-      }
-    })
     const modal = this.shadow.querySelector('.modal-gallery-back')
     document.addEventListener('showGalleryModal', event => {
       modal.classList.add('active')
@@ -385,14 +390,6 @@ class Gallery extends HTMLElement {
 
     const closeButton = this.shadow.querySelector('.close-button')
     closeButton.addEventListener('click', () => modal.classList.remove('active'))
-
-    modal.addEventListener('click', function (event) {
-      modal.classList.remove('active')
-    })
-
-    main.addEventListener('click', function (event) {
-      event.stopPropagation()
-    })
   }
 }
 
