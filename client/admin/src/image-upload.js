@@ -91,7 +91,6 @@ class UploadImage extends HTMLElement {
           </div>
           <div class="choosed">
             <img src="https://i.redd.it/ux74bsifrpda1.jpg" alt="Imagen meme">
-            <label>Name:</label><br>
           </div>
         </div>
 

@@ -2,7 +2,6 @@ class Form extends HTMLElement {
   constructor () {
     super()
     this.shadow = this.attachShadow({ mode: 'open' })
-    this.title = this.getAttribute('title')
   }
 
   connectedCallback () {

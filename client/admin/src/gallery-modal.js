@@ -294,7 +294,7 @@ class Gallery extends HTMLElement {
               <div class="avatar-container">
                 <div class="img">
                   <div class="avatar">
-                    <img src="https://i.kym-cdn.com/photos/images/original/002/486/119/711.jpg" alt="Imagen meme">
+                    <img src="https://i.imgflip.com/5ltiyp.png" alt="Imagen meme">
                   </div>
                 </div>
 
