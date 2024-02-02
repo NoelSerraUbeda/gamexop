@@ -6,7 +6,6 @@ class ModalDestroy extends HTMLElement {
 
   connectedCallback () {
     const background = document.querySelector('.background-block')
-    // const filterMenu = document.querySelector(".filter-modal");
 
     document.addEventListener('showDeleteModal', event => {
       background.classList.add('background-block-active')
@@ -21,7 +20,6 @@ class ModalDestroy extends HTMLElement {
       h3{
         font-size:30px;
         margin:0;
-        font-family: Arial;
         text-shadow: 1px 1px 2px black;
       }
 
@@ -52,7 +50,6 @@ class ModalDestroy extends HTMLElement {
 
       .modal-delete-box-label {
         padding: 2rem 6rem;
-
       }
 
       .modal-delete-box-buttons {

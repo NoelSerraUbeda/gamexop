@@ -20,14 +20,10 @@ class Form extends HTMLElement {
 
       input,
       label,
-      select,
       textarea,
-      li,
       span,
-      div,
-      p {
+      div{
         color: hsl(0, 0%, 100%);
-        font-family: Arial;
         font-weight:bolder;
         border-radius:1rem;
       }
@@ -60,8 +56,8 @@ class Form extends HTMLElement {
       }
 
       .form::-webkit-scrollbar {
-          display: none; 
-        }
+        display: none; 
+      }
 
       .form-top-bar{
         display: flex;
@@ -203,11 +199,11 @@ class Form extends HTMLElement {
 
       input[type=number]::-webkit-inner-spin-button,
       input[type=number]::-webkit-outer-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
+        -webkit-appearance: none;
+        margin: 0;
       }
       input[type=number] {
-          -moz-appearance: textfield;
+        -moz-appearance: textfield;
       }
     </style>
   
@@ -362,7 +358,6 @@ class Form extends HTMLElement {
         const tabClicked = event.target.closest('.tab')
         const tabActive = tabClicked.parentElement.querySelector('.active')
 
-        console.log(tabClicked)
         tabClicked.classList.add('active')
         tabActive.classList.remove('active')
 

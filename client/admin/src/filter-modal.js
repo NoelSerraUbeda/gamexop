@@ -17,26 +17,8 @@ class FilterModal extends HTMLElement {
   render () {
     this.shadow.innerHTML = /* html */`
     <style>
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
+      label {
         color: hsl(0, 0%, 100%);
-        font-family: Arial;
-        margin:0;
-      }
-
-      input,
-      label,
-      select,
-      textarea,
-      li,
-      span,
-      p {
-        color: hsl(0, 0%, 100%);
-        font-family: Arial;
       }
 
       .filter-modal {
@@ -129,27 +111,27 @@ class FilterModal extends HTMLElement {
       }
 
       .form-element-input * {
-      background-color: green;
-      border: none;
-      box-sizing: border-box;
-      font-size: 1rem;
-      outline: transparent;
-      padding: 0.5rem;
-      width: 100%;
-      height:3rem;
-      border-radius:1rem;
+        background-color: green;
+        border: none;
+        box-sizing: border-box;
+        font-size: 1rem;
+        outline: transparent;
+        padding: 0.5rem;
+        width: 100%;
+        height:3rem;
+        border-radius:1rem;
       }
 
       .form-element-input textarea {
-      height: 30vh;
-      resize: none;
+        height: 30vh;
+        resize: none;
       }
 
       .table-buttons {
-      background-color: green;
-      display: flex;
-      gap: 0.5rem;
-      justify-content: flex-end;
+        background-color: green;
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-end;
       }
 
       .modal-delete-box-label {
@@ -157,25 +139,25 @@ class FilterModal extends HTMLElement {
       }
 
       .modal-delete-box-buttons {
-      display: flex;
-      width: 100%;
-      gap: 2rem;
+        display: flex;
+        width: 100%;
+        gap: 2rem;
       }
 
       .modal-buttons{
-      display: flex;
-      justify-content: center;
-      padding: 0.7rem;
-      width: 100%;
-      color: white;
+        display: flex;
+        justify-content: center;
+        padding: 0.7rem;
+        width: 100%;
+        color: white;
       }
 
       .modal-delete-box-buttons-accept {
-      background-color: #02A8B1;
+        background-color: #02A8B1;
       }
 
       .modal-delete-box-buttons-decline {
-      background-color: #D74242;
+        background-color: #D74242;
       }
     </style>
 

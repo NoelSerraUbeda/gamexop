@@ -9,22 +9,13 @@ class Table extends HTMLElement {
   }
 
   render () {
-    this.shadow.innerHTML =
-            /* html */
-            `
+    this.shadow.innerHTML = /* html */ `
         <style>
           * {
             margin: 0;
             padding: 0;
-          }
-
-          section {
-            margin: 0;
-
-          }
-
-          .none {
-            display: none;
+            color: hsl(0, 0%, 100%);
+          
           }
 
           button {
@@ -33,41 +24,20 @@ class Table extends HTMLElement {
             cursor: pointer;
           }
 
-          a {
-            text-decoration: none;
-          }
-
           ul {
             list-style: none;
           }
 
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6 {
-            color: hsl(0, 0%, 100%);
-              font-family: Arial;
+          li {
+            text-shadow: 1px 1px 2px black;  
           }
-
+          
           .container {
             display:flex;
             flex-direction:column;
             justify-content:start;
             align-items:center;
             height:48rem;
-          }
-
-          input,
-          label,
-          select,
-          textarea,
-          li,
-          span,
-          p {
-            color: hsl(0, 0%, 100%);
-              font-family: Arial;
           }
 
           .crud-table {
@@ -169,11 +139,7 @@ class Table extends HTMLElement {
 
           .table-data ul li span {
             color:darkgreen;
-          }
-
-          .table-data ul li span::after {
-            content: ":";
-            margin-right: 0.5rem;
+            text-shadow: none;  
           }
 
           .table-component {
@@ -216,8 +182,8 @@ class Table extends HTMLElement {
             </div>
             <div class="table-data">
                 <ul>
-                <li><span>Email</span>Carumba@gmail.com</li>
-                <li><span>Name</span>Carumba</li>
+                  <li><span>Email: </span>Carumba@gmail.com</li>
+                  <li><span>Name: </span>Carumba</li>
                 </ul>
             </div>
           </article>
@@ -237,8 +203,8 @@ class Table extends HTMLElement {
             </div>
             <div class="table-data">
                 <ul>
-                  <li><span>Email</span>Carumba@gmail.com</li>
-                  <li><span>Name</span>Carumba</li>
+                  <li><span>Email: </span>Carumba@gmail.com</li>
+                  <li><span>Name: </span>Carumba</li>
                 </ul>
             </div>
           </article>
@@ -258,8 +224,8 @@ class Table extends HTMLElement {
           </div>
           <div class="table-data">
               <ul>
-                <li><span>Email</span>Carumba@gmail.com</li>
-                <li><span>Name</span>Carumba</li>
+                <li><span>Email: </span>Carumba@gmail.com</li>
+                <li><span>Name: </span>Carumba</li> 
               </ul>
           </div>
         </article>
@@ -279,8 +245,8 @@ class Table extends HTMLElement {
           </div>
           <div class="table-data">
               <ul>
-                <li><span>Email</span>Carumba@gmail.com</li>
-                <li><span>Name</span>Carumba</li>
+                <li><span>Email: </span>Carumba@gmail.com</li>
+                <li><span>Name: </span>Carumba</li>
               </ul>
           </div>
         </article>
@@ -300,8 +266,8 @@ class Table extends HTMLElement {
           </div>
           <div class="table-data">
               <ul>
-                <li><span>Email</span>Carumba@gmail.com</li>
-                <li><span>Name</span>Carumba</li>
+                <li><span>Email: </span>Carumba@gmail.com</li>
+                <li><span>Name: </span>Carumba</li>
               </ul>
           </div>
         </article>

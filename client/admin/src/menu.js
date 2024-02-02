@@ -9,9 +9,7 @@ class Menu extends HTMLElement {
   }
 
   render () {
-    this.shadow.innerHTML =
-            /* html */
-            `
+    this.shadow.innerHTML = /* html */ `
       <style>
 
         .top-bar {
@@ -109,25 +107,20 @@ class Menu extends HTMLElement {
         }
 
       </style>
-      <div class="background-block">
 
+      <nav class="top-bar">
+        <button class="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+      </nav>
+      <div class="open">
+        <section class="menu-form">
+        
+        </section>
       </div>
-    <!-- Boton de hamburguesa -->
-    <nav class="top-bar">
-      <button class="menu-icon">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-      </button>
-    </nav>
-    <!-- Menu desplegado -->
-    <div class="open">
-      <section class="menu-form">
-      
-      </section>
-    </div>
-
-      `
+    `
     const menu = this.shadow.querySelector('.open')
     const boton = this.shadow.querySelector('.top-bar')
     const svg = this.shadow.querySelector('.menu-icon')

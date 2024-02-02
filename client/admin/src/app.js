@@ -1,5 +1,5 @@
 import './destroy.js'
-import './validation.js'
+import './validate.js'
 import './title.js'
 import './menu.js'
 import './filter-modal.js'

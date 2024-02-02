@@ -27,6 +27,7 @@ class Gallery extends HTMLElement {
         * {
           margin: 0;
           padding: 0;
+          font-family:Arial;
         }
 
         img {
@@ -67,6 +68,16 @@ class Gallery extends HTMLElement {
           padding-top:1rem;
           overflow: hidden;
         }
+       
+        svg {
+          position:absolute;
+          cursor: pointer;
+          height:6rem;
+          left:1rem;
+          top:0rem;
+          fill:darkgreen;
+        }
+
         .modal-gallery-title{
           margin-bottom:2rem;
           text-shadow: 1px 1px 2px black;
@@ -74,8 +85,8 @@ class Gallery extends HTMLElement {
 
         .close-button {
           position: absolute;
-          top: 20px;
-          right: 20px;
+          top: 0px;
+          right: 100px;
           cursor: pointer;
           font-size:40px;
           color:darkgreen;
@@ -140,7 +151,6 @@ class Gallery extends HTMLElement {
           flex:3;
         }
         
-
         .tab-content-form{
           padding-right:2rem;
           padding-left:2rem;
@@ -179,11 +189,9 @@ class Gallery extends HTMLElement {
         .avatar-container {
           display: flex;
           flex-wrap: wrap;
-
         }
 
         .gallery{
-          font-family:Arial;
           flex-direction:column;
           margin-top:2rem;
           display:flex;
@@ -271,6 +279,9 @@ class Gallery extends HTMLElement {
           <span class="close-button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
           </span>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>cat</title><path d="M12,8L10.67,8.09C9.81,7.07 7.4,4.5 5,4.5C5,4.5 3.03,7.46 4.96,11.41C4.41,12.24 4.07,12.67 4,13.66L2.07,13.95L2.28,14.93L4.04,14.67L4.18,15.38L2.61,16.32L3.08,17.21L4.53,16.32C5.68,18.76 8.59,20 12,20C15.41,20 18.32,18.76 19.47,16.32L20.92,17.21L21.39,16.32L19.82,15.38L19.96,14.67L21.72,14.93L21.93,13.95L20,13.66C19.93,12.67 19.59,12.24 19.04,11.41C20.97,7.46 19,4.5 19,4.5C16.6,4.5 14.19,7.07 13.33,8.09L12,8M9,11A1,1 0 0,1 10,12A1,1 0 0,1 9,13A1,1 0 0,1 8,12A1,1 0 0,1 9,11M15,11A1,1 0 0,1 16,12A1,1 0 0,1 15,13A1,1 0 0,1 14,12A1,1 0 0,1 15,11M11,14H13L12.3,15.39C12.5,16.03 13.06,16.5 13.75,16.5A1.5,1.5 0 0,0 15.25,15H15.75A2,2 0 0,1 13.75,17C13,17 12.35,16.59 12,16V16H12C11.65,16.59 11,17 10.25,17A2,2 0 0,1 8.25,15H8.75A1.5,1.5 0 0,0 10.25,16.5C10.94,16.5 11.5,16.03 11.7,15.39L11,14Z" /></svg>
+          </span>
           <div class="modal-gallery-title">Images</div>
           <div class="tabs">
             <div class="tab active" data-tab="gallery">Gallery</div>
@@ -351,7 +362,6 @@ class Gallery extends HTMLElement {
     })
 
     const main = this.shadow.querySelector('.modal-gallery')
-    // console.log(main)
     main?.addEventListener('click', (event) => {
       if (event.target.closest('.tab')) {
         if (event.target.closest('.tab').classList.contains('active')) {
@@ -377,7 +387,6 @@ class Gallery extends HTMLElement {
     closeButton.addEventListener('click', () => modal.classList.remove('active'))
 
     modal.addEventListener('click', function (event) {
-      console.log('Se hizo clic en el contenedor exterior')
       modal.classList.remove('active')
     })
 
