@@ -11,6 +11,14 @@ class Gallery extends HTMLElement {
   }
 
   addEventListeners () {
+    const imgs = this.shadow.querySelectorAll('.img')
+
+    imgs.forEach(img => {
+      img.addEventListener('click', () => {
+        imgs.forEach(otherImg => otherImg.classList.remove('selected'))
+        img.classList.add('selected')
+      })
+    })
   }
 
   render () {
@@ -23,6 +31,11 @@ class Gallery extends HTMLElement {
 
         img {
           border: 2px solid #ccc; 
+          border-radius:1rem;
+        }
+
+        .selected {
+          background-color:#4DD0FA;
           border-radius:1rem;
         }
 
@@ -254,61 +267,66 @@ class Gallery extends HTMLElement {
       </style>
       
       <div class="modal-gallery-back">
-      <div class="modal-gallery">
-        <span class="close-button">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>window-close</title><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
-        </span>
-        <div class="modal-gallery-title">Images</div>
-        <div class="tabs">
-          <div class="tab active" data-tab="gallery">Gallery</div>
-          <div class="tab" data-tab="images">Upload</div>
-        </div>
-    
-    
-        <div class="tab-content active" data-tab="gallery">
-          <div class="tab-content-images">
-            <div class="avatar-container">
+        <div class="modal-gallery">
+          <span class="close-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
+          </span>
+          <div class="modal-gallery-title">Images</div>
+          <div class="tabs">
+            <div class="tab active" data-tab="gallery">Gallery</div>
+            <div class="tab" data-tab="images">Upload</div>
+          </div>
+      
+      
+          <div class="tab-content active" data-tab="gallery">
+            <div class="tab-content-images">
+              <div class="avatar-container">
+                <div class="img">
+                  <div class="avatar">
+                    <img src="https://i.kym-cdn.com/photos/images/original/002/486/119/711.jpg" alt="Imagen meme">
+                  </div>
+                </div>
 
-              <div class="avatar">
-                <img src="https://i.kym-cdn.com/photos/images/original/002/486/119/711.jpg"alt="Imagen meme">
-              </div>
+                <div class="img">
+                  <div class="avatar">
+                    <img src="https://i.redd.it/ux74bsifrpda1.jpg" alt="Imagen meme">
+                  </div>
+                </div>
 
-              <div class="avatar">
-                <img src="https://i.redd.it/ux74bsifrpda1.jpg" alt="Imagen meme">
+                <div class="img">
+                  <div class="avatar">
+                    <img src="https://cdn-icons-png.flaticon.com/512/168/168726.png" alt="Imagen meme">
+                  </div>
+                </div>
+      
               </div>
-
-              <div class="avatar">
-                <img src="https://cdn-icons-png.flaticon.com/512/168/168726.png"alt="Imagen meme">
-              </div>
-    
+            </div>
+            <div class="tab-content-form">
+              <form class="gallery">
+                <label class="title">Name:</label>
+                <input type="text">
+                <label class="alternative">Alternative Name:</label>
+                <input type="text">
+              </form>
+              <button class="upload-button">Upload</button>
             </div>
           </div>
-          <div class="tab-content-form">
-            <form class="gallery">
-              <label class="title">Name:</label>
-              <input type="text">
-              <label class="alternative">Alternative Name:</label>
-              <input type="text">
-            </form>
-            <button class="upload-button">Upload</button>
-          </div>
-        </div>
-    
-    
-        <div class="tab-content" data-tab="images">
-          <div class="tab-content-upload">
-            <label for="imagen">Choose image:</label><br>
-            <button class="buttonInput">Upload image</button>
-            <input type="file" class="imagen" name="imagen" accept="image/*">
-          </div>
-          <div class="images-preview">
-            <div class="avatar">
-              <img src="https://i.redd.it/ux74bsifrpda1.jpg"alt="Imagen meme">
+      
+      
+          <div class="tab-content" data-tab="images">
+            <div class="tab-content-upload">
+              <label for="imagen">Choose image:</label><br>
+              <button class="buttonInput">Upload image</button>
+              <input type="file" class="imagen" name="imagen" accept="image/*">
+            </div>
+            <div class="images-preview">
+              <div class="avatar">
+                <img src="https://i.redd.it/ux74bsifrpda1.jpg"alt="Imagen meme">
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     `
     const input = this.shadow.querySelector('.imagen')
     const buttonInput = this.shadow.querySelector('.buttonInput')
@@ -335,8 +353,6 @@ class Gallery extends HTMLElement {
     const main = this.shadow.querySelector('.modal-gallery')
     // console.log(main)
     main?.addEventListener('click', (event) => {
-      // event.preventDefault()
-
       if (event.target.closest('.tab')) {
         if (event.target.closest('.tab').classList.contains('active')) {
           return
@@ -345,7 +361,6 @@ class Gallery extends HTMLElement {
         const tabClicked = event.target.closest('.tab')
         const tabActive = tabClicked.parentElement.querySelector('.active')
 
-        // console.log(tabClicked)
         tabClicked.classList.add('active')
         tabActive.classList.remove('active')
 

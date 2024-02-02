@@ -16,82 +16,81 @@ class ModalDestroy extends HTMLElement {
   }
 
   render () {
-    this.shadow.innerHTML =
-            /* html */
-            `
-        <style>
-          h3{
-            font-size:30px;
-            margin:0;
-            font-family: Arial;
-            text-shadow: 1px 1px 2px black;
-          }
-          .modal-delete {
-            display: none;
-            color:white;
-          }
+    this.shadow.innerHTML = /* html */`
+    <style>
+      h3{
+        font-size:30px;
+        margin:0;
+        font-family: Arial;
+        text-shadow: 1px 1px 2px black;
+      }
 
-          .modal-delete-active {
-            position: fixed;
-            z-index: 3;
-            height: 100vh;
-            width: 100%;
-            top: 0;
-            left: 0;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-          }
+      .modal-delete {
+        display: none;
+        color:white;
+      }
 
-          .modal-delete-box {
-            border: solid 5px;
-            border-color: darkgreen;
-            background-color: lightgreen;
-            padding: 4rem;
-            border-radius:1rem;
-          }
+      .modal-delete-active {
+        position: fixed;
+        z-index: 3;
+        height: 100vh;
+        width: 100%;
+        top: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
 
-          .modal-delete-box-label {
-            padding: 2rem 6rem;
+      .modal-delete-box {
+        border: solid 5px;
+        border-color: darkgreen;
+        background-color: lightgreen;
+        padding: 4rem;
+        border-radius:1rem;
+      }
 
-          }
+      .modal-delete-box-label {
+        padding: 2rem 6rem;
 
-          .modal-delete-box-buttons {
-            display: flex;
-            width: 100%;
-            gap: 2rem;
-            border:none;
-          }
+      }
 
-          .modal-buttons{
-            display: flex;
-            justify-content: center;
-            padding: 0.7rem;
-            width: 100%;
-            color:white;
-            font-size:24px;
-            cursor:pointer;
-            transition: transform 0.3s ease; 
-            border-radius:1rem; 
-          }
+      .modal-delete-box-buttons {
+        display: flex;
+        width: 100%;
+        gap: 2rem;
+        border:none;
+      }
 
-          .modal-buttons:hover {
-              transform: scale(1.1); 
-          }
+      .modal-buttons{
+        display: flex;
+        justify-content: center;
+        padding: 0.7rem;
+        width: 100%;
+        color:white;
+        font-size:24px;
+        cursor:pointer;
+        transition: transform 0.3s ease; 
+        border-radius:1rem; 
+      }
+
+      .modal-buttons:hover {
+        transform: scale(1.1); 
+      }
 
 
-          .modal-delete-box-buttons-accept {
-            border-radius:1rem; 
-            border:none;
-            background-color: #02A8B1;
-          }
+      .modal-delete-box-buttons-accept {
+        border-radius:1rem; 
+        border:none;
+        background-color: #02A8B1;
+      }
 
-          .modal-delete-box-buttons-decline {
-            border-radius:1rem; 
-            border:none;
-            background-color: #D74242;
-          }
-        </style>
+      .modal-delete-box-buttons-decline {
+        border-radius:1rem; 
+        border:none;
+        background-color: #D74242;
+      }
+    </style>
     
     <section class="modal-delete">
         <div class="modal-delete-box">
@@ -108,7 +107,7 @@ class ModalDestroy extends HTMLElement {
             </div>
         </div>
     </section>
-        `
+    `
     const acceptButton = this.shadow.querySelector('.modal-delete-box-buttons-accept')
     const cancelButton = this.shadow.querySelector('.modal-delete-box-buttons-decline')
 

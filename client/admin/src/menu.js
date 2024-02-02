@@ -14,12 +14,12 @@ class Menu extends HTMLElement {
             `
       <style>
 
-        .top-bar-hamburguer {
+        .top-bar {
           z-index: 2;
           position: relative;
         }
 
-        .full-menu {
+        .open {
           background-color: lightgreen;
           height: 100vh;
           top: -100vh; 
@@ -36,7 +36,7 @@ class Menu extends HTMLElement {
           box-sizing: border-box;
         }
 
-        .full-menu-active {
+        .open-active {
           opacity:1;
           display: flex;
           position: fixed;
@@ -68,7 +68,7 @@ class Menu extends HTMLElement {
           display: block;
         }
 
-        .top-bar-hamburguer-active {
+        .top-bar-active {
           z-index: 999;
         }
         .menu-icon {
@@ -113,7 +113,7 @@ class Menu extends HTMLElement {
 
       </div>
     <!-- Boton de hamburguesa -->
-    <nav class="top-bar-hamburguer">
+    <nav class="top-bar">
       <button class="menu-icon">
           <div class="bar"></div>
           <div class="bar"></div>
@@ -121,20 +121,20 @@ class Menu extends HTMLElement {
       </button>
     </nav>
     <!-- Menu desplegado -->
-    <div class="full-menu">
+    <div class="open">
       <section class="menu-form">
       
       </section>
     </div>
 
       `
-    const menu = this.shadow.querySelector('.full-menu')
-    const boton = this.shadow.querySelector('.top-bar-hamburguer')
+    const menu = this.shadow.querySelector('.open')
+    const boton = this.shadow.querySelector('.top-bar')
     const svg = this.shadow.querySelector('.menu-icon')
 
     boton?.addEventListener('click', () => {
-      menu.classList.toggle('full-menu-active')
-      boton.classList.toggle('top-bar-hamburguer-active')
+      menu.classList.toggle('open-active')
+      boton.classList.toggle('top-bar-active')
       svg.classList.toggle('opened')
     })
   }

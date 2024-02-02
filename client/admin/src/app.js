@@ -1,4 +1,3 @@
-// import './image.js';
 import './destroy.js'
 import './validation.js'
 import './title.js'
