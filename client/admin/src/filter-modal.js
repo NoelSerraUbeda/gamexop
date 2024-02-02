@@ -61,7 +61,7 @@ class FilterModal extends HTMLElement {
                 border: solid 5px;
                 border-color: darkgreen;
                 background-color: lightgreen;
-                padding: 4rem 2rem;
+                padding: 2rem 2rem;
                 border radius:1rem;
                 width:30%;
                 border-radius:1rem;
@@ -127,6 +127,7 @@ class FilterModal extends HTMLElement {
               .form-element-label label {
                 font-weight: 700;
                 font-size:26px;
+                text-shadow: 1px 1px 2px black;
               }
 
               .form-element-input * {
@@ -134,10 +135,11 @@ class FilterModal extends HTMLElement {
               border: none;
               box-sizing: border-box;
               font-size: 1rem;
-              height: 2rem;
               outline: transparent;
               padding: 0.5rem;
               width: 100%;
+              height:3rem;
+              border-radius:1rem;
               }
 
               .form-element-input textarea {
@@ -181,10 +183,6 @@ class FilterModal extends HTMLElement {
       
             <section class="filter-modal">
               <div class="filter-modal-form">
-                <label class="filter-modal-form-title" for="">
-                  <h2>Filter</h2>
-                </label>
-
                 <div class="form-row">
                     <div class="form-element">
                     <div class="form-element-label">

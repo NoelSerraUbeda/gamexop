@@ -17,7 +17,7 @@ class SaveNotification extends HTMLElement {
     this.shadow.querySelector('.notification-container').classList.add('show')
     setTimeout(() => {
       this.hideNotification()
-    }, 1000)
+    }, 5000)
   }
 
   hideNotification () {
@@ -41,7 +41,7 @@ class SaveNotification extends HTMLElement {
       font-size: 36px;
       padding: 1rem;
       border-radius: 1rem;
-      animation: slideFromRight 1s forwards;
+      animation: slideFromRight 2.5s forwards;
     }
 
     .notification-container.show {
@@ -49,46 +49,58 @@ class SaveNotification extends HTMLElement {
     }
 
     @keyframes slideFromRight {
-  0% {
-    transform: translateX(110%);
-  }
-  10% {
-    transform: translateX(0);
-  }
-  20% {
-    transform: translateX(0);
-  }
-  30% {
-    transform: translateX(0);
-  }
-  40% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(0);
-  }
-  60% {
-    transform: translateX(0);
-  }
-  70% {
-    transform: translateX(0);
-  }
-  80% {
-    transform: translateX(0);
-  }
-  90% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(110%);
-  }
-}
+      0% {
+        transform: translateX(110%);
+      }
+      10% {
+        transform: translateX(0);
+      }
+      20% {
+        transform: translateX(0);
+      }
+      30% {
+        transform: translateX(0);
+      }
+      40% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(0);
+      }
+      51% {
+        transform: translateX(0);
+      }
+      52% {
+        transform: translateX(0);
+      }
+      53% {
+        transform: translateX(0);
+      }
+      54% {
+        transform: translateX(0);
+      }
+      60% {
+        transform: translateX(0);
+      }
+      70% {
+        transform: translateX(0);
+      }
+      80% {
+        transform: translateX(0);
+      }
+      90% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(110%);
+      }
+    }
 
   </style>
 
-      <div class="notification-container">
-        <p>Todos los datos son correctos</p>
-      </div>
+  <div class="notification-container">
+    <p>Todos los datos son correctos</p>
+  </div>
     `
   }
 }

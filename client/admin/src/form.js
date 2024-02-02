@@ -44,7 +44,7 @@ class Form extends HTMLElement {
 
       label {
         font-size: 22px;
-        text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 0px 0 #000; 
+        text-shadow: 1px 1px 2px black;      
       }
 
 

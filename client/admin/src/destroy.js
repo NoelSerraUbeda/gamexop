@@ -24,6 +24,7 @@ class ModalDestroy extends HTMLElement {
             font-size:30px;
             margin:0;
             font-family: Arial;
+            text-shadow: 1px 1px 2px black;
           }
           .modal-delete {
             display: none;

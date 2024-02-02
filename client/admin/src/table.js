@@ -54,7 +54,7 @@ class Table extends HTMLElement {
           .container {
             display:flex;
             flex-direction:column;
-            justify-content:center;
+            justify-content:start;
             align-items:center;
             height:48rem;
           }
@@ -84,12 +84,16 @@ class Table extends HTMLElement {
             padding: 1.2rem 1.5rem;
             border-radius:1rem;
             border:10px solid darkgreen;
-            width:100%;
-
+            width:100%; 
           }
 
-          .filter-button button svg {
+          .filter-button button  {
             width: 3rem;
+            transition: transform 0.3s ease;
+          }
+
+          .filter-button button:hover{
+            transform: scale(1.05); 
           }
 
           .filter-button button svg path {
@@ -112,27 +116,36 @@ class Table extends HTMLElement {
             gap: 0.5rem;
             justify-content: flex-end;
             position:absolute;
-            right:0.5rem;
-            top:0.8rem;
+            right:0.8rem;
+            top:0.8rem;            
+          }
+
+          .edit-button button,
+          .delete-button button {
+            width: 3rem;
+            background-color:darkgreen;
+            border-radius:1rem;
+
           }
 
           .edit-button button svg,
           .delete-button button svg {
-            width: 3rem;
+            width: 2.5rem;
+            height:3rem;
           }
 
-          .edit-button button svg path,
-          .delete-button button svg path {
+          .edit-button button,
+          .delete-button button {
             fill: white;
             transition: transform 0.3s ease;
           }
 
-          .delete-button button:hover svg path {
+          .delete-button button:hover {
             transform: scale(1.05); 
             fill:red;
           }
 
-          .edit-button button:hover svg path {
+          .edit-button button:hover {
             transform: scale(1.05); 
             fill:orange;
           }
@@ -164,16 +177,17 @@ class Table extends HTMLElement {
           }
 
           .table-component {
-              height: 39rem;
-              width: 40rem;
-              overflow: auto; 
-              padding: 1rem;
-              scrollbar-width: none; 
-              -ms-overflow-style: none; 
+            height: 39rem;
+            width: 40rem;
+            overflow: auto; 
+            padding: 1rem;
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
+            padding-top:1rem;
           }
 
           .table-component::-webkit-scrollbar {
-              display: none; 
+            display: none; 
           }
 
         </style>
@@ -188,51 +202,27 @@ class Table extends HTMLElement {
 
       <section class="table-component">
           <article class="crud-table">
-          <div class="table-buttons">
-              <div class="edit-button">
-              <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path
-                      d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
-                  </svg>
-              </button>
-              </div>
-              <div class="delete-button">
-              <button>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-              </button>
-              </div>
-          </div>
-          <div class="table-data">
-              <ul>
-              <li><span>Email</span>Carumba@gmail.com</li>
-              <li><span>Name</span>Carumba</li>
-              </ul>
-          </div>
-          </article>
-
-          <article class="crud-table">
-          <div class="table-buttons">
-              <div class="edit-button">
-              <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path
-                      d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
-                  </svg>
-              </button>
-              </div>
-              <div class="delete-button">
-              <button>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-              </button>
-              </div>
-          </div>
-          <div class="table-data">
-              <ul>
-              <li><span>Email</span>Carumba@gmail.com</li>
-              <li><span>Name</span>Carumba</li>
-              </ul>
-          </div>
+            <div class="table-buttons">
+                <div class="edit-button">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                    </svg>
+                </button>
+                </div>
+                <div class="delete-button">
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+                </button>
+                </div>
+            </div>
+            <div class="table-data">
+                <ul>
+                <li><span>Email</span>Carumba@gmail.com</li>
+                <li><span>Name</span>Carumba</li>
+                </ul>
+            </div>
           </article>
 
           <article class="crud-table">
@@ -257,21 +247,22 @@ class Table extends HTMLElement {
                 <li><span>Name</span>Carumba</li>
                 </ul>
             </div>
-            </article>
-            <article class="crud-table">
+          </article>
+
+          <article class="crud-table">
             <div class="table-buttons">
                 <div class="edit-button">
-                <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                        d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
-                    </svg>
-                </button>
+                  <button>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path
+                          d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                      </svg>
+                  </button>
                 </div>
                 <div class="delete-button">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-                </button>
+                  <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+                  </button>
                 </div>
             </div>
             <div class="table-data">
@@ -280,8 +271,9 @@ class Table extends HTMLElement {
                 <li><span>Name</span>Carumba</li>
                 </ul>
             </div>
-            </article>
-            <article class="crud-table">
+          </article>
+
+          <article class="crud-table">
             <div class="table-buttons">
                 <div class="edit-button">
                 <button>
@@ -304,6 +296,30 @@ class Table extends HTMLElement {
                 </ul>
             </div>
           </article>
+
+          <article class="crud-table">
+            <div class="table-buttons">
+                <div class="edit-button">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                    </svg>
+                </button>
+                </div>
+                <div class="delete-button">
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+                </button>
+                </div>
+            </div>
+            <div class="table-data">
+                <ul>
+                <li><span>Email</span>Carumba@gmail.com</li>
+                <li><span>Name</span>Carumba</li>
+                </ul>
+            </div>
+        </article>
       </section>
     </div>
     `

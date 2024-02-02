@@ -21,6 +21,11 @@ class Gallery extends HTMLElement {
           padding: 0;
         }
 
+        img {
+          border: 2px solid #ccc; 
+          border-radius:1rem;
+        }
+
         .modal-gallery-back {
           height: 100vh;
           width: 100%;
@@ -32,7 +37,6 @@ class Gallery extends HTMLElement {
           background-color: rgba(0, 0, 0, 0.5);
           z-index:10;
           display:none;
-           /* Semi-transparent background */
         }
 
         .modal-gallery-back.active {
@@ -41,8 +45,8 @@ class Gallery extends HTMLElement {
 
         .modal-gallery {
           position: relative;
-          width: 80%;
-          height: 80vh;
+          width: 90%;
+          height: 90vh;
           background-color: lightgreen;
           border:10px solid darkgreen;
           border-radius:1rem;
@@ -52,11 +56,7 @@ class Gallery extends HTMLElement {
         }
         .modal-gallery-title{
           margin-bottom:2rem;
-          text-shadow: 
-          2px 2px 0 #000, 
-          -1px -1px 0 #000, 
-          0.5px -1px 0 #000, 
-          -1px 0px 0 #000; 
+          text-shadow: 1px 1px 2px black;
         }
 
         .close-button {
@@ -68,6 +68,11 @@ class Gallery extends HTMLElement {
           color:darkgreen;
           font-family:monospace;
           transition: transform 0.3s ease;
+        }
+
+        .close-button svg{
+          fill:darkgreen;
+          width:4rem;
         }
 
         .close-button:hover {
@@ -128,7 +133,7 @@ class Gallery extends HTMLElement {
           padding-left:2rem;
           padding-top:1rem;
           flex:1;
-          background-color:green;
+          background-color:rgb(10, 104, 10);
           color:white;
           box-sizing: border-box;
         }
@@ -138,13 +143,14 @@ class Gallery extends HTMLElement {
           background-color: darkgreen;
           justify-content: center;
           align-items: center;
+          border-radius:1rem;
           font-weight: bold;
           font-size: 1.2em;
           cursor:pointer;
           color: #ffffff;
           display: flex;
-          height: 210px;
-          width: 210px;
+          height: 190px;
+          width: 190px;
           margin: 10px;
         }
 
@@ -153,8 +159,8 @@ class Gallery extends HTMLElement {
         }
 
         .avatar img {
-          width: 200px; 
-          height: 200px; 
+          width: 180px; 
+          height: 180px; 
         }
 
         .avatar-container {
@@ -196,7 +202,7 @@ class Gallery extends HTMLElement {
 
         .tab-content-upload {
           padding: 1rem 5rem 0rem 5rem;
-          background-color: green;
+          background-color:rgb(10, 104, 10);
           text-align: center;
           color:white;
         }
@@ -229,11 +235,8 @@ class Gallery extends HTMLElement {
         }
 
         .images-preview img {
-          max-width: 250px; 
-          max-height: 200px; 
-          width: auto; 
-          height: auto; 
-          border: 1px solid #ccc; 
+          width: 180px; 
+          height: 180px; 
         }
 
         label {
@@ -252,7 +255,9 @@ class Gallery extends HTMLElement {
       
       <div class="modal-gallery-back">
       <div class="modal-gallery">
-        <span class="close-button">X</span>
+        <span class="close-button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>window-close</title><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
+        </span>
         <div class="modal-gallery-title">Images</div>
         <div class="tabs">
           <div class="tab active" data-tab="gallery">Gallery</div>
@@ -298,7 +303,7 @@ class Gallery extends HTMLElement {
           </div>
           <div class="images-preview">
             <div class="avatar">
-              <img src="https://i.kym-cdn.com/photos/images/original/002/486/119/711.jpg"alt="Imagen meme">
+              <img src="https://i.redd.it/ux74bsifrpda1.jpg"alt="Imagen meme">
             </div>
           </div>
         </div>
