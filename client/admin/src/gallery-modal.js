@@ -53,7 +53,7 @@ class Gallery extends HTMLElement {
         .modal-gallery-title{
           margin-bottom:2rem;
           text-shadow: 
-          1px 1px 0 #000, 
+          2px 2px 0 #000, 
           -1px -1px 0 #000, 
           0.5px -1px 0 #000, 
           -1px 0px 0 #000; 
@@ -78,8 +78,7 @@ class Gallery extends HTMLElement {
           display:flex;
           justify-content:start;
           align-items:start;
-          border-bottom:solid 3px darkgreen;
-          background-color:darkgreen;
+          background-color:green;
         }
 
         .tab {
@@ -94,7 +93,7 @@ class Gallery extends HTMLElement {
           color:white;
         }
         .tab.active{
-          background-color:blue;
+          background-color:#4DD0FA;
         }
         .modal-gallery-title{
           display:flex;
@@ -103,7 +102,7 @@ class Gallery extends HTMLElement {
           margin-left:1rem;
           font-size:1.5rem;
           color:white;
-          font-size:36px;
+          font-size:56px;
           font-weight:bolder;
         }
 
@@ -122,6 +121,7 @@ class Gallery extends HTMLElement {
           padding-top:1rem;
           flex:3;
         }
+        
 
         .tab-content-form{
           padding-right:2rem;
@@ -134,20 +134,27 @@ class Gallery extends HTMLElement {
         }
 
         .avatar {
-          width: 210px;
-          height: 210px;
+          transition: transform 0.3s ease;
           background-color: darkgreen;
-          margin: 10px;
-          display: flex;
           justify-content: center;
           align-items: center;
-          color: #ffffff;
           font-weight: bold;
           font-size: 1.2em;
+          cursor:pointer;
+          color: #ffffff;
+          display: flex;
+          height: 210px;
+          width: 210px;
+          margin: 10px;
+        }
+
+        .avatar:hover{
+          transform:scale(1.02)
         }
 
         .avatar img {
-          width:200px;
+          width: 200px; 
+          height: 200px; 
         }
 
         .avatar-container {
@@ -157,50 +164,55 @@ class Gallery extends HTMLElement {
         }
 
         .gallery{
-          display:flex;
+          font-family:Arial;
           flex-direction:column;
-          gap:1rem;
           margin-top:2rem;
+          display:flex;
+          gap:1rem;
         }
 
         .title-form{
-          display:flex;
           justify-content:center;
+          display:flex;
         }
 
         .upload-button{
-          display:flex;
+          transition: transform 0.3s ease;
           justify-content:center;
           align-items:center;
-          width:8rem;
-          height:3rem;
           position:absolute;
-          bottom:2rem;
-          right:2rem;
-          padding:1rem;
           font-size:24px;
+          display:flex;
+          padding:1rem;
+          height:3rem;
+          bottom:2rem;
+          width:8rem;
+          right:2rem;
+        }
+
+        .upload-button:hover{
+          transform:scale(1.05)
         }
 
         .tab-content-upload {
-          background-color: green;
-          color:white;
           padding: 1rem 5rem 0rem 5rem;
+          background-color: green;
           text-align: center;
+          color:white;
         }
 
         button {
           background-color: lightgreen;
-          color: green;
-          border: none;
-          padding: 10px 40px;
-          font-size: 16px;
           border-radius: 1rem;
+          padding: 10px 40px;
           cursor: pointer;
           margin-top:1rem;
+          font-size: 16px;
+          color: green;
+          border: none;
         }
 
         button:hover {
-          background-color: darkgreen;
           color:white;
          }
 
@@ -212,11 +224,13 @@ class Gallery extends HTMLElement {
           height:3rem;
           font-size:2rem;
           text-indent:0.3rem;
+          border-radius:0.5rem;
+          border:none;
         }
 
         .images-preview img {
-          max-width: 200px; 
-          max-height: 150px; 
+          max-width: 250px; 
+          max-height: 200px; 
           width: auto; 
           height: auto; 
           border: 1px solid #ccc; 
@@ -226,56 +240,74 @@ class Gallery extends HTMLElement {
           font-size:30px;
         }
 
+        .buttonInput {
+          transition: transform 0.3s ease;
+        }
+
+        .buttonInput:hover{
+          transform:scale(1.05)
+        }
+
       </style>
       
       <div class="modal-gallery-back">
-        <div class="modal-gallery">
-          <span class="close-button">X</span>
-          <div class = "modal-gallery-title">Images</div>
-          <div class="tabs">
-            <div class="tab active" data-tab="gallery">Gallery</div>
-            <div class="tab" data-tab="images">Upload</div>
-          </div>
-
-
+      <div class="modal-gallery">
+        <span class="close-button">X</span>
+        <div class="modal-gallery-title">Images</div>
+        <div class="tabs">
+          <div class="tab active" data-tab="gallery">Gallery</div>
+          <div class="tab" data-tab="images">Upload</div>
+        </div>
+    
+    
         <div class="tab-content active" data-tab="gallery">
           <div class="tab-content-images">
-          <div class="avatar-container">
+            <div class="avatar-container">
 
-          <div class="avatar"><img src="https://i.kym-cdn.com/photos/images/original/002/486/119/711.jpg" alt="Imagen meme">
-          </div>
+              <div class="avatar">
+                <img src="https://i.kym-cdn.com/photos/images/original/002/486/119/711.jpg"alt="Imagen meme">
+              </div>
 
-        </div>
+              <div class="avatar">
+                <img src="https://i.redd.it/ux74bsifrpda1.jpg" alt="Imagen meme">
+              </div>
+
+              <div class="avatar">
+                <img src="https://cdn-icons-png.flaticon.com/512/168/168726.png"alt="Imagen meme">
+              </div>
+    
+            </div>
           </div>
           <div class="tab-content-form">
-            <form class ="gallery">
-              <label class="title">Name</label>
+            <form class="gallery">
+              <label class="title">Name:</label>
               <input type="text">
-              <label class="alternative">Alternative Name</label>
+              <label class="alternative">Alternative Name:</label>
               <input type="text">
             </form>
             <button class="upload-button">Upload</button>
           </div>
         </div>
-  
-  
-  
-      <div class="tab-content" data-tab="images">
-        <div class="tab-content-upload">
-        <label for="imagen">Choose image:</label><br>
-        <button class="buttonInput">Upload image</button>
-        <input type="file" class="imagen" name="imagen" accept="image/*">
-        </div>
-        <div class="images-preview">
+    
+    
+        <div class="tab-content" data-tab="images">
+          <div class="tab-content-upload">
+            <label for="imagen">Choose image:</label><br>
+            <button class="buttonInput">Upload image</button>
+            <input type="file" class="imagen" name="imagen" accept="image/*">
+          </div>
+          <div class="images-preview">
+            <div class="avatar">
+              <img src="https://i.kym-cdn.com/photos/images/original/002/486/119/711.jpg"alt="Imagen meme">
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-      `
-
+    </div>
+    `
     const input = this.shadow.querySelector('.imagen')
     const buttonInput = this.shadow.querySelector('.buttonInput')
-    const previewDiv = this.shadow.querySelector('.images-preview');
-
+    const previewDiv = this.shadow.querySelector('.images-preview')
 
     buttonInput.addEventListener('click', (event) => {
       input.click()
@@ -284,27 +316,16 @@ class Gallery extends HTMLElement {
     input.addEventListener('change', (event) => {
       // Verifica si se seleccionó algún archivo
       if (input.files && input.files[0]) {
-        const reader = new FileReader();
-    
-        // Configura la función que se ejecutará cuando la lectura del archivo esté completa
+        const reader = new FileReader()
         reader.onload = function (e) {
-          // Crea un elemento de imagen y establece su src como la vista previa
-          const imgPreview = document.createElement('img');
-          imgPreview.src = e.target.result;
-    
-          // Limpia cualquier contenido previo en el div de vista previa
-          previewDiv.innerHTML = '';
-    
-          // Agrega la imagen al div de vista previa
-          previewDiv.appendChild(imgPreview);
-        };
-    
-        // Lee el archivo como una URL de datos
-        reader.readAsDataURL(input.files[0]);
+          const imgPreview = document.createElement('img')
+          imgPreview.src = e.target.result
+          previewDiv.innerHTML = ''
+          previewDiv.appendChild(imgPreview)
+        }
+        reader.readAsDataURL(input.files[0])
       }
-    });
-
-
+    })
 
     const main = this.shadow.querySelector('.modal-gallery')
     // console.log(main)
@@ -341,8 +362,7 @@ class Gallery extends HTMLElement {
     })
 
     main.addEventListener('click', function (event) {
-      event.stopPropagation() // Evita que el evento se propague al contenedor exterior
-      // console.log('Se hizo clic en el contenedor interior')
+      event.stopPropagation()
     })
   }
 }

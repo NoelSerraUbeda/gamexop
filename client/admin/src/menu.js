@@ -40,8 +40,7 @@ class Menu extends HTMLElement {
           opacity:1;
           display: flex;
           position: fixed;
-          height: 95vh;
-          border-bottom:10px solid darkgreen;
+          height: 100vh;
           justify-content: center;
           padding-top: 2rem;
           box-sizing: border-box;

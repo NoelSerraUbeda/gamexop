@@ -20,17 +20,17 @@ class ModalDestroy extends HTMLElement {
             /* html */
             `
         <style>
-            h3{
-              font-size:30px;
-              margin:0;
-              font-family: Verdana, Geneva, Tahoma, sans-serif;
-            }
-            .modal-delete {
+          h3{
+            font-size:30px;
+            margin:0;
+            font-family: Arial;
+          }
+          .modal-delete {
             display: none;
             color:white;
-            }
+          }
 
-            .modal-delete-active {
+          .modal-delete-active {
             position: fixed;
             z-index: 3;
             height: 100vh;
@@ -40,28 +40,29 @@ class ModalDestroy extends HTMLElement {
             justify-content: center;
             align-items: center;
             display: flex;
-            }
+          }
 
-            .modal-delete-box {
+          .modal-delete-box {
             border: solid 5px;
             border-color: darkgreen;
             background-color: lightgreen;
             padding: 4rem;
-            border radius:1rem;
-            }
+            border-radius:1rem;
+          }
 
-            .modal-delete-box-label {
+          .modal-delete-box-label {
             padding: 2rem 6rem;
 
-            }
+          }
 
-            .modal-delete-box-buttons {
+          .modal-delete-box-buttons {
             display: flex;
             width: 100%;
             gap: 2rem;
-            }
+            border:none;
+          }
 
-            .modal-buttons{
+          .modal-buttons{
             display: flex;
             justify-content: center;
             padding: 0.7rem;
@@ -70,24 +71,25 @@ class ModalDestroy extends HTMLElement {
             font-size:24px;
             cursor:pointer;
             transition: transform 0.3s ease; 
-            }
+            border-radius:1rem; 
+          }
 
-            .modal-buttons:hover {
-                transform: scale(1.1); 
-            }
+          .modal-buttons:hover {
+              transform: scale(1.1); 
+          }
 
 
-            .modal-delete-box-buttons-accept {
+          .modal-delete-box-buttons-accept {
+            border-radius:1rem; 
+            border:none;
             background-color: #02A8B1;
-            }
+          }
 
-            .modal-delete-box-buttons-decline {
+          .modal-delete-box-buttons-decline {
+            border-radius:1rem; 
+            border:none;
             background-color: #D74242;
-            }
-
-
-
-            /* modal de delete ^^^^^^^^^^ */
+          }
         </style>
     
     <section class="modal-delete">

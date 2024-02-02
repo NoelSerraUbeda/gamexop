@@ -25,8 +25,8 @@ class FilterModal extends HTMLElement {
               h4,
               h5,
               h6 {
-              color: hsl(0, 0%, 100%);
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                color: hsl(0, 0%, 100%);
+                font-family: Arial;
                 margin:0;
               }
 
@@ -37,12 +37,12 @@ class FilterModal extends HTMLElement {
               li,
               span,
               p {
-              color: hsl(0, 0%, 100%);
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                color: hsl(0, 0%, 100%);
+                font-family: Arial;
               }
 
               .filter-modal {
-              display: none;
+                display: none;
               }
 
               .filter-modal-active {
@@ -69,7 +69,9 @@ class FilterModal extends HTMLElement {
 
               .filter-inside-buttons button {
                 cursor:pointer;
-                transition: transform 0.3s ease; 
+                transition: transform 0.3s ease;
+                border:none;
+                border-radius:1rem; 
               }
 
               .filter-inside-buttons button:hover{
@@ -176,43 +178,40 @@ class FilterModal extends HTMLElement {
               background-color: #D74242;
               }
             </style>
-        
-            <!-- ventana modal del filtro -->
+      
             <section class="filter-modal">
-            <div class="filter-modal-form">
-            <label class="filter-modal-form-title" for="">
-                <h2>Filter</h2>
-            </label>
-            <!-- form inside -->
-            <div class="form-row">
-                <div class="form-element">
-                <div class="form-element-label">
-                    <label for="email">Name</label>
+              <div class="filter-modal-form">
+                <label class="filter-modal-form-title" for="">
+                  <h2>Filter</h2>
+                </label>
+
+                <div class="form-row">
+                    <div class="form-element">
+                    <div class="form-element-label">
+                      <label for="email">Name</label>
+                    </div>
+                    <div class="form-element-input">
+                      <input type="email">
+                    </div>
+                    </div>
                 </div>
-                <div class="form-element-input">
-                    <input type="email">
+                <div class="form-row">
+                    <div class="form-element">
+                    <div class="form-element-label">
+                      <label for="email">Mail</label>
+                    </div>
+                    <div class="form-element-input">
+                      <input type="email">
+                    </div>
+                    </div>
                 </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-element">
-                <div class="form-element-label">
-                    <label for="email">
-                    mail
-                    </label>
-                </div>
-                <div class="form-element-input">
-                    <input type="email">
-                </div>
-                </div>
-            </div>
-            
-            <section class="filter-inside-buttons">
-                <button class="filter-inside-buttons-accept modal-buttons">Filtrar</button>
-                <button class="filter-inside-buttons-decline modal-buttons">Cancelar</button>
-            </section>
-            
-            </div>
+                
+                <section class="filter-inside-buttons">
+                  <button class="filter-inside-buttons-accept modal-buttons">Filtrar</button>
+                  <button class="filter-inside-buttons-decline modal-buttons">Cancelar</button>
+                </section>
+              
+              </div>
             </section>
 
             `
