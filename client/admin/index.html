@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Codificación de carácteres -->
+    <meta charset="utf-8">
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/1245/1245778.png">
 
-<head>
-  <!-- Codificación de carácteres -->
-  <meta charset="utf-8">
-  <!-- Responsive -->
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/1245/1245778.png">
+    <!-- Etiquetas con proposito de SEO, el título y la descripción aparecerán en los resultados de Google,
+      la etiqueta keywords se ha quedado obsoleta -->
+    <title>Panel de Administración</title>
+    <meta name="description" content="descripción de la web, se recomienda 90 caracteres">
+    <meta name="keywords" content="palabras clave, separadas, por comas">
 
-  <!-- Etiquetas con proposito de SEO, el título y la descripción aparecerán en los resultados de Google,
-    la etiqueta keywords se ha quedado obsoleta -->
-  <title>Panel de Administración</title>
-  <meta name="description" content="descripción de la web, se recomienda 90 caracteres">
-  <meta name="keywords" content="palabras clave, separadas, por comas">
+    <!-- Compartir closees sociales -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Título" />
+    <meta property="og:description" content="descripción de la web, se recomienda 90 caracteres" />
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/1245/1245778.png" />
 
-  <!-- Compartir closees sociales -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Título" />
-  <meta property="og:description" content="descripción de la web, se recomienda 90 caracteres" />
-  <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/1245/1245778.png" />
+    <!-- Fuentes de la web -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Fuentes de la web -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!-- Documentos enlazados -->
+    <link rel="stylesheet" href="app.css">
+    <script type="module" src="src/app.js"></script>
+  </head>
 
-  <!-- Documentos enlazados -->
-  <link rel="stylesheet" href="app.css">
-  <script type="module" src="src/app.js"></script>
-
-</head>
-
-<body>
-  <div class="background-block"></div>
-  <header>
-    <title-component title="FAQS"></title-component>
-    <menu-component></menu-component>
-  </header>
-  <main>
-    <modal-destroy-component></modal-destroy-component>
-    <filter-modal></filter-modal>
-    <div class="crud">
-      <section class="table">
-        <table-component></table-component>
-      </section>
-      <section class="form">
-        <form-component>
-        </form-component>
-      </section>
-      <save-notification-component></save-notification-component>
-    </div>
-  </main>
-  <modal-gallery-component></modal-gallery-component>
-</body>
-
+  <body>
+    <div class="background-block"></div>
+    <header>
+    <!-- Cabecera -->
+      <title-component title="FAQS"></title-component>
+    <!-- Menu -->
+      <menu-component></menu-component>
+    </header>
+    <main>
+      <!-- Modal eliminar registro -->
+      <modal-destroy-component></modal-destroy-component>
+      <!-- Modal Filtro -->
+      <filter-modal></filter-modal>
+      <div class="crud">
+        <section class="table">
+          <!-- Tabla -->
+          <table-component></table-component>
+        </section>
+        <section class="form">
+          <!-- Formulario -->
+          <form-component></form-component>
+        </section>
+        <!-- Notificaciones -->
+        <save-notification-component></save-notification-component>
+      </div>
+      <!-- Modal de imagenes -->
+      <modal-gallery-component></modal-gallery-component>
+    </main>
+  </body>
 </html>

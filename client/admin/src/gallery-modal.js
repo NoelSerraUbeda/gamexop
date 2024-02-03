@@ -273,7 +273,13 @@ class Gallery extends HTMLElement {
           font-size:2rem;
           text-indent:0.3rem;
           border-radius:0.5rem;
+          padding:0.5rem;
           border:none;
+          outline:none;
+        }
+
+        input[type="text"]:focus{
+          outline:none;
         }
 
         label {
@@ -295,6 +301,10 @@ class Gallery extends HTMLElement {
           background-color:lightgreen;
           border:darkgreen dashed 5px;
           transition: transform 0.3s ease;
+          width:180px;
+          height:180px;
+          margin: 10px;
+          border-radius:1rem;
         }
 
         
@@ -328,7 +338,7 @@ class Gallery extends HTMLElement {
             <div class="tab-content-images">
               <div class="avatar-container">
                 <div class="upload">
-                  <div class="avatar file">
+                  <div class="file">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
                   </div>
                 </div>
@@ -358,6 +368,7 @@ class Gallery extends HTMLElement {
               <form class="gallery">
                 <label class="title">Name:</label>
                 <input type="text">
+                <br>
                 <label class="alternative">Alternative Name:</label>
                 <input type="text">
               </form>
