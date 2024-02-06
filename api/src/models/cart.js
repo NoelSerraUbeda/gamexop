@@ -90,7 +90,6 @@ module.exports = function (sequelize, DataTypes) {
 
     Cart.hasMany(models.CartDetail, { as: 'cartDetail', foreignKey: 'cartId' })
     Cart.hasMany(models.SaleError, { as: 'saleError', foreignKey: 'cartId' })
-    Cart.hasMany(models.Sale, { as: 'sale', foreignKey: 'cartId' })
 
     Cart.hasOne(models.Sale, { as: 'sale', foreignKey: 'cartId' })
   }

@@ -52,6 +52,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     resourceElement: {
+      allowNull: false,
       type: DataTypes.INTEGER,
       validate: {
         notNull: {
@@ -85,12 +86,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     message: {
       type: DataTypes.TEXT,
-      allowNull: true,
-      validate: {
-        notNull: {
-          msg: 'Por favor, rellena todos los campos.'
-        }
-      }
+      allowNull: true
     },
     startTime: {
       type: DataTypes.DOUBLE,

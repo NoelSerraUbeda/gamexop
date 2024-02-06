@@ -96,7 +96,7 @@ module.exports = function (sequelize, DataTypes) {
 
     Tax.hasMany(models.CartDetail, { as: 'cartDetail', foreignKey: 'taxId' })
     Tax.hasMany(models.ReturnDetail, { as: 'returnDetail', foreignKey: 'taxId' })
-    Tax.hasMany(models.SaleDetails, { as: 'saleDetails', foreignKey: 'taxId' })
+    Tax.hasMany(models.SaleDetail, { as: 'saleDetails', foreignKey: 'taxId' })
   }
 
   return Tax

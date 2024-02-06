@@ -81,7 +81,7 @@ module.exports = function (sequelize, DataTypes) {
     PriceDiscount.belongsTo(models.Price, { as: 'price', foreignKey: 'priceId' })
 
     PriceDiscount.hasMany(models.ReturnDetail, { as: 'returnDetail', foreignKey: 'priceDiscountId' })
-    PriceDiscount.hasMany(models.SaleDetails, { as: 'saleDetails', foreignKey: 'priceDiscountId' })
+    PriceDiscount.hasMany(models.SaleDetail, { as: 'saleDetails', foreignKey: 'priceDiscountId' })
     PriceDiscount.hasMany(models.CartDetail, { as: 'cartDetail', foreignKey: 'priceDiscountId' })
   }
 

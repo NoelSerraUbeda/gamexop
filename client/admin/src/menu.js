@@ -99,6 +99,7 @@ class Menu extends HTMLElement {
         }
 
         .menu-icon.opened .bar:nth-child(2) {
+          width:0;
           opacity: 0;
         }
 
