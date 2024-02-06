@@ -119,15 +119,15 @@ class Gallery extends HTMLElement {
           font-size:40px;
           color:darkgreen;
           font-family:monospace;
-          transition: transform 0.3s ease;
         }
 
         .close-button svg{
+          transition: transform 0.3s ease;
           fill:darkgreen;
           width:4rem;
         }
 
-        .close-button:hover {
+        .close-button svg:hover {
           transform: scale(1.1);
         }
 
@@ -178,10 +178,9 @@ class Gallery extends HTMLElement {
         }
         
         .tab-content-form{
-          padding-right:2rem;
-          padding-left:2rem;
+          padding-right:1rem;
+          padding-left:1rem;
           padding-top:1rem;
-          flex:1;
           background-color:rgb(10, 104, 10);
           color:white;
           box-sizing: border-box;
@@ -210,6 +209,14 @@ class Gallery extends HTMLElement {
         .avatar-container {
           display: flex;
           flex-wrap: wrap;
+          overflow: auto;
+          height: 39rem;
+          padding-bottom:1rem;
+        }
+
+
+        .avatar-container::-webkit-scrollbar {
+          display: none;
         }
 
         .gallery{
@@ -318,6 +325,11 @@ class Gallery extends HTMLElement {
           fill:white;
           position:static;
         }
+
+        .img {
+          height:210px;
+        }
+
       </style>
       
       <div class="modal-gallery-back">
@@ -361,7 +373,7 @@ class Gallery extends HTMLElement {
                     <img src="https://cdn-icons-png.flaticon.com/512/168/168726.png" alt="Imagen meme">
                   </div>
                 </div>
-      
+
               </div>
             </div>
             <div class="tab-content-form">

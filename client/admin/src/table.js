@@ -37,7 +37,7 @@ class Table extends HTMLElement {
             flex-direction:column;
             justify-content:start;
             align-items:center;
-            height:48rem;
+            height:46.5rem;
           }
 
           .crud-table {
@@ -93,7 +93,7 @@ class Table extends HTMLElement {
           .edit-button button,
           .delete-button button {
             width: 3rem;
-            background-color:darkgreen;
+            background-color:lightgreen;
             border-radius:1rem;
 
           }
@@ -122,7 +122,7 @@ class Table extends HTMLElement {
 
 
           .table-data {
-            background-color: lightgreen;
+            background-color: green;
             padding: 2.5rem;
             font-size:24px;
             border-radius:1rem;
@@ -138,18 +138,23 @@ class Table extends HTMLElement {
           }
 
           .table-data ul li span {
-            color:darkgreen;
+            color:lightgreen;
             text-shadow: none;  
           }
 
           .table-component {
-            height: 39rem;
             width: 40rem;
             overflow: auto; 
             padding: 1rem;
             scrollbar-width: none; 
             -ms-overflow-style: none; 
             padding-top:1rem;
+            border-left:10px solid darkgreen;
+            border-bottom:10px solid darkgreen;
+            border-right:10px solid darkgreen;
+            border-bottom-left-radius:1rem;
+            border-bottom-right-radius:1rem;
+            background-color:lightgreen;
           }
 
           .table-component::-webkit-scrollbar {

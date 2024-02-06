@@ -48,7 +48,7 @@ class Form extends HTMLElement {
         border: 10px solid darkgreen;
         overflow: auto;
         height: 44rem;
-        width: 110%;
+        width: 60rem;
         margin-bottom: 10rem;
         scrollbar-width: none; 
         -ms-overflow-style: none; 
