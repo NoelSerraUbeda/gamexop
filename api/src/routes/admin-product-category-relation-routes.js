@@ -1,6 +1,6 @@
 module.exports = (app, upload) => {
   const router = require('express').Router()
-  const controller = require('../controllers/admin/tax-controller.js')
+  const controller = require('../controllers/admin/product-category-relation-controller.js')
 
   router.post('/', controller.create)
   router.get('/', controller.findAll)
@@ -8,5 +8,5 @@ module.exports = (app, upload) => {
   router.put('/:id', controller.update)
   router.delete('/:id', controller.delete)
 
-  app.use('/api/admin/taxes', router)
+  app.use('/api/admin/product-category-relations', router)
 }

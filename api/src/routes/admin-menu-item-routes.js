@@ -8,5 +8,5 @@ module.exports = (app, upload) => {
   router.put('/:id', controller.update)
   router.delete('/:id', controller.delete)
 
-  app.use('/api/admin/item-routes', router)
+  app.use('/api/admin/menu-items', router)
 }

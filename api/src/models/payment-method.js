@@ -70,7 +70,7 @@ module.exports = function (sequelize, DataTypes) {
   })
 
   PaymentMethod.associate = function (models) {
-    PaymentMethod.belongsToMany(models.Product, { through: models.SaleDetail, as: 'products', foreignKey: 'paymentMethodId' })
+    PaymentMethod.belongsToMany(models.Product, { through: models.Sale, as: 'products', foreignKey: 'paymentMethodId' })
     
     PaymentMethod.hasMany(models.ReturnError, { as: 'returnError', foreignKey: 'paymentMethodId' })
     PaymentMethod.hasMany(models.Return, { as: 'return', foreignKey: 'paymentMethodId' })
