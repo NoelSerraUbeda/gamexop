@@ -32,11 +32,11 @@ class Form extends HTMLElement {
       }
 
       input {
-        border-radius:0.5rem;
+        border-radius:1rem;
       }
 
       label {
-        font-size: 28px;
+        font-size: 22px;
         text-shadow: 1px 1px 2px black;      
       }
 
@@ -164,21 +164,21 @@ class Form extends HTMLElement {
 
       .form-element-input * {
         background-color: darkgreen;
-        border: none;
+        border: 5px lightgreen solid;
         box-sizing: border-box;
         font-size: 1.5rem;
-        outline: transparent;
+        outline: none;
         padding:0.5rem;
         width: 100%;
         text-indent:0.3rem;
       }
 
       input:focus {
-        outline: 2px solid #4DD0FA; 
+        border: 5px solid #4DD0FA; 
       }
 
       textarea:focus {
-        outline: 2px solid #4DD0FA; 
+        border: 5px solid #4DD0FA; 
       }
 
       .language-contents{
@@ -211,6 +211,8 @@ class Form extends HTMLElement {
         <div class="tabs">
           <div class="tab  active" data-tab="general">General</div>
           <div class="tab " data-tab="images">Images</div>
+          <!-- <div class="tab " data-tab="specifications">Especificaciones</div>-->
+          <!-- <div class="tab " data-tab="prices">Precios</div> -->
         </div>
         <div class="form-buttons">
           <div class="create-button"  data-endpoint="">
@@ -224,52 +226,28 @@ class Form extends HTMLElement {
           </div>
         </div>
       </div>
+      <!-- Formulario -->
       <form class="admin-form">
         <input type="hidden" name="id" value="">
         <div class="tab-contents ">
           <div class="tab-content active" data-tab="general">
-            <div class="form-row">
-              <div class="form-element">
-                <div class="form-element-label">
-                  <label for="title">Name</label>
-                </div>
-                <div class="form-element-input">
-                  <input type="text" name="name" value="">
-                </div>
-              </div>
-              <div class="form-element">
-                <div class="form-element-label">
-                  <label for="address">Email</label>
-                </div>
-                <div class="form-element-input">
-                  <input type="email" name="email" value="">
-                </div>
-              </div>
-            </div>
 
             <div class="form-row">
               <div class="form-element">
                 <div class="form-element-label">
-                  <label for="title">Password</label>
+                  <label for="title">Nombre</label>
                 </div>
-                <div class="form-element-input">
-                  <input type="password" name="password" value="">
-                </div>
-              </div>
-              <div class="form-element">
-                <div class="form-element-label">
-                  <label for="address">Repeat Password</label>
-                </div>
-                <div class="form-element-input">
-                  <input type="password" name="repeat" value="">
-                </div>
+              <div class="form-element-input">
+                <input type="text" name="name" value="">
               </div>
             </div>
+            
+          </div>
 
           <div class="form-language-bar">
             <div class="tabs">
-                <div class="tab active" data-tab="es">ES</div>
-                <div class="tab" data-tab="en">EN</div>
+              <div class="tab active" data-tab="es">ES</div>
+              <div class="tab" data-tab="en">EN</div>
             </div>
           </div>
     
@@ -302,9 +280,7 @@ class Form extends HTMLElement {
               <div class="form-row">
                 <div class="form-element">
                   <div class="form-element-label">
-                    <label for="title">
-                      Name
-                    </label>
+                    <label for="title">Name</label>
                   </div>
                   <div class="form-element-input">
                     <input type="text" name="" value="">
@@ -323,20 +299,56 @@ class Form extends HTMLElement {
               </div>
             </div>
           </div>
-      </div>
+        </div>
+        <!-- image Gallery -->
+        <div class="tab-content" data-tab="images">
+          <upload-image-component> </upload-image-component>
+        </div>
+        <!-- Specifications  -->
+        <div class="tab-content" data-tab="specifications">
+        </div>
+        <!-- prices  -->
+        <div class="tab-content" data-tab="prices">
+        </div>
+      </form>
+    </div>
+  `
+    const save = this.shadow.querySelector('.store-button')
 
-          <!-- image Gallery -->
-      <div class="tab-content" data-tab="images">
-        <upload-image-component> </upload-image-component>
-      </div>
-    </form>
-`
-    const buttonSave = this.shadow.querySelector('.store-button')
+    save?.addEventListener('click', async () => {
+      const form = this.shadow.querySelector('.admin-form')
+      const formData = new FormData(form)
+      const formDataJson = Object.fromEntries(formData.entries())
+      delete formDataJson.id
 
-    buttonSave?.addEventListener('click', () => {
-      document.dispatchEvent(new CustomEvent('notification', {
+      try {
+        const response = await fetch('http://127.0.0.1:8080/api/admin/faqs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
 
-      }))
+          body: JSON.stringify(formDataJson)
+        })
+
+        if (response.status === 500 || response.status === 422) {
+          throw response
+        }
+
+        if (response.status === 200) {
+          const data = await response.json()
+          Object.entries(data).forEach(([key, value]) => {
+            console.log(`${key}: ${value}`)
+          })
+          document.dispatchEvent(new CustomEvent('notification'))
+        }
+      } catch (response) {
+        const error = await response.json()
+
+        error.message forEach message => {
+          console.log(error.message)
+        }
+      }
     })
 
     const clean = this.shadow.querySelector('.create-button')
@@ -347,8 +359,8 @@ class Form extends HTMLElement {
       })
     })
 
-    const main = this.shadow.querySelector('.form')
-    main?.addEventListener('click', (event) => {
+    const form = this.shadow.querySelector('.form')
+    form?.addEventListener('click', (event) => {
       if (event.target.closest('.tab')) {
         if (event.target.closest('.tab').classList.contains('active')) {
           return

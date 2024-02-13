@@ -6,7 +6,10 @@ class SaveNotification extends HTMLElement {
   }
 
   connectedCallback () {
-    document.addEventListener('notification', () => {
+    document.addEventListener('notification', (event) => {
+      const errorMessage = event.detail.message
+      const notificationContainer = document.querySelector('.notification-container')
+      notificationContainer.innerHTML = `<p>${errorMessage}</p>`
       this.showNotification()
     })
 

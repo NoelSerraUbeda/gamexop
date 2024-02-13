@@ -92,7 +92,6 @@ class Table extends HTMLElement {
 
           .edit-button button,
           .delete-button button {
-            width: 3rem;
             background-color:lightgreen;
             border-radius:1rem;
 
@@ -100,31 +99,31 @@ class Table extends HTMLElement {
 
           .edit-button button svg,
           .delete-button button svg {
-            width: 2.5rem;
-            height:3rem;
+            width: 2rem;
+            height:2rem;
+            padding:0.4rem;
+            transition: transform 0.3s ease;
           }
 
           .edit-button button,
           .delete-button button {
             fill: white;
-            transition: transform 0.3s ease;
           }
 
-          .delete-button button:hover {
-            transform: scale(1.05); 
+          .delete-button svg:hover {
+            transform: scale(1.2); 
             fill:red;
           }
 
-          .edit-button button:hover {
-            transform: scale(1.05); 
+          .edit-button svg:hover {
+            transform: scale(1.2); 
             fill:orange;
           }
 
-
           .table-data {
             background-color: green;
-            padding: 2.5rem;
-            font-size:24px;
+            padding: 1.5rem;
+            font-size:20px;
             border-radius:1rem;
             border:6px solid darkgreen;
             margin-bottom:1rem;
@@ -172,75 +171,12 @@ class Table extends HTMLElement {
       </section>
 
       <section class="table-component">
-          <article class="crud-table">
-            <div class="table-buttons">
-                <div class="edit-button">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4H13V9H18V12.1L20 10.1V8L14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20M20.2 13C20.3 13 20.5 13.1 20.6 13.2L21.9 14.5C22.1 14.7 22.1 15.1 21.9 15.3L20.9 16.3L18.8 14.2L19.8 13.2C19.9 13.1 20 13 20.2 13M20.2 16.9L14.1 23H12V20.9L18.1 14.8L20.2 16.9Z" /></svg>
-                </button>
-                </div>
-                <div class="delete-button">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-                </button>
-                </div>
-            </div>
-            <div class="table-data">
-                <ul>
-                  <li><span>Email: </span>Carumba@gmail.com</li>
-                  <li><span>Name: </span>Carumba</li>
-                </ul>
-            </div>
-          </article>
-
-          <article class="crud-table">
-            <div class="table-buttons">
-                <div class="edit-button">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4H13V9H18V12.1L20 10.1V8L14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20M20.2 13C20.3 13 20.5 13.1 20.6 13.2L21.9 14.5C22.1 14.7 22.1 15.1 21.9 15.3L20.9 16.3L18.8 14.2L19.8 13.2C19.9 13.1 20 13 20.2 13M20.2 16.9L14.1 23H12V20.9L18.1 14.8L20.2 16.9Z" /></svg>
-                </button>
-                </div>
-                <div class="delete-button">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-                </button>
-                </div>
-            </div>
-            <div class="table-data">
-                <ul>
-                  <li><span>Email: </span>Carumba@gmail.com</li>
-                  <li><span>Name: </span>Carumba</li>
-                </ul>
-            </div>
-          </article>
-
-          <article class="crud-table">
-          <div class="table-buttons">
-              <div class="edit-button">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4H13V9H18V12.1L20 10.1V8L14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20M20.2 13C20.3 13 20.5 13.1 20.6 13.2L21.9 14.5C22.1 14.7 22.1 15.1 21.9 15.3L20.9 16.3L18.8 14.2L19.8 13.2C19.9 13.1 20 13 20.2 13M20.2 16.9L14.1 23H12V20.9L18.1 14.8L20.2 16.9Z" /></svg>
-                </button>
-              </div>
-              <div class="delete-button">
-              <button>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-              </button>
-              </div>
-          </div>
-          <div class="table-data">
-              <ul>
-                <li><span>Email: </span>Carumba@gmail.com</li>
-                <li><span>Name: </span>Carumba</li> 
-              </ul>
-          </div>
-        </article>
-
         <article class="crud-table">
           <div class="table-buttons">
               <div class="edit-button">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4H13V9H18V12.1L20 10.1V8L14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20M20.2 13C20.3 13 20.5 13.1 20.6 13.2L21.9 14.5C22.1 14.7 22.1 15.1 21.9 15.3L20.9 16.3L18.8 14.2L19.8 13.2C19.9 13.1 20 13 20.2 13M20.2 16.9L14.1 23H12V20.9L18.1 14.8L20.2 16.9Z" /></svg>
-                </button>
+              <button>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4H13V9H18V12.1L20 10.1V8L14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20M20.2 13C20.3 13 20.5 13.1 20.6 13.2L21.9 14.5C22.1 14.7 22.1 15.1 21.9 15.3L20.9 16.3L18.8 14.2L19.8 13.2C19.9 13.1 20 13 20.2 13M20.2 16.9L14.1 23H12V20.9L18.1 14.8L20.2 16.9Z" /></svg>
+              </button>
               </div>
               <div class="delete-button">
               <button>
@@ -250,33 +186,12 @@ class Table extends HTMLElement {
           </div>
           <div class="table-data">
               <ul>
-                <li><span>Email: </span>Carumba@gmail.com</li>
-                <li><span>Name: </span>Carumba</li>
+                <li><span>Nombre: </span>¿Qué es Gamexop?</li>
+                <li><span>Fecha de creación: </span>24-02-02 11:54</li>
+                <li><span>Fecha de actualización: </span>24-02-02 11:54</li>
               </ul>
           </div>
         </article>
-
-        <article class="crud-table">
-          <div class="table-buttons">
-              <div class="edit-button">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4H13V9H18V12.1L20 10.1V8L14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20M20.2 13C20.3 13 20.5 13.1 20.6 13.2L21.9 14.5C22.1 14.7 22.1 15.1 21.9 15.3L20.9 16.3L18.8 14.2L19.8 13.2C19.9 13.1 20 13 20.2 13M20.2 16.9L14.1 23H12V20.9L18.1 14.8L20.2 16.9Z" /></svg>
-                </button>
-              </div>
-              <div class="delete-button">
-              <button>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
-              </button>
-              </div>
-          </div>
-          <div class="table-data">
-              <ul>
-                <li><span>Email: </span>Carumba@gmail.com</li>
-                <li><span>Name: </span>Carumba</li>
-              </ul>
-          </div>
-        </article>
-
       </section>
     </div>
     `
