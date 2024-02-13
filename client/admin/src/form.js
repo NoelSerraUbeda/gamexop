@@ -77,11 +77,12 @@ class Form extends HTMLElement {
       .tab{
         transition: transform 0.3s ease;
         background-color: green;
-        padding: 0.5rem 1.5rem;
+        padding: 0rem 1rem;
         align-items: center;
         cursor: pointer;
         display: flex;
-        font-size:20px;
+        font-size:22px;
+        height:4rem;
       }
 
       .tab:hover{
@@ -211,8 +212,8 @@ class Form extends HTMLElement {
         <div class="tabs">
           <div class="tab  active" data-tab="general">General</div>
           <div class="tab " data-tab="images">Images</div>
-          <!-- <div class="tab " data-tab="specifications">Especificaciones</div>-->
-          <!-- <div class="tab " data-tab="prices">Precios</div> -->
+           <div class="tab " data-tab="specifications">Especificaciones</div>
+           <div class="tab " data-tab="prices">Precios</div>
         </div>
         <div class="form-buttons">
           <div class="create-button"  data-endpoint="">
@@ -241,8 +242,12 @@ class Form extends HTMLElement {
                 <input type="text" name="name" value="">
               </div>
             </div>
-            
-          </div>
+            </div>
+            <div class="notifications">
+                <ul>
+
+                </ul>
+            </div>
 
           <div class="form-language-bar">
             <div class="tabs">
@@ -314,39 +319,33 @@ class Form extends HTMLElement {
     </div>
   `
     const save = this.shadow.querySelector('.store-button')
-
     save?.addEventListener('click', async () => {
       const form = this.shadow.querySelector('.admin-form')
       const formData = new FormData(form)
       const formDataJson = Object.fromEntries(formData.entries())
       delete formDataJson.id
-
       try {
         const response = await fetch('http://127.0.0.1:8080/api/admin/faqs', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-
           body: JSON.stringify(formDataJson)
         })
-
         if (response.status === 500 || response.status === 422) {
           throw response
         }
-
         if (response.status === 200) {
           const data = await response.json()
           Object.entries(data).forEach(([key, value]) => {
             console.log(`${key}: ${value}`)
           })
-          document.dispatchEvent(new CustomEvent('notification'))
+          document.dispatchEvent(new CustomEvent('correct'))
         }
       } catch (response) {
         const error = await response.json()
-
-        error.message.forEach(p => {
-          console.log(p.message)
+        error.message.forEach(error => {
+          alert(error.message)
         })
       }
     })

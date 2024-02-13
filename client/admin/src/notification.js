@@ -6,10 +6,9 @@ class SaveNotification extends HTMLElement {
   }
 
   connectedCallback () {
-    document.addEventListener('notification', (event) => {
-      const errorMessage = event.detail.message
-      const notificationContainer = document.querySelector('.notification-container')
-      notificationContainer.innerHTML = `<p>${errorMessage}</p>`
+    document.addEventListener('correct', (event) => {
+      const container = this.shadow.querySelector('.notification-container')
+      container.style.backgroundColor = 'darkgreen'
       this.showNotification()
     })
 
