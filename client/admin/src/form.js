@@ -345,9 +345,9 @@ class Form extends HTMLElement {
       } catch (response) {
         const error = await response.json()
 
-        error.message forEach message => {
-          console.log(error.message)
-        }
+        error.message.forEach(p => {
+          console.log(p.message)
+        })
       }
     })
 
