@@ -30,7 +30,7 @@
   </head>
 
   <body>
-    <div class="background-block"></div>
+    <div class="background-modal"></div>
     <header>
     <!-- Cabecera -->
       <title-component title="FAQS"></title-component>
@@ -38,24 +38,25 @@
       <menu-component></menu-component>
     </header>
     <main>
-      <!-- Modal eliminar registro -->
+      <!-- Modal Eliminar registro -->
       <modal-destroy-component></modal-destroy-component>
-      <!-- Modal Filtro -->
+      <!-- Modal Filtrar registro -->
       <filter-modal></filter-modal>
-      <div class="crud">
-        <section class="table">
+      <div class="crud-container">
+        <div class="table">
           <!-- Tabla -->
-          <table-component></table-component>
-        </section>
-        <section class="form">
+          <table-component endpoint="/api/admin/faqs"></table-component>
+          <pages-component></pages-component>
+        </div>
+        <div class="form">
           <!-- Formulario -->
-          <form-component></form-component>
-        </section>
+          <form-component endpoint="/api/admin/faqs"></form-component>
+        </div>
         <!-- Notificaciones -->
         <save-notification-component></save-notification-component>
       </div>
       <!-- Modal de imagenes -->
-      <modal-gallery-component></modal-gallery-component>
+      <gallery-modal-component></gallery-modal-component>
     </main>
   </body>
 </html>

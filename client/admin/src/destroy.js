@@ -5,10 +5,10 @@ class ModalDestroy extends HTMLElement {
   }
 
   connectedCallback () {
-    const background = document.querySelector('.background-block')
+    const background = document.querySelector('.background-modal')
 
-    document.addEventListener('showDeleteModal', event => {
-      background.classList.add('background-block-active')
+    document.addEventListener('deleteModal', event => {
+      background.classList.add('background-modal-active')
       this.openModal()
     })
     this.render()
@@ -44,7 +44,7 @@ class ModalDestroy extends HTMLElement {
         border: solid 5px;
         border-color: darkgreen;
         background-color: lightgreen;
-        padding: 4rem;
+        padding: 2rem;
         border-radius:1rem;
       }
 
@@ -87,6 +87,7 @@ class ModalDestroy extends HTMLElement {
         border:none;
         background-color: #D74242;
       }
+      
     </style>
     
     <section class="modal-delete">
@@ -124,8 +125,8 @@ class ModalDestroy extends HTMLElement {
 
   closeModal () {
     const deleteModal = this.shadow.querySelector('.modal-delete')
-    const background = document.querySelector('.background-block')
-    background.classList.remove('background-block-active')
+    const background = document.querySelector('.background-modal')
+    background.classList.remove('background-modal-active')
     deleteModal.classList.remove('modal-delete-active')
   }
 }

@@ -30,7 +30,6 @@ class Title extends HTMLElement {
         }
         h1{
           color: hsl(0, 0%, 100%);
-        
           margin: 0;
           padding: 0;
           flex:1;

@@ -55,7 +55,6 @@ class Gallery extends HTMLElement {
         * {
           margin: 0;
           padding: 0;
-          font-family:Arial;
         }
 
         img {
@@ -416,4 +415,4 @@ class Gallery extends HTMLElement {
   }
 }
 
-customElements.define('modal-gallery-component', Gallery)
+customElements.define('gallery-modal-component', Gallery)

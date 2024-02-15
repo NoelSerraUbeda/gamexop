@@ -28,7 +28,7 @@ class Menu extends HTMLElement {
           margin: 0;
           overflow: hidden;
           position: fixed;
-          transition: top 0.3s, opacity 0.3s;
+          transition: top 0.5s, opacity 0.5s;
           width: 100%;
           z-index: 0;
           box-sizing: border-box;

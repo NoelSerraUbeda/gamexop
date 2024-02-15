@@ -5,10 +5,10 @@ class FilterModal extends HTMLElement {
   }
 
   connectedCallback () {
-    const background = document.querySelector('.background-block')
+    const background = document.querySelector('.background-modal')
 
-    document.addEventListener('showFilterModal', event => {
-      background.classList.add('background-block-active')
+    document.addEventListener('filterModal', event => {
+      background.classList.add('background-modal-active')
       this.openModal()
     })
     this.render()
@@ -19,6 +19,14 @@ class FilterModal extends HTMLElement {
     <style>
       label {
         color: hsl(0, 0%, 100%);
+      }
+
+      h3{
+        font-size:30px;
+        margin:0;
+        text-shadow: 1px 1px 2px black;
+        color: hsl(0, 0%, 100%);
+        margin-bottom:1rem;
       }
 
       .filter-modal {
@@ -163,14 +171,15 @@ class FilterModal extends HTMLElement {
 
     <section class="filter-modal">
       <div class="filter-modal-form">
+        <h3>Filtrar registros</h3>
         <div class="form-row">
             <div class="form-element">
-            <div class="form-element-label">
-              <label for="email">Name</label>
-            </div>
-            <div class="form-element-input">
-              <input type="email">
-            </div>
+              <div class="form-element-label">
+                <label for="email">Name</label>
+              </div>
+              <div class="form-element-input">
+                <input type="email">
+              </div>
             </div>
         </div>
         <div class="form-row">
@@ -211,9 +220,9 @@ class FilterModal extends HTMLElement {
 
   closeModal () {
     const filterMenu = this.shadow.querySelector('.filter-modal')
-    const background = document.querySelector('.background-block')
+    const background = document.querySelector('.background-modal')
 
-    background.classList.remove('background-block-active')
+    background.classList.remove('background-modal-active')
     filterMenu.classList.remove('filter-modal-active')
   }
 }

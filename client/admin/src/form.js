@@ -48,7 +48,7 @@ class Form extends HTMLElement {
         border: 10px solid darkgreen;
         overflow: auto;
         height: 44rem;
-        width: 60rem;
+        width: 110%;
         margin-bottom: 10rem;
         scrollbar-width: none; 
         -ms-overflow-style: none; 
@@ -120,15 +120,14 @@ class Form extends HTMLElement {
 
       .form-buttons {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         gap: 0.5rem;
-        padding: 0.5rem;
         padding-right: 0.5rem;
       }
 
       .create-button button svg,
       .store-button button svg {
-        width: 4rem;
+        width: 3.5rem;
         background-color:green;
         padding:0.5rem;
         border-radius:1rem;
@@ -205,6 +204,22 @@ class Form extends HTMLElement {
       input[type=number] {
         -moz-appearance: textfield;
       }
+
+      .errors {
+        display:none;
+        cursor:pointer;
+      }
+
+      .errors ul {
+        background-color:darkred;
+        border-radius:0.5rem;
+        padding:0.5rem;
+
+      }
+
+      .errors ul li {
+        list-style-type: none;
+      }
     </style>
   
     <div class="form">
@@ -212,8 +227,8 @@ class Form extends HTMLElement {
         <div class="tabs">
           <div class="tab  active" data-tab="general">General</div>
           <div class="tab " data-tab="images">Images</div>
-           <div class="tab " data-tab="specifications">Especificaciones</div>
-           <div class="tab " data-tab="prices">Precios</div>
+          <!--  <div class="tab " data-tab="specifications">Especificaciones</div> -->
+          <!--  <div class="tab " data-tab="prices">Precios</div> -->
         </div>
         <div class="form-buttons">
           <div class="create-button"  data-endpoint="">
@@ -230,6 +245,9 @@ class Form extends HTMLElement {
       <!-- Formulario -->
       <form class="admin-form">
         <input type="hidden" name="id" value="">
+        <div class="errors">
+            <ul></ul>
+        </div>
         <div class="tab-contents ">
           <div class="tab-content active" data-tab="general">
 
@@ -242,12 +260,7 @@ class Form extends HTMLElement {
                 <input type="text" name="name" value="">
               </div>
             </div>
-            </div>
-            <div class="notifications">
-                <ul>
-
-                </ul>
-            </div>
+          </div>
 
           <div class="form-language-bar">
             <div class="tabs">
@@ -325,40 +338,57 @@ class Form extends HTMLElement {
       const formDataJson = Object.fromEntries(formData.entries())
       delete formDataJson.id
       try {
-        const response = await fetch('http://127.0.0.1:8080/api/admin/faqs', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(formDataJson)
         })
+
         if (response.status === 500 || response.status === 422) {
           throw response
         }
+
         if (response.status === 200) {
           const data = await response.json()
           Object.entries(data).forEach(([key, value]) => {
             console.log(`${key}: ${value}`)
           })
           document.dispatchEvent(new CustomEvent('correct'))
+
+          const errorPanel = this.shadow.querySelector('.errors')
+          errorPanel.style.display = 'none'
+          errorPanel.querySelector('ul').innerHTML = ''
+
+          const inputs = this.shadow.querySelectorAll('input, textarea')
+          inputs.forEach(input => {
+            input.value = ''
+          })
         }
       } catch (response) {
         const error = await response.json()
-        error.message.forEach(error => {
-          alert(error.message)
+        const errorPanel = this.shadow.querySelector('.errors ul')
+        errorPanel.innerHTML = ''
+        this.shadow.querySelector('.errors').style.display = 'block'
+
+        error.message.forEach(errorMessage => {
+          const errorListItem = document.createElement('li')
+          errorListItem.textContent = errorMessage.message
+          errorPanel.appendChild(errorListItem)
         })
       }
     })
 
-    const clean = this.shadow.querySelector('.create-button')
-    clean?.addEventListener('click', () => {
-      const inputFields = this.shadow.querySelectorAll('input, textarea')
-      inputFields.forEach(input => {
-        input.value = ''
-      })
+    const errorPanel = this.shadow.querySelector('.errors')
+    errorPanel.addEventListener('click', () => {
+      errorPanel.style.display = 'none'
     })
 
     const form = this.shadow.querySelector('.form')
+    form?.addEventListener('click', (event) => {
+    })
+
     form?.addEventListener('click', (event) => {
       if (event.target.closest('.tab')) {
         if (event.target.closest('.tab').classList.contains('active')) {
@@ -374,6 +404,14 @@ class Form extends HTMLElement {
         this.shadow.querySelector(`.tab-content.active[data-tab="${tabActive.dataset.tab}"]`).classList.remove('active')
         this.shadow.querySelector(`.tab-content[data-tab="${tabClicked.dataset.tab}"]`).classList.add('active')
       }
+    })
+
+    const createButton = this.shadow.querySelector('.create-button button')
+    createButton.addEventListener('click', () => {
+      const inputs = this.shadow.querySelectorAll('input, textarea')
+      inputs.forEach(input => {
+        input.value = ''
+      })
     })
   }
 }
