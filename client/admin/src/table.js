@@ -144,13 +144,13 @@ class Table extends HTMLElement {
 
       .records {
         width: 40rem;
-        height:36rem;
+        height:40rem;
         overflow: auto; 
         padding: 1rem;
         scrollbar-width: none; 
         -ms-overflow-style: none; 
         padding-top:1rem;
-        padding-bottom:1rem;
+        padding-bottom:0.5rem;
         border-left:10px solid darkgreen;
         border-bottom:10px solid darkgreen;
         border-right:10px solid darkgreen;
@@ -236,7 +236,8 @@ class Table extends HTMLElement {
     const tableSection = this.shadow.querySelector('.records')
     tableSection?.addEventListener('click', async (event) => {
       if (event.target.closest('.edit-button')) {
-        alert('Aquí pasan cosas')
+        const cardId = event.target.closest('.edit-button').dataset.id
+        alert(`ID de la tarjeta: ${cardId}`)
       }
 
       if (event.target.closest('.delete-button')) {

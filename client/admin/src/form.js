@@ -48,7 +48,7 @@ class Form extends HTMLElement {
         border: 10px solid darkgreen;
         overflow: auto;
         height: 44rem;
-        width: 110%;
+        width: 58rem;
         margin-bottom: 10rem;
         scrollbar-width: none; 
         -ms-overflow-style: none; 
@@ -158,7 +158,6 @@ class Form extends HTMLElement {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        margin-bottom: 1rem;
         width: 100%;
       }
 
@@ -268,6 +267,7 @@ class Form extends HTMLElement {
               <div class="tab" data-tab="en">EN</div>
             </div>
           </div>
+          <br>
     
           <div class="tab-contents">
             <div class="tab-content active" data-tab="es">
