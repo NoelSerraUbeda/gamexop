@@ -234,10 +234,6 @@ class Table extends HTMLElement {
       recordDiv.appendChild(tableDataDiv)
 
       recordsContainer.appendChild(recordDiv)
-
-      deleteButton.addEventListener('click', () => {
-        this.destroyElement(row.id)
-      })
     })
 
     const filterButton = this.shadow.querySelector('.filter-button')
@@ -272,7 +268,7 @@ class Table extends HTMLElement {
   }
 
   destroyElement () {
-    alert('destroy')
+
   }
 }
 

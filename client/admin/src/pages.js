@@ -12,14 +12,13 @@ class Pages extends HTMLElement {
   render () {
     this.shadow.innerHTML = /* html */`
     <style>
-
     .pagination {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: white;
       position: absolute;
-      bottom: 1rem;
+      bottom: 0.5rem;
       left: 3.9rem;
       width: 38.5%;
       border-radius: 1rem;
@@ -40,18 +39,16 @@ class Pages extends HTMLElement {
       height: 2.5rem;
       font-size: 1.5rem;
     }
-    
-    .pagination button svg {
-      transition: transform 0.3s ease;
-    }
 
     .pagination button:not(:disabled):not(.current-page):hover {
-      text-decoration:underline;
+      animation: none;
+      background-color: darkgreen;
+      color: white;
       cursor: pointer;
     }
 
     .pagination button:hover:not(:disabled) svg {
-      transform: scale(1.3); 
+      fill: white;
     }
 
     button.current-page {
@@ -64,7 +61,6 @@ class Pages extends HTMLElement {
     }
   </style>
       <div class="pagination">
-<<<<<<< HEAD
       <button class="first-page">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M7,12L12,17V14H16V10H12V7L7,12Z" />
@@ -84,27 +80,6 @@ class Pages extends HTMLElement {
   
 
      `
-=======
-        <button class="first-page">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.852 54.4136C9.04933 52.2298 9.04934 46.7702 12.852 44.5864L80.444 5.76861C84.2467 3.58477 89 6.31457 89 10.6822V88.3178C89 92.6854 84.2467 95.4152 80.444 93.2314L12.852 54.4136Z"/>
-            </svg>
-        </button>
-        <button class="current-page">1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-        <button>5</button>
-        <button disabled>···</button>
-        <button>10</button>
-        <button class="last-page" >
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.852 54.4136C9.04933 52.2298 9.04934 46.7702 12.852 44.5864L80.444 5.76861C84.2467 3.58477 89 6.31457 89 10.6822V88.3178C89 92.6854 84.2467 95.4152 80.444 93.2314L12.852 54.4136Z"/>
-            </svg>
-        </button>
-    </div>
-  `
->>>>>>> 7d6f495b241555b37b09c7adb593ab5da584281a
   }
 }
 
