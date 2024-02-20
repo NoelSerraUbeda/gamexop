@@ -6,6 +6,16 @@ class Table extends HTMLElement {
   }
 
   connectedCallback () {
+    document.addEventListener('refresh', this.handleRefresh.bind(this))
+    document.addEventListener('destroy', this.handleDestroy.bind(this))
+    this.loadData().then(() => this.render())
+  }
+
+  handleDestroy () {
+    this.destroyElement()
+  }
+
+  handleRefresh () {
     this.loadData().then(() => this.render())
   }
 
@@ -236,7 +246,18 @@ class Table extends HTMLElement {
     const tableSection = this.shadow.querySelector('.records')
     tableSection?.addEventListener('click', async (event) => {
       if (event.target.closest('.edit-button')) {
-        alert('Aquí pasan cosas')
+        const editButtonDiv = event.target.closest('.edit-button')
+        const id = editButtonDiv.dataset.id
+        try {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}/${id}`)
+          const data = await response.json()
+
+          document.dispatchEvent(new CustomEvent('showElement', {
+            detail: { data }
+          }))
+        } catch (error) {
+          console.error('Error al obtener datos del elemento:', error)
+        }
       }
 
       if (event.target.closest('.delete-button')) {
@@ -244,6 +265,10 @@ class Table extends HTMLElement {
         }))
       }
     })
+  }
+
+  destroyElement () {
+
   }
 }
 

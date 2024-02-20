@@ -14,10 +14,9 @@ class Title extends HTMLElement {
       <style>
         .top-bar-title {
           display:flex;
-          justify-content:center;
           align-items:center;
           background-color:green;
-          width:100rem;
+          width:108rem;
           height:5rem;
           border-radius:1rem;
           padding:0.5rem;

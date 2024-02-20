@@ -26,7 +26,7 @@ class Pages extends HTMLElement {
     }
 
     .pagination svg {
-      width: 20px;
+      width: 2.4rem;
       fill: darkgreen;
     }
 
@@ -51,9 +51,6 @@ class Pages extends HTMLElement {
       fill: white;
     }
 
-    .pagination .last-page {
-      transform: scaleX(-1);
-    }
     button.current-page {
       background-color: #4dd0fa;
     }
@@ -65,9 +62,9 @@ class Pages extends HTMLElement {
   </style>
       <div class="pagination">
       <button class="first-page">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.852 54.4136C9.04933 52.2298 9.04934 46.7702 12.852 44.5864L80.444 5.76861C84.2467 3.58477 89 6.31457 89 10.6822V88.3178C89 92.6854 84.2467 95.4152 80.444 93.2314L12.852 54.4136Z"/>
-          </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M7,12L12,17V14H16V10H12V7L7,12Z" />
+        </svg>
       </button>
       <button class="current-page">1</button>
       <button>2</button>
@@ -75,9 +72,9 @@ class Pages extends HTMLElement {
       <button disabled>···</button>
       <button>10</button>
       <button class="last-page">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.852 54.4136C9.04933 52.2298 9.04934 46.7702 12.852 44.5864L80.444 5.76861C84.2467 3.58477 89 6.31457 89 10.6822V88.3178C89 92.6854 84.2467 95.4152 80.444 93.2314L12.852 54.4136Z"/>
-          </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12M17,12L12,7V10H8V14H12V17L17,12Z" />
+        </svg>
       </button>
   </div>
   

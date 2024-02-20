@@ -5,7 +5,12 @@ class Form extends HTMLElement {
   }
 
   connectedCallback () {
+    document.addEventListener('showElement', this.handleShowElement.bind(this))
     this.render()
+  }
+
+  handleShowElement (event) {
+    this.showElement(event.detail.data)
   }
 
   render () {
@@ -29,6 +34,7 @@ class Form extends HTMLElement {
 
       textarea {
         height:15rem;
+        resize: none;
       }
 
       input {
@@ -48,7 +54,7 @@ class Form extends HTMLElement {
         border: 10px solid darkgreen;
         overflow: auto;
         height: 44rem;
-        width: 110%;
+        width: 60rem;
         margin-bottom: 10rem;
         scrollbar-width: none; 
         -ms-overflow-style: none; 
@@ -81,8 +87,7 @@ class Form extends HTMLElement {
         align-items: center;
         cursor: pointer;
         display: flex;
-        font-size:22px;
-        height:4rem;
+        font-size:20px;
       }
 
       .tab:hover{
@@ -170,7 +175,6 @@ class Form extends HTMLElement {
         outline: none;
         padding:0.5rem;
         width: 100%;
-        text-indent:0.3rem;
       }
 
       input:focus {
@@ -246,78 +250,87 @@ class Form extends HTMLElement {
       <form class="admin-form">
         <input type="hidden" name="id" value="">
         <div class="errors">
-            <ul></ul>
+          <ul></ul>
         </div>
         <div class="tab-contents ">
           <div class="tab-content active" data-tab="general">
+            <div class="form-row">
+              <div class="form-element">
+                <div class="form-element-label">
+                    <label for="title">Nombre</label>
+                </div>
+                <div class="form-element-input">
+                    <input type="text" name="name" value="" style="width:54rem;">
+                </div>
+              </div>
+              <div class="form-element">
+                <div class="form-element-label">
+                  <label for="title">Orden</label>
+                </div>
+                <div class="form-element-input">
+                <input type="text" name="order" value="" style="text-align:center;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        <div class="form-language-bar">
+          <div class="tabs">
+            <div class="tab active" data-tab="es">ES</div>
+            <div class="tab" data-tab="en">EN</div>
+          </div>
+        </div>
+  
+        <div class="tab-contents">
+          <div class="tab-content active" data-tab="es">
+            <div class="form-row">
+              <div class="form-element">
+                <div class="form-element-label">
+                  <label for="title">Titulo</label>
+                </div>
+                <div class="form-element-input">
+                  <input type="text" name="" value="">
+                </div>
+              </div>
+            </div>
 
             <div class="form-row">
               <div class="form-element">
                 <div class="form-element-label">
-                  <label for="title">Nombre</label>
+                  <label for="description">Descripción</label>
                 </div>
-              <div class="form-element-input">
-                <input type="text" name="name" value="">
+                <div class="form-element-input">
+                  <textarea name="" type="textarea" class="event-description" data-onlyletters="true"></textarea>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="form-language-bar">
-            <div class="tabs">
-              <div class="tab active" data-tab="es">ES</div>
-              <div class="tab" data-tab="en">EN</div>
-            </div>
-          </div>
-    
-          <div class="tab-contents">
-            <div class="tab-content active" data-tab="es">
-              <div class="form-row">
-                <div class="form-element">
-                  <div class="form-element-label">
-                    <label for="title">Titulo</label>
-                  </div>
-                  <div class="form-element-input">
-                    <input type="text" name="" value="">
-                  </div>
+          <div class="tab-content" data-tab="en">
+            <div class="form-row">
+              <div class="form-element">
+                <div class="form-element-label">
+                  <label for="title">Name</label>
                 </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-element">
-                  <div class="form-element-label">
-                    <label for="description">Descripción</label>
-                  </div>
-                  <div class="form-element-input">
-                    <textarea name="" type="textarea" class="event-description" data-onlyletters="true"></textarea>
-                  </div>
+                <div class="form-element-input">
+                  <input type="text" name="" value="">
                 </div>
               </div>
             </div>
-
-            <div class="tab-content" data-tab="en">
-              <div class="form-row">
-                <div class="form-element">
-                  <div class="form-element-label">
-                    <label for="title">Name</label>
-                  </div>
-                  <div class="form-element-input">
-                    <input type="text" name="" value="">
-                  </div>
+            <div class="form-row">
+              <div class="form-element">
+                <div class="form-element-label">
+                  <label for="description">Description</label>
                 </div>
-              </div>
-              <div class="form-row">
-                <div class="form-element">
-                  <div class="form-element-label">
-                    <label for="description">Description</label>
-                  </div>
-                  <div class="form-element-input">
-                    <textarea name="" type="textarea" class="event-description" data-onlyletters="true"></textarea>
-                  </div>
+                <div class="form-element-input">
+                  <textarea name="" type="textarea" class="event-description" data-onlyletters="true"></textarea>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <!-- image Gallery -->
         <div class="tab-content" data-tab="images">
           <upload-image-component> </upload-image-component>
@@ -336,10 +349,14 @@ class Form extends HTMLElement {
       const form = this.shadow.querySelector('.admin-form')
       const formData = new FormData(form)
       const formDataJson = Object.fromEntries(formData.entries())
+
+      const endpoint = formDataJson.id ? `${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}/${formDataJson.id}` : `${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}`
+      const method = formDataJson.id ? 'PUT' : 'POST'
       delete formDataJson.id
+
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}`, {
-          method: 'POST',
+        const response = await fetch(endpoint, {
+          method,
           headers: {
             'Content-Type': 'application/json'
           },
@@ -356,6 +373,7 @@ class Form extends HTMLElement {
             console.log(`${key}: ${value}`)
           })
           document.dispatchEvent(new CustomEvent('correct'))
+          document.dispatchEvent(new CustomEvent('refresh'))
 
           const errorPanel = this.shadow.querySelector('.errors')
           errorPanel.style.display = 'none'
@@ -412,6 +430,17 @@ class Form extends HTMLElement {
       inputs.forEach(input => {
         input.value = ''
       })
+    })
+  }
+
+  showElement (element) {
+    console.log(element)
+    Object.entries(element).forEach(([key, value]) => {
+      const input = this.shadow.querySelector(`input[name="${key}"]`)
+
+      if (input) {
+        input.value = value
+      }
     })
   }
 }
