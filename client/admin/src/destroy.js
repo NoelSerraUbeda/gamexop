@@ -96,8 +96,8 @@ class ModalDestroy extends HTMLElement {
                 <h3>Eliminar este registro?</h3>
             </div>
             <div class="modal-delete-box-buttons">
-                <button class="modal-delete-box-buttons-accept modal-buttons"> Aceptar </button>
-                <button class="modal-delete-box-buttons-decline modal-buttons"> Cancelar </button>
+                <button class="modal-delete-box-buttons-accept modal-buttons">Aceptar</button>
+                <button class="modal-delete-box-buttons-decline modal-buttons">Cancelar</button>
             </div>
         </div>
     </section>
@@ -106,11 +106,12 @@ class ModalDestroy extends HTMLElement {
     const cancelButton = this.shadow.querySelector('.modal-delete-box-buttons-decline')
 
     acceptButton?.addEventListener('click', () => {
-      document.dispatchEvent(new CustomEvent('destroy'))
+      alert('cerrar borrar')
       this.closeModal()
     })
 
     cancelButton?.addEventListener('click', () => {
+      alert('cerrar cancelar')
       this.closeModal()
     })
   }

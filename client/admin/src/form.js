@@ -54,7 +54,11 @@ class Form extends HTMLElement {
         border: 10px solid darkgreen;
         overflow: auto;
         height: 44rem;
+<<<<<<< HEAD
         width: 60rem;
+=======
+        width: 58rem;
+>>>>>>> 7d6f495b241555b37b09c7adb593ab5da584281a
         margin-bottom: 10rem;
         scrollbar-width: none; 
         -ms-overflow-style: none; 
@@ -163,7 +167,6 @@ class Form extends HTMLElement {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        margin-bottom: 1rem;
         width: 100%;
       }
 
@@ -307,11 +310,32 @@ class Form extends HTMLElement {
             </div>
           </div>
 
+<<<<<<< HEAD
           <div class="tab-content" data-tab="en">
             <div class="form-row">
               <div class="form-element">
                 <div class="form-element-label">
                   <label for="title">Name</label>
+=======
+          <div class="form-language-bar">
+            <div class="tabs">
+              <div class="tab active" data-tab="es">ES</div>
+              <div class="tab" data-tab="en">EN</div>
+            </div>
+          </div>
+          <br>
+    
+          <div class="tab-contents">
+            <div class="tab-content active" data-tab="es">
+              <div class="form-row">
+                <div class="form-element">
+                  <div class="form-element-label">
+                    <label for="title">Titulo</label>
+                  </div>
+                  <div class="form-element-input">
+                    <input type="text" name="" value="">
+                  </div>
+>>>>>>> 7d6f495b241555b37b09c7adb593ab5da584281a
                 </div>
                 <div class="form-element-input">
                   <input type="text" name="" value="">
