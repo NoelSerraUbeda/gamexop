@@ -99,9 +99,9 @@ class SaveNotification extends HTMLElement {
       }
     </style>
 
-  <div class="notification-container">
-    <p>Todos los datos son correctos</p>
-  </div>
+    <div class="notification-container">
+      <p>Todos los datos son correctos</p>
+    </div>
     `
   }
 }

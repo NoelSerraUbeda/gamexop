@@ -173,24 +173,24 @@ class FilterModal extends HTMLElement {
       <div class="filter-modal-form">
         <h3>Filtrar registros</h3>
         <div class="form-row">
-            <div class="form-element">
-              <div class="form-element-label">
-                <label for="email">Name</label>
-              </div>
-              <div class="form-element-input">
-                <input type="email">
-              </div>
+          <div class="form-element">
+            <div class="form-element-label">
+              <label for="email">Name</label>
             </div>
+            <div class="form-element-input">
+              <input type="email">
+            </div>
+          </div>
         </div>
         <div class="form-row">
-            <div class="form-element">
+          <div class="form-element">
             <div class="form-element-label">
               <label for="email">Mail</label>
             </div>
             <div class="form-element-input">
               <input type="email">
             </div>
-            </div>
+          </div>
         </div>
         
         <section class="filter-inside-buttons">

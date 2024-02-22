@@ -2,12 +2,14 @@ class ModalDestroy extends HTMLElement {
   constructor () {
     super()
     this.shadow = this.attachShadow({ mode: 'open' })
+    this.deleteCard = null
   }
 
   connectedCallback () {
     const background = document.querySelector('.background-modal')
 
-    document.addEventListener('deleteModal', event => {
+    document.addEventListener('deleteModal', (event) => {
+      this.deleteCard = event.detail.cardId
       background.classList.add('background-modal-active')
       this.openModal()
     })
@@ -91,22 +93,40 @@ class ModalDestroy extends HTMLElement {
     </style>
     
     <section class="modal-delete">
-        <div class="modal-delete-box">
-            <div class="modal-delete-box-label">
-                <h3>Eliminar este registro?</h3>
-            </div>
-            <div class="modal-delete-box-buttons">
-                <button class="modal-delete-box-buttons-accept modal-buttons"> Aceptar </button>
-                <button class="modal-delete-box-buttons-decline modal-buttons"> Cancelar </button>
-            </div>
+      <div class="modal-delete-box">
+        <div class="modal-delete-box-label">
+          <h3>Eliminar este registro?</h3>
         </div>
+        <div class="modal-delete-box-buttons">
+          <button class="modal-delete-box-buttons-accept modal-buttons"> Aceptar </button>
+          <button class="modal-delete-box-buttons-decline modal-buttons"> Cancelar </button>
+        </div>
+      </div>
     </section>
     `
     const acceptButton = this.shadow.querySelector('.modal-delete-box-buttons-accept')
     const cancelButton = this.shadow.querySelector('.modal-delete-box-buttons-decline')
 
-    acceptButton?.addEventListener('click', () => {
-      document.dispatchEvent(new CustomEvent('destroy'))
+    acceptButton?.addEventListener('click', async (event) => {
+      const endpoint = this.deleteCard
+
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+
+        if (response.status === 500 || response.status === 422) {
+          throw response
+        }
+
+        document.dispatchEvent(new CustomEvent('refresh'))
+      } catch (response) {
+
+      }
+
       this.closeModal()
     })
 

@@ -244,6 +244,7 @@ class Table extends HTMLElement {
     })
 
     const tableSection = this.shadow.querySelector('.records')
+
     tableSection?.addEventListener('click', async (event) => {
       if (event.target.closest('.edit-button')) {
         const editButtonDiv = event.target.closest('.edit-button')
@@ -261,14 +262,15 @@ class Table extends HTMLElement {
       }
 
       if (event.target.closest('.delete-button')) {
+        const destroy = this.shadow.querySelector('.delete-button')
+        let cardId = destroy.dataset.id
+        const test = `${this.getAttribute('endpoint')}`
+        cardId = test + '/' + cardId
         document.dispatchEvent(new CustomEvent('deleteModal', {
+          detail: { cardId }
         }))
       }
     })
-  }
-
-  destroyElement () {
-
   }
 }
 
