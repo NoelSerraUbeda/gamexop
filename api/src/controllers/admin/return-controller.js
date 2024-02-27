@@ -1,6 +1,5 @@
 const db = require('../../models')
 const Return = db.Return
-const Op = db.Sequelize.Op
 
 exports.create = (req, res) => {
   Return.create(req.body).then(data => {
@@ -13,13 +12,12 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-
   const page = req.query.page || 1
   const limit = parseInt(req.query.size) || 10
   const offset = (page - 1) * limit
 
   Return.findAndCountAll({
-    attributes: ['id', 'saleId', 'customerId', 'paymentMethodId', 'reference', 'createdAt', 'updatedAt'],
+    attributes: ['id', 'reference', 'totalPrice', 'totalBasePrice', 'totalTaxPrice', 'returnDate', 'returnTime', 'createdAt', 'updatedAt'],
     limit,
     offset,
     order: [['createdAt', 'DESC']]
@@ -74,7 +72,7 @@ exports.update = (req, res) => {
     }
   }).catch(_ => {
     res.status(500).send({
-      message: 'Algún error ha surgido al actualiazar la id=' + id
+      message: 'Algún error ha surgido al actualizar la id=' + id
     })
   })
 }

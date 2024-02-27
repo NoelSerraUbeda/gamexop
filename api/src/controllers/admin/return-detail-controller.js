@@ -1,9 +1,8 @@
 const db = require('../../models')
-const ProductDetail = db.ProductDetail
-const Op = db.Sequelize.Op
+const ReturnDetail = db.ReturnDetail
 
 exports.create = (req, res) => {
-  ProductDetail.create(req.body).then(data => {
+  ReturnDetail.create(req.body).then(data => {
     res.status(200).send(data)
   }).catch(err => {
     res.status(500).send({
@@ -13,13 +12,12 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-
   const page = req.query.page || 1
   const limit = parseInt(req.query.size) || 10
   const offset = (page - 1) * limit
 
-  ProductDetail.findAndCountAll({
-    attributes: ['id', 'returnId', 'productName', 'basePrice', 'createdAt', 'updatedAt'],
+  ReturnDetail.findAndCountAll({
+    attributes: ['id', 'productName', 'basePrice', 'taxPrice', 'quantity', 'createdAt', 'updatedAt'],
     limit,
     offset,
     order: [['createdAt', 'DESC']]
@@ -42,7 +40,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id
 
-  ProductDetail.findByPk(id).then(data => {
+  ReturnDetail.findByPk(id).then(data => {
     if (data) {
       res.status(200).send(data)
     } else {
@@ -60,7 +58,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id
 
-  ProductDetail.update(req.body, {
+  ReturnDetail.update(req.body, {
     where: { id }
   }).then(([numberRowsAffected]) => {
     if (numberRowsAffected === 1) {
@@ -74,7 +72,7 @@ exports.update = (req, res) => {
     }
   }).catch(_ => {
     res.status(500).send({
-      message: 'Algún error ha surgido al actualiazar la id=' + id
+      message: 'Algún error ha surgido al actualizar la id=' + id
     })
   })
 }
@@ -82,7 +80,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id
 
-  ProductDetail.destroy({
+  ReturnDetail.destroy({
     where: { id }
   }).then((numberRowsAffected) => {
     if (numberRowsAffected === 1) {

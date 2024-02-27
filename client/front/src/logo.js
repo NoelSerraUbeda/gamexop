@@ -1,5 +1,4 @@
 class Logo extends HTMLElement {
-
   constructor () {
     super()
     this.shadow = this.attachShadow({ mode: 'open' })
@@ -11,17 +10,17 @@ class Logo extends HTMLElement {
 
   async loadData () {
     this.data = {
-      title: "",
+      title: '',
       image: {
-        url: "http://localhost:5173/public/logo.svg",
-        alt: "Logo de GameXop"
+        url: '/logo.svg',
+        alt: 'Logo de GameXop'
       }
     }
   }
 
   render () {
     this.shadow.innerHTML =
-    /*html*/`
+    /* html */`
     <style>
       a{
         text-decoration: none;

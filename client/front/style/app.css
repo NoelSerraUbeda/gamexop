@@ -38,7 +38,7 @@ body::-webkit-scrollbar-thumb {
 
 main{
   background-attachment: fixed;
-  background: hsla(240, 86%, 49%, 0.788) url(../public/back.svg);
+  background: hsla(240, 86%, 49%, 0.788) url(../back.svg);
   display: flex;
   flex-direction: column;
   gap: 2rem;

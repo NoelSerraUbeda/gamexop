@@ -1,5 +1,4 @@
 class ProductGallery extends HTMLElement {
-
   constructor () {
     super()
     this.shadow = this.attachShadow({ mode: 'open' })
@@ -11,211 +10,210 @@ class ProductGallery extends HTMLElement {
   }
 
   handleFilterByCategory (event) {
-    const categoryId = event.detail.categoryId;
-    const products = categoryId === "null" ? this.products : this.products.filter(product => product.categoryId === Number(categoryId));
-    this.render(products);
+    const categoryId = event.detail.categoryId
+    const products = categoryId === 'null' ? this.products : this.products.filter(product => product.categoryId === Number(categoryId))
+    this.render(products)
   }
 
   async loadData () {
-    
     this.products = [
       {
         id: 1,
-        path: "/juegos/call-of-duty",
+        path: '/juegos/call-of-duty',
         categoryId: 11,
         price: 100,
         priceBeforeDiscount: 120,
         percentage: 20,
-        endOfDiscount: "31 de diciembre",
+        endOfDiscount: '31 de diciembre',
         locale: {
-          title: "Call of Duty Modern Warfare 3",
+          title: 'Call of Duty Modern Warfare 3'
         },
         image: {
-          url: "http://localhost:5173/public/call-of-duty.jpg",
-          alt: "Call of Duty"
+          url: '/call-of-duty.jpg',
+          alt: 'Call of Duty'
         }
       },
       {
         id: 2,
-        path: "/juegos/payday-3",
+        path: '/juegos/payday-3',
         categoryId: 1,
         price: 100,
         locale: {
-          title: "Payday 3",
+          title: 'Payday 3'
         },
         image: {
-          url: "http://localhost:5173/public/payday-3.jpg",
-          alt: "Payday 3"
+          url: '/payday-3.jpg',
+          alt: 'Payday 3'
         }
       },
       {
         id: 3,
-        path: "/juegos/persona-5",
+        path: '/juegos/persona-5',
         categoryId: 5,
         price: 100,
         locale: {
-          title: "Persona 5 Royal",
+          title: 'Persona 5 Royal'
         },
         image: {
-          url: "http://localhost:5173/public/persona-5.jpg",
-          alt: "Persona 5 Royal"
+          url: '/persona-5.jpg',
+          alt: 'Persona 5 Royal'
         }
       },
       {
         id: 4,
-        path: "/juegos/red-dead-redemption-2",
+        path: '/juegos/red-dead-redemption-2',
         categoryId: 2,
         price: 100,
         locale: {
-          title: "Red Dead Redemption 2",
+          title: 'Red Dead Redemption 2'
         },
         image: {
-          url: "http://localhost:5173/public/red-dead.jpg",
-          alt: "Red Dead Redemption 2"
+          url: '/red-dead.jpg',
+          alt: 'Red Dead Redemption 2'
         }
       },
       {
         id: 5,
-        path: "/juegos/starfield",
+        path: '/juegos/starfield',
         categoryId: 3,
         price: 32,
         priceBeforeDiscount: 40,
         percentage: 20,
-        endOfDiscount: "31 de diciembre",
+        endOfDiscount: '31 de diciembre',
         locale: {
-          title: "Starfield",
+          title: 'Starfield'
         },
         image: {
-          url: "http://localhost:5173/public/starfield.jpg",
-          alt: "Starfield"
+          url: '/starfield.jpg',
+          alt: 'Starfield'
         }
       },
       {
         id: 6,
-        path: "/juegos/street-fighter-6",
+        path: '/juegos/street-fighter-6',
         categoryId: 9,
         price: 100,
         locale: {
-          title: "Street Fighter 6",
+          title: 'Street Fighter 6'
         },
         image: {
-          url: "http://localhost:5173/public/street-fighter.jpg",
-          alt: "Street Fighter 6"
+          url: '/street-fighter.jpg',
+          alt: 'Street Fighter 6'
         }
-      } ,
+      },
       {
         id: 7,
-        path: "/juegos/Hades",
+        path: '/juegos/Hades',
         categoryId: 1,
-        price:100,
+        price: 100,
         locale: {
-          title: "Hades",
+          title: 'Hades'
         },
         image: {
-          url: "http://localhost:5173/public/hades.jpg",
-          alt: "Hades"
+          url: '/hades.jpg',
+          alt: 'Hades'
         }
       },
       {
         id: 8,
-        path: "/juegos/Terraria",
+        path: '/juegos/Terraria',
         categoryId: 6,
-        price:100,
+        price: 100,
         locale: {
-          title: "Terraria",
+          title: 'Terraria'
         },
         image: {
-          url: "http://localhost:5173/public/terraria.jpg",
-          alt: "Terraria"
+          url: '/terraria.jpg',
+          alt: 'Terraria'
         }
       },
       {
         id: 9,
-        path: "/juegos/Octopath-traveler-2",
+        path: '/juegos/Octopath-traveler-2',
         categoryId: 5,
-        price:100,
+        price: 100,
         locale: {
-          title: "Octopath Traveler 2",
+          title: 'Octopath Traveler 2'
         },
         image: {
-          url: "http://localhost:5173/public/octopath-2.jpg",
-          alt: "Octopath Traveler 2"
+          url: '/octopath-2.jpg',
+          alt: 'Octopath Traveler 2'
         }
       },
       {
         id: 10,
-        path: "/juegos/Triangle-strategy",
+        path: '/juegos/Triangle-strategy',
         categoryId: 5,
-        price:100,
+        price: 100,
         locale: {
-          title: "Triangle Strategy",
+          title: 'Triangle Strategy'
         },
         image: {
-          url: "http://localhost:5173/public/triangle.jpg",
-          alt: "Triangle Strategy"
+          url: '/triangle.jpg',
+          alt: 'Triangle Strategy'
         }
       },
       {
         id: 11,
-        path: "/juegos/Chained Echoes",
+        path: '/juegos/Chained Echoes',
         categoryId: 5,
-        price:100,
+        price: 100,
         locale: {
-          title: "Chained Echoes",
+          title: 'Chained Echoes'
         },
         image: {
-          url: "http://localhost:5173/public/chained-echoes.jpg",
-          alt: "Chained Echoes"
+          url: '/chained-echoes.jpg',
+          alt: 'Chained Echoes'
         }
       },
       {
         id: 12,
-        path: "/juegos/hollow-knight",
+        path: '/juegos/hollow-knight',
         categoryId: 3,
-        price:100,
+        price: 100,
         locale: {
-          title: "Hollow Knight",
+          title: 'Hollow Knight'
         },
         image: {
-          url: "http://localhost:5173/public/hollow-knight.jpg",
-          alt: "Hollow Knigth"
+          url: '/hollow-knight.jpg',
+          alt: 'Hollow Knigth'
         }
       },
       {
         id: 13,
-        path: "/juegos/gato-roboto",
+        path: '/juegos/gato-roboto',
         categoryId: 4,
-        price:100,
+        price: 100,
         locale: {
-          title: "Gato Roboto",
+          title: 'Gato Roboto'
         },
         image: {
-          url: "http://localhost:5173/public/gato-roboto.jpg",
-          alt: "Gato Roboto"
+          url: '/gato-roboto.jpg',
+          alt: 'Gato Roboto'
         }
       },
       {
         id: 14,
-        path: "/juegos/monster-hunter-world",
+        path: '/juegos/monster-hunter-world',
         categoryId: 3,
         price: 80,
         priceBeforeDiscount: 100,
         percentage: 20,
-        endOfDiscount: "31 de diciembre",
+        endOfDiscount: '31 de diciembre',
         locale: {
-          title: "Monster Hunter World",
+          title: 'Monster Hunter World'
         },
         image: {
-          url: "http://localhost:5173/public/monster-hunter.jpg",
-          alt: "Monster Hunter World"
+          url: '/monster-hunter.jpg',
+          alt: 'Monster Hunter World'
         }
       }
-    ];
+    ]
   };
-  
+
   render (products = this.products) {
     this.shadow.innerHTML =
-    /*html*/`
+    /* html */`
     <style>
       a{
         text-decoration: none;
@@ -347,7 +345,7 @@ class ProductGallery extends HTMLElement {
 
       const productElement = document.createElement('div')
       productElementLink.appendChild(productElement)
-     
+
       productElement.classList.add('product')
       productElement.dataset.endpoint = product.id
       productElement.dataset.categoryId = product.categoryId
@@ -373,13 +371,12 @@ class ProductGallery extends HTMLElement {
       const productDetails = document.createElement('div')
       productDetails.classList.add('product-details')
 
-      if(product.priceBeforeDiscount){
-
+      if (product.priceBeforeDiscount) {
         const productInfoContainer = document.createElement('div')
         productInfoContainer.classList.add('product-info')
 
         const productDiscountEnd = document.createElement('span')
-        productDiscountEnd.innerText = `Oferta hasta el ${product.endOfDiscount}`;
+        productDiscountEnd.innerText = `Oferta hasta el ${product.endOfDiscount}`
         productInfoContainer.appendChild(productDiscountEnd)
 
         productDetails.appendChild(productInfoContainer)
@@ -407,12 +404,10 @@ class ProductGallery extends HTMLElement {
         productPriceContainer.appendChild(productPrice)
 
         productDetails.appendChild(productPriceContainer)
-
-      }else{
-
+      } else {
         const productPriceContainer = document.createElement('div')
         productPriceContainer.classList.add('product-price')
-        
+
         const productPrice = document.createElement('span')
         productPrice.classList.add('product-price')
         productPrice.innerText = `${product.price} €`
@@ -440,12 +435,11 @@ class ProductGallery extends HTMLElement {
     })
   }
 
-  async loadPreview (element) {  
-
+  async loadPreview (element) {
     this.video = {
-      url: "",
-      alt: "Call of Duty",
-      cover: ""
+      url: '',
+      alt: 'Call of Duty',
+      cover: ''
     }
 
     const videoElement = document.createElement('video')

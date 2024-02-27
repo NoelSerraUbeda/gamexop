@@ -13,15 +13,15 @@ class FeaturedGallery extends HTMLElement {
     this.featured = [
       {
         id: 1,
-        image: 'http://localhost:5173/public/minecraft.webp'
+        image: '/minecraft.webp'
       },
       {
         id: 2,
-        image: 'http://localhost:5173/public/lol.jpg'
+        image: '/lol.jpg'
       },
       {
         id: 3,
-        image: 'http://localhost:5173/public/clash-royale.webp'
+        image: '/clash-royale.webp'
       }
     ]
   }

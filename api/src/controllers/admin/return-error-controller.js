@@ -1,6 +1,5 @@
 const db = require('../../models')
 const ReturnError = db.ReturnError
-const Op = db.Sequelize.Op
 
 exports.create = (req, res) => {
   ReturnError.create(req.body).then(data => {
@@ -13,13 +12,12 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-
   const page = req.query.page || 1
   const limit = parseInt(req.query.size) || 10
   const offset = (page - 1) * limit
 
   ReturnError.findAndCountAll({
-    attributes: ['id', 'customerId', 'returnId', 'errorCode', 'errorMessage', 'createdAt', 'updatedAt'],
+    attributes: ['id', 'errorCode', 'errorMessage', 'createdAt', 'updatedAt'],
     limit,
     offset,
     order: [['createdAt', 'DESC']]
@@ -74,7 +72,7 @@ exports.update = (req, res) => {
     }
   }).catch(_ => {
     res.status(500).send({
-      message: 'Algún error ha surgido al actualiazar la id=' + id
+      message: 'Algún error ha surgido al actualizar la id=' + id
     })
   })
 }

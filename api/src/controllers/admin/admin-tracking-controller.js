@@ -1,8 +1,8 @@
 const db = require('../../models')
-const Email = db.Email
+const AdminTracking = db.AdminTracking
 
 exports.create = (req, res) => {
-  Email.create(req.body).then(data => {
+  AdminTracking.create(req.body).then(data => {
     res.status(200).send(data)
   }).catch(err => {
     res.status(500).send({
@@ -16,8 +16,8 @@ exports.findAll = (req, res) => {
   const limit = parseInt(req.query.size) || 10
   const offset = (page - 1) * limit
 
-  Email.findAndCountAll({
-    attributes: ['id', 'subject', 'path', 'createdAt', 'updatedAt'],
+  AdminTracking.findAndCountAll({
+    attributes: ['id', 'entity', 'entityId', 'action', 'createdAt', 'updatedAt'],
     limit,
     offset,
     order: [['createdAt', 'DESC']]
@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id
 
-  Email.findByPk(id).then(data => {
+  AdminTracking.findByPk(id).then(data => {
     if (data) {
       res.status(200).send(data)
     } else {
@@ -58,7 +58,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id
 
-  Email.update(req.body, {
+  AdminTracking.update(req.body, {
     where: { id }
   }).then(([numberRowsAffected]) => {
     if (numberRowsAffected === 1) {
@@ -80,7 +80,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id
 
-  Email.destroy({
+  AdminTracking.destroy({
     where: { id }
   }).then((numberRowsAffected) => {
     if (numberRowsAffected === 1) {

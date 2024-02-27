@@ -13,7 +13,7 @@ class NotFound extends HTMLElement {
     this.data = {
       title: "GameXop",
       image: {
-        url: "http://localhost:5173/public/logo.svg",
+        url: "/logo.svg",
         alt: "Logo de GameXop"
       }
     }

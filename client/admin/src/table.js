@@ -20,6 +20,7 @@ class Table extends HTMLElement {
   }
 
   async loadData () {
+    console.log(`${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}`)
     const response = await fetch(`${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}`)
     const data = await response.json()
     this.rows = data.rows
