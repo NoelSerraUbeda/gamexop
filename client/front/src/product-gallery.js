@@ -21,8 +21,8 @@ class ProductGallery extends HTMLElement {
         id: 1,
         path: '/juegos/call-of-duty',
         categoryId: 11,
-        price: 100,
-        priceBeforeDiscount: 120,
+        price: 80,
+        priceBeforeDiscount: 100,
         percentage: 20,
         endOfDiscount: '31 de diciembre',
         locale: {
@@ -34,23 +34,10 @@ class ProductGallery extends HTMLElement {
         }
       },
       {
-        id: 2,
-        path: '/juegos/payday-3',
-        categoryId: 1,
-        price: 100,
-        locale: {
-          title: 'Payday 3'
-        },
-        image: {
-          url: '/payday-3.jpg',
-          alt: 'Payday 3'
-        }
-      },
-      {
         id: 3,
         path: '/juegos/persona-5',
         categoryId: 5,
-        price: 100,
+        price: 60,
         locale: {
           title: 'Persona 5 Royal'
         },
@@ -63,7 +50,7 @@ class ProductGallery extends HTMLElement {
         id: 4,
         path: '/juegos/red-dead-redemption-2',
         categoryId: 2,
-        price: 100,
+        price: 80,
         locale: {
           title: 'Red Dead Redemption 2'
         },
@@ -73,26 +60,10 @@ class ProductGallery extends HTMLElement {
         }
       },
       {
-        id: 5,
-        path: '/juegos/starfield',
-        categoryId: 3,
-        price: 32,
-        priceBeforeDiscount: 40,
-        percentage: 20,
-        endOfDiscount: '31 de diciembre',
-        locale: {
-          title: 'Starfield'
-        },
-        image: {
-          url: '/starfield.jpg',
-          alt: 'Starfield'
-        }
-      },
-      {
         id: 6,
         path: '/juegos/street-fighter-6',
         categoryId: 9,
-        price: 100,
+        price: 80,
         locale: {
           title: 'Street Fighter 6'
         },
@@ -105,7 +76,7 @@ class ProductGallery extends HTMLElement {
         id: 7,
         path: '/juegos/Hades',
         categoryId: 1,
-        price: 100,
+        price: 30,
         locale: {
           title: 'Hades'
         },
@@ -118,7 +89,7 @@ class ProductGallery extends HTMLElement {
         id: 8,
         path: '/juegos/Terraria',
         categoryId: 6,
-        price: 100,
+        price: 20,
         locale: {
           title: 'Terraria'
         },
@@ -131,7 +102,7 @@ class ProductGallery extends HTMLElement {
         id: 9,
         path: '/juegos/Octopath-traveler-2',
         categoryId: 5,
-        price: 100,
+        price: 60,
         locale: {
           title: 'Octopath Traveler 2'
         },
@@ -144,7 +115,7 @@ class ProductGallery extends HTMLElement {
         id: 10,
         path: '/juegos/Triangle-strategy',
         categoryId: 5,
-        price: 100,
+        price: 60,
         locale: {
           title: 'Triangle Strategy'
         },
@@ -157,7 +128,7 @@ class ProductGallery extends HTMLElement {
         id: 11,
         path: '/juegos/Chained Echoes',
         categoryId: 5,
-        price: 100,
+        price: 30,
         locale: {
           title: 'Chained Echoes'
         },
@@ -170,7 +141,7 @@ class ProductGallery extends HTMLElement {
         id: 12,
         path: '/juegos/hollow-knight',
         categoryId: 3,
-        price: 100,
+        price: 40,
         locale: {
           title: 'Hollow Knight'
         },
@@ -183,7 +154,7 @@ class ProductGallery extends HTMLElement {
         id: 13,
         path: '/juegos/gato-roboto',
         categoryId: 4,
-        price: 100,
+        price: 20,
         locale: {
           title: 'Gato Roboto'
         },
@@ -196,8 +167,8 @@ class ProductGallery extends HTMLElement {
         id: 14,
         path: '/juegos/monster-hunter-world',
         categoryId: 3,
-        price: 80,
-        priceBeforeDiscount: 100,
+        price: 60,
+        priceBeforeDiscount: 80,
         percentage: 20,
         endOfDiscount: '31 de diciembre',
         locale: {

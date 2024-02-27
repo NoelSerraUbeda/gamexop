@@ -12,7 +12,7 @@ class Logo extends HTMLElement {
     this.data = {
       title: '',
       image: {
-        url: '/logo.svg',
+        url: '/Logo.svg',
         alt: 'Logo de GameXop'
       }
     }
@@ -33,8 +33,8 @@ class Logo extends HTMLElement {
       }
 
       .logo img{
-        height: 6rem;
-        width: 6rem;
+        height: 7rem;
+        width: 7rem;
       }
 
       .logo h1{
