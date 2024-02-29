@@ -132,26 +132,22 @@ class Form extends HTMLElement {
 
       .create-button button svg,
       .store-button button svg {
+        fill: white;
         width: 3.5rem;
         background-color:green;
         padding:0.5rem;
         border-radius:1rem;
-      }
-
-      .create-button button,
-      .store-button button {
-        fill: white;
         transition: transform 0.3s ease;
       }
 
-      .create-button button:hover {
-        transform: scale(1.05);
-        fill:red;
+      .create-button button svg:hover {
+        transform: scale(1.1);
+        background-color:red;
       }
 
-      .store-button button:hover{
-        transform: scale(1.05);
-        fill:#4DD0FA;
+      .store-button button svg:hover{
+        transform: scale(1.1);
+        background-color:orange;
       }
 
       .form-row{

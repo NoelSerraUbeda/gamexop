@@ -121,13 +121,14 @@ class Gallery extends HTMLElement {
       }
 
       .close-button svg{
-        transition: transform 0.3s ease;
+        transition: all 0.3s ease;
         fill:darkgreen;
         width:4rem;
       }
 
       .close-button svg:hover {
         transform: scale(1.1);
+        fill:crimson;
       }
 
       .tabs{

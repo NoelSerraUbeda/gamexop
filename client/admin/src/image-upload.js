@@ -13,14 +13,14 @@ class UploadImage extends HTMLElement {
     <style>
       .form-element {
         display:flex;
-        justify-content:center;
+        justify-content:start;
         align-items:start;
         gap:8rem;
       }
 
       .form-element-input{
         display:flex;
-        flex-direction:column;
+        flex-direction:row;
         justify-content:center;
         align-items:center;
       }
@@ -29,7 +29,7 @@ class UploadImage extends HTMLElement {
         margin-top:1rem;
       }
 
-      .button {
+      .open-gallery {
         width: 80px;
         height: 80px;
         border: none;
@@ -46,11 +46,11 @@ class UploadImage extends HTMLElement {
 
       }
 
-      .button:hover{
+      .open-gallery:hover{
         transform:scale(1.05)
       }
 
-      .button svg {
+      .open-gallery svg {
         fill:white;
       }
 
@@ -82,34 +82,10 @@ class UploadImage extends HTMLElement {
 
     <div class="form-row">
       <div class="form-element">
-
+      
         <div class="form-element-input">
-          <label>Avatar</label>
-          <div class="button">
-            <svg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'>
-              <path d='M20 18H4V8H20M20 6H12L10 4H4A2 2 0 0 0 2 6V18A2 2 0 0 0 4 20H20A2 2 0 0 0 22 18V8A2 2 0 0 0 20 6M16 17H14V13H11L15 9L19 13H16Z' />
-            </svg>
-          </div>
-          <div class="choosed">
-            <img src="https://i.redd.it/ux74bsifrpda1.jpg" alt="Imagen meme">
-          </div>
-        </div>
-
-        <div class="form-element-input">
-        <label>Product image</label>
-          <div class="button">
-            <svg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'>
-              <path d='M20 18H4V8H20M20 6H12L10 4H4A2 2 0 0 0 2 6V18A2 2 0 0 0 4 20H20A2 2 0 0 0 22 18V8A2 2 0 0 0 20 6M16 17H14V13H11L15 9L19 13H16Z' />
-            </svg>
-          </div>
-          <div class="choosed">
-
-          </div>
-        </div>
-
-        <div class="form-element-input">
-        <label>Featured</label>
-          <div class="button">
+          <label></label>
+          <div class="open-gallery">
             <svg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'>
               <path d='M20 18H4V8H20M20 6H12L10 4H4A2 2 0 0 0 2 6V18A2 2 0 0 0 4 20H20A2 2 0 0 0 22 18V8A2 2 0 0 0 20 6M16 17H14V13H11L15 9L19 13H16Z' />
             </svg>
@@ -123,7 +99,7 @@ class UploadImage extends HTMLElement {
       </div>
     </div>
       `
-    const upButtons = this.shadow.querySelectorAll('.button')
+    const upButtons = this.shadow.querySelectorAll('.open-gallery')
     upButtons.forEach(button => {
       button.addEventListener('click', () => {
         document.dispatchEvent(new CustomEvent('showGalleryModal', {

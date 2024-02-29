@@ -39,8 +39,7 @@ class ModalCheckout extends HTMLElement {
   }
 
   render () {
-    this.shadow.innerHTML =
-    /*html*/`
+    this.shadow.innerHTML = /* html */`
     <style>
       .overlay {
         background-color: rgba(0, 0, 0, .5);
@@ -61,6 +60,7 @@ class ModalCheckout extends HTMLElement {
       }
 
       .modal {
+        border:5px solid white;
         background-color: #fff;
         border-radius: 1rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, .3);

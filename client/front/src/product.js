@@ -85,6 +85,7 @@ class Product extends HTMLElement {
         display: flex;
         height: 70vh;
         overflow: hidden;
+        border: white 5px solid;
       }
 
       .product-media-cover img{
@@ -158,6 +159,8 @@ class Product extends HTMLElement {
       }
 
       .product-box{
+        border: white 5px solid;
+        border-radius:1rem;
         align-items: end;
         background-color: hsl(236 55% 25%);
         display: flex;
@@ -182,8 +185,9 @@ class Product extends HTMLElement {
         color: hsl(0, 0%, 100%);
         font-family: 'Ubuntu', sans-serif;
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: 700;
         margin: 0;
+        text-decoration:underline;
       }
 
       .product-buy{
@@ -235,8 +239,11 @@ class Product extends HTMLElement {
       }
 
       .product-body{
+        border: white 5px solid;
+        border-radius:1rem;
+        background-color: hsl(236 55% 25%);
+        padding: 2rem 1rem;
         height: 70%;
-        padding: 1rem 0;
       }
 
       .product-body p {
