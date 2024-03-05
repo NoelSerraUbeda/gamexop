@@ -17,7 +17,7 @@ exports.findAll = async (req, res) => {
 
     console.log(response)
 
-    res.status(200).send(result)
+    res.status(200).send(response)
   } catch (err) {
     res.status(500).send({
       message: err.message || 'Algún error ha surgido al recuperar los datos.'

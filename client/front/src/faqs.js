@@ -11,7 +11,7 @@ class Faqs extends HTMLElement {
   async loadData () {
     const response = await fetch(`${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}?size=4`)
     const data = await response.json()
-    this.faqs = data.rows
+    this.faqs = data
   }
 
   render () {
@@ -53,9 +53,9 @@ class Faqs extends HTMLElement {
       const faqElement = document.createElement('details')
       const faqElementSummary = document.createElement('summary')
       faqElement.name = 'faq'
-      faqElementSummary.textContent = faq.name
+      faqElementSummary.textContent = faq.locales.question
       faqElement.appendChild(faqElementSummary)
-      faqElement.innerHTML += faq.description
+      faqElement.innerHTML += faq.locales.answer
       faqsContainer.appendChild(faqElement)
     })
   }
