@@ -2,7 +2,6 @@ class Pages extends HTMLElement {
   constructor () {
     super()
     this.shadow = this.attachShadow({ mode: 'open' })
-    this.title = this.getAttribute('title')
   }
 
   connectedCallback () {
@@ -49,6 +48,7 @@ class Pages extends HTMLElement {
 
     .pagination button:hover:not(:disabled) svg {
       fill: white;
+
     }
 
     button.current-page {
@@ -64,17 +64,25 @@ class Pages extends HTMLElement {
   <div class="pagination">
     <button class="first-page">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M7,12L12,17V14H16V10H12V7L7,12Z" />
+        <path d="M18.41,16.59L13.82,12L18.41,7.41L17,6L11,12L17,18L18.41,16.59M6,6H8V18H6V6Z"/>
+      </svg>
+    </button>
+    <button>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12M15.4,16.6L10.8,12L15.4,7.4L14,6L8,12L14,18L15.4,16.6Z" />
       </svg>
     </button>
     <button class="current-page">1</button>
     <button>2</button>
     <button>3</button>
-    <button disabled>···</button>
-    <button>10</button>
+    <button>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12M8.6,16.6L13.2,12L8.6,7.4L10,6L16,12L10,18L8.6,16.6Z" />
+      </svg>
+    </button>
     <button class="last-page">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12M17,12L12,7V10H8V14H12V17L17,12Z" />
+        <path d="M5.59,7.41L10.18,12L5.59,16.59L7,18L13,12L7,6L5.59,7.41M16,6H18V18H16V6Z"/>
       </svg>
     </button>
   </div>

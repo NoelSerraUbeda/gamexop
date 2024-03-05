@@ -35,9 +35,9 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       validate: {
-        isValidBoolean(value) {
+        isValidBoolean (value) {
           if (typeof value !== 'boolean') {
-            throw new Error('El campo isRobot debe ser un valor booleano.');
+            throw new Error('El campo isRobot debe ser un valor booleano.')
           }
         }
       }
@@ -155,14 +155,14 @@ module.exports = function (sequelize, DataTypes) {
         name: 'api_trackings_customerId_fk',
         using: 'BTREE',
         fields: [
-          { name: 'customerId' },
+          { name: 'customerId' }
         ]
       },
       {
         name: 'api_trackings_fingerprintId_fk',
         using: 'BTREE',
         fields: [
-          { name: 'fingerprintId' },
+          { name: 'fingerprintId' }
         ]
       }
     ]

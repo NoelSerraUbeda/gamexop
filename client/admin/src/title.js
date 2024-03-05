@@ -16,7 +16,8 @@ class Title extends HTMLElement {
         display:flex;
         align-items:center;
         background-color:green;
-        width:108rem;
+        border: solid white 5px;
+        width:107rem;
         height:5rem;
         border-radius:1rem;
         padding:0.5rem;

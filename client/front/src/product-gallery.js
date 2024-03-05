@@ -212,6 +212,7 @@ class ProductGallery extends HTMLElement {
         overflow: hidden;
         filter: brightness(0.8);
         transition: transform 0.5s ease;
+        border: solid 6px white;
       }
 
       .product:hover {

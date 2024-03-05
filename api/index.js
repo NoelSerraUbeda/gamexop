@@ -4,6 +4,7 @@ const express = require('express')
 const cors = require('cors')
 const fs = require('fs')
 const app = express()
+const userAgentMiddleware = require('./src/middlewares/user-agent')
 
 const corsOptions = {
   origin: ['http://localhost:8080', 'http://localhost:5174', 'http://localhost:5173']
@@ -11,6 +12,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(express.json({ limit: '10mb', extended: true }))
+app.use(userAgentMiddleware)
 app.use(express.urlencoded({ limit: '10mb', extended: true, parameterLimit: 50000 }))
 
 const routePath = './src/routes/'
