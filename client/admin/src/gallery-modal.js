@@ -11,15 +11,6 @@ class Gallery extends HTMLElement {
   }
 
   addEventListeners () {
-    const imgs = this.shadow.querySelectorAll('.img')
-
-    imgs.forEach(img => {
-      img.addEventListener('click', () => {
-        imgs.forEach(otherImg => otherImg.classList.remove('selected'))
-        img.classList.add('selected')
-      })
-    })
-
     const fileDiv = this.shadow.querySelector('.uploadFile')
     fileDiv.addEventListener('click', () => {
       const fileInput = this.shadow.querySelector('.imagen')
@@ -53,11 +44,6 @@ class Gallery extends HTMLElement {
         border-radius:1rem;
       }
 
-      .selected {
-        background-color:#4DD0FA;
-        border-radius:1rem;
-      }
-
       .modal-gallery-back {
         height: 100vh;
         width: 100%;
@@ -87,7 +73,7 @@ class Gallery extends HTMLElement {
         overflow: hidden;
       }
       
-      svg {
+      .menu-icon {
         position:absolute;
         height:6rem;
         left:1rem;
@@ -183,30 +169,51 @@ class Gallery extends HTMLElement {
         box-sizing: border-box;
       }
 
-      .avatar {
+      .card-container {
+        position: relative;
         background-color: darkgreen;
         justify-content: center;
         align-items: center;
-        border-radius:1rem;
+        border-radius: 1rem;
         font-weight: bold;
         font-size: 1.2em;
-        cursor:pointer;
+        cursor: pointer;
         color: #ffffff;
         display: flex;
         height: 190px;
         width: 190px;
         margin: 10px;
+        transition: all 0.3s;
       }
 
-      .avatar img {
+      .close-icon {
+        position: absolute;
+        cursor: pointer;
+        color: white;
+        right:10px;
+        top:10px;        
+        transition: all 0.3s;
+      }
+
+      .close-icon svg{
+        width: 1.5rem;
+      }
+
+      .card-container:hover {
+        transform:scale(1.1)
+      }
+
+      .card-container img {
         width: 180px; 
-        height: 180px; 
+        height: 180px;         
+        transition: all 0.3s ease;
       }
 
-      .avatar-container {
+      .card-container-container {
         display: flex;
         flex-wrap: wrap;
         padding-bottom:1rem;
+        position:relative;
       }
 
       .gallery{
@@ -297,7 +304,6 @@ class Gallery extends HTMLElement {
         cursor:pointer;
       }
 
-      
       .uploadFile:hover{
         background-color:lightgrey;
         transform:scale(1.02)
@@ -309,19 +315,15 @@ class Gallery extends HTMLElement {
         position:static;
       }
 
-      .img {
-        height:210px;
-      }
-
     </style>
     
     <div class="modal-gallery-back">
       <div class="modal-gallery">
         <span class="close-button">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
+          <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
         </span>
         <span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8L10.67,8.09C9.81,7.07 7.4,4.5 5,4.5C5,4.5 3.03,7.46 4.96,11.41C4.41,12.24 4.07,12.67 4,13.66L2.07,13.95L2.28,14.93L4.04,14.67L4.18,15.38L2.61,16.32L3.08,17.21L4.53,16.32C5.68,18.76 8.59,20 12,20C15.41,20 18.32,18.76 19.47,16.32L20.92,17.21L21.39,16.32L19.82,15.38L19.96,14.67L21.72,14.93L21.93,13.95L20,13.66C19.93,12.67 19.59,12.24 19.04,11.41C20.97,7.46 19,4.5 19,4.5C16.6,4.5 14.19,7.07 13.33,8.09L12,8M9,11A1,1 0 0,1 10,12A1,1 0 0,1 9,13A1,1 0 0,1 8,12A1,1 0 0,1 9,11M15,11A1,1 0 0,1 16,12A1,1 0 0,1 15,13A1,1 0 0,1 14,12A1,1 0 0,1 15,11M11,14H13L12.3,15.39C12.5,16.03 13.06,16.5 13.75,16.5A1.5,1.5 0 0,0 15.25,15H15.75A2,2 0 0,1 13.75,17C13,17 12.35,16.59 12,16V16H12C11.65,16.59 11,17 10.25,17A2,2 0 0,1 8.25,15H8.75A1.5,1.5 0 0,0 10.25,16.5C10.94,16.5 11.5,16.03 11.7,15.39L11,14Z" /></svg>
+          <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8L10.67,8.09C9.81,7.07 7.4,4.5 5,4.5C5,4.5 3.03,7.46 4.96,11.41C4.41,12.24 4.07,12.67 4,13.66L2.07,13.95L2.28,14.93L4.04,14.67L4.18,15.38L2.61,16.32L3.08,17.21L4.53,16.32C5.68,18.76 8.59,20 12,20C15.41,20 18.32,18.76 19.47,16.32L20.92,17.21L21.39,16.32L19.82,15.38L19.96,14.67L21.72,14.93L21.93,13.95L20,13.66C19.93,12.67 19.59,12.24 19.04,11.41C20.97,7.46 19,4.5 19,4.5C16.6,4.5 14.19,7.07 13.33,8.09L12,8M9,11A1,1 0 0,1 10,12A1,1 0 0,1 9,13A1,1 0 0,1 8,12A1,1 0 0,1 9,11M15,11A1,1 0 0,1 16,12A1,1 0 0,1 15,13A1,1 0 0,1 14,12A1,1 0 0,1 15,11M11,14H13L12.3,15.39C12.5,16.03 13.06,16.5 13.75,16.5A1.5,1.5 0 0,0 15.25,15H15.75A2,2 0 0,1 13.75,17C13,17 12.35,16.59 12,16V16H12C11.65,16.59 11,17 10.25,17A2,2 0 0,1 8.25,15H8.75A1.5,1.5 0 0,0 10.25,16.5C10.94,16.5 11.5,16.03 11.7,15.39L11,14Z" /></svg>
         </span>
         <div class="modal-gallery-title">Images</div>
         <div class="tabs">
@@ -330,37 +332,49 @@ class Gallery extends HTMLElement {
     
         <div class="tab-content active" data-tab="gallery">
           <div class="tab-content-images">
-            <div class="avatar-container">
-            <div class="upload">
-              <div class="uploadFile">
-                <input type="file" class="imagen" name="file" accept="image/*">
-                  <svg width="389" height="324" viewBox="0 0 389 324" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M164.9 164.301L228.6 212.101L260.5 196.201L324.2 234.401V259.901H133V196.201L164.9 164.301Z"/>
-                    <path d="M324.3 156.3C324.3 169.5 313.6 180.2 300.4 180.2C287.2 180.2 276.5 169.5 276.5 156.3C276.5 143.1 287.2 132.4 300.4 132.4C313.6 132.4 324.3 143.1 324.3 156.3Z"/>
-                    <path d="M64 0H106.7V170.7H64V0Z"/>
-                    <path d="M0 64H170.7V106.7H0V64Z"/>
-                    <path d="M356.2 68.6992H207.3V100.599H356.2V291.799H101.2V207.699H69.2998V291.799C69.2998 309.299 83.5998 323.699 101.2 323.699H356.2C373.7 323.699 388.1 309.399 388.1 291.799V100.499C388 82.9992 373.7 68.6992 356.2 68.6992Z"/>
+            <div class="card-container-container">
+              <div class="upload">
+                <div class="uploadFile">
+                  <input type="file" class="imagen" name="file" accept="image/*">
+                    <svg width="389" height="324" viewBox="0 0 389 324" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M164.9 164.301L228.6 212.101L260.5 196.201L324.2 234.401V259.901H133V196.201L164.9 164.301Z"/>
+                      <path d="M324.3 156.3C324.3 169.5 313.6 180.2 300.4 180.2C287.2 180.2 276.5 169.5 276.5 156.3C276.5 143.1 287.2 132.4 300.4 132.4C313.6 132.4 324.3 143.1 324.3 156.3Z"/>
+                      <path d="M64 0H106.7V170.7H64V0Z"/>
+                      <path d="M0 64H170.7V106.7H0V64Z"/>
+                      <path d="M356.2 68.6992H207.3V100.599H356.2V291.799H101.2V207.699H69.2998V291.799C69.2998 309.299 83.5998 323.699 101.2 323.699H356.2C373.7 323.699 388.1 309.399 388.1 291.799V100.499C388 82.9992 373.7 68.6992 356.2 68.6992Z"/>
+                    </svg>
+                  </div>
+                </div>
+
+              <div class="card-container">
+                <div class="close-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="14" fill="red"/>
+                    <path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/>
                   </svg>
-                
                 </div>
+                <img src="https://i.imgflip.com/5ltiyp.png" alt="Imagen meme">
               </div>
-          
-              <div class="img">
-                <div class="avatar">
-                  <img src="https://i.imgflip.com/5ltiyp.png" alt="Imagen meme">
+              
+
+              <div class="card-container">
+                <div class="close-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="14" fill="red"/>
+                    <path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/>
+                  </svg>
                 </div>
+                <img src="https://i.redd.it/ux74bsifrpda1.jpg" alt="Imagen meme">
               </div>
 
-              <div class="img">
-                <div class="avatar">
-                  <img src="https://i.redd.it/ux74bsifrpda1.jpg" alt="Imagen meme">
+              <div class="card-container">
+                <div class="close-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="14" fill="red"/>
+                    <path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/>
+                  </svg>
                 </div>
-              </div>
-
-              <div class="img">
-                <div class="avatar">
-                  <img src="https://cdn-icons-png.flaticon.com/512/168/168726.png" alt="Imagen meme">
-                </div>
+                <img src="https://cdn-icons-png.flaticon.com/512/168/168726.png" alt="Imagen meme">
               </div>
 
             </div>
@@ -402,6 +416,34 @@ class Gallery extends HTMLElement {
     const result = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/images`, {
       method: 'POST',
       body: formData
+    })
+
+    const filenames = await result.json()
+
+    filenames.forEach(filename => {
+      const card = document.createElement('div')
+      card.classList.add('card')
+
+      const cardContainer = document.createElement('div')
+      cardContainer.classList.add('card-container')
+      card.appendChild(cardContainer)
+
+      const closeIcon = document.createElement('div')
+      closeIcon.classList.add('close-icon')
+      closeIcon.innerHTML = /* html */ `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="14" fill="red"/>
+          <path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/>
+        </svg>
+      `
+      cardContainer.appendChild(closeIcon)
+
+      const imgElement = document.createElement('img')
+      imgElement.src = `${import.meta.env.VITE_API_URL}/api/admin/images/${filename}`
+      cardContainer.appendChild(imgElement)
+
+      const uploadDiv = this.shadow.querySelector('.card-container-container')
+      uploadDiv.appendChild(card)
     })
   }
 }
