@@ -28,7 +28,22 @@ class Gallery extends HTMLElement {
     })
 
     const closeButton = this.shadow.querySelector('.close-button')
-    closeButton.addEventListener('click', () => modal.classList.remove('active'))
+    closeButton.addEventListener('click', () => this.toggleModal())
+
+    const imageContainers = this.shadow.querySelectorAll('.card-container')
+    imageContainers.forEach(container => this.setupImageContainerEvents(container))
+  }
+
+  setupImageContainerEvents (container) {
+    const closeIcon = container.querySelector('.close-icon')
+    closeIcon.addEventListener('click', () => {
+      alert('Eliminar')
+    })
+  }
+
+  toggleModal () {
+    const modal = this.shadow.querySelector('.modal-gallery-back')
+    modal.classList.toggle('active')
   }
 
   render () {
@@ -41,7 +56,7 @@ class Gallery extends HTMLElement {
 
       img {
         border: 2px solid #ccc; 
-        border-radius:1rem;
+        border-radius: 1rem;
       }
 
       .modal-gallery-back {
@@ -53,8 +68,8 @@ class Gallery extends HTMLElement {
         align-items: center;
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.5);
-        z-index:10;
-        display:none;
+        z-index: 10;
+        display: none;
       }
 
       .modal-gallery-back.active {
@@ -66,23 +81,23 @@ class Gallery extends HTMLElement {
         width: 90%;
         height: 90vh;
         background-color: lightgreen;
-        border:10px solid darkgreen;
-        border-radius:1rem;
+        border: 10px solid darkgreen;
+        border-radius: 1rem;
         z-index: 10;
-        padding-top:1rem;
+        padding-top: 1rem;
         overflow: hidden;
       }
-      
+
       .menu-icon {
-        position:absolute;
-        height:6rem;
-        left:1rem;
-        top:0rem;
-        fill:darkgreen;
+        position: absolute;
+        height: 6rem;
+        left: 1rem;
+        top: 0rem;
+        fill: darkgreen;
       }
 
       .modal-gallery-title{
-        margin-bottom:2rem;
+        margin-bottom: 2rem;
         text-shadow: 1px 1px 2px black;
         cursor: default;
       }
@@ -92,55 +107,55 @@ class Gallery extends HTMLElement {
         top: 0px;
         right: 100px;
         cursor: pointer;
-        font-size:40px;
-        color:darkgreen;
-        font-family:monospace;
+        font-size: 40px;
+        color: darkgreen;
+        font-family: monospace;
       }
 
       .close-button svg{
         transition: all 0.3s ease;
-        fill:darkgreen;
-        width:4rem;
+        fill: darkgreen;
+        width: 4rem;
       }
 
       .close-button svg:hover {
         transform: scale(1.1);
-        fill:crimson;
+        fill: crimson;
       }
 
-      .tabs{
-        display:flex;
-        justify-content:start;
-        align-items:start;
-        background-color:green;
+      .tabs {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        background-color: green;
       }
 
       .tab {
-        width:5rem;
-        font-size:26px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
+        width: 5rem;
+        font-size: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         cursor: default;
         padding: 25px;
-        background-color:green;
-        color:white;
+        background-color: green;
+        color: white;
       }
 
       .modal-gallery-title{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        margin-left:1rem;
-        font-size:1.5rem;
-        color:white;
-        font-size:56px;
-        font-weight:bolder;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 1rem;
+        font-size: 1.5rem;
+        color: white;
+        font-size: 56px;
+        font-weight: bolder;
       }
 
       .tab-content {
-        display:none;
-        height:100%;
+        display: none;
+        height: 100%;
       }
 
       .tab-content.active{
@@ -148,24 +163,24 @@ class Gallery extends HTMLElement {
         display: flex;
       }
 
-      .tab-content-images{
+      .tab-content-images {
         overflow: auto;
-        padding-left:1rem;
-        padding-top:1rem;
-        flex:3;
-        height:40rem;
+        padding-left: 1rem;
+        padding-top: 1rem;
+        flex: 3;
+        height: 40rem;
       }
 
       .tab-content-images::-webkit-scrollbar {
         display: none;
       }
-      
-      .tab-content-form{
-        padding-right:1rem;
-        padding-left:1rem;
-        padding-top:1rem;
-        background-color:rgb(10, 104, 10);
-        color:white;
+
+      .tab-content-form {
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-top: 1rem;
+        background-color: rgb(10, 104, 10);
+        color: white;
         box-sizing: border-box;
       }
 
@@ -190,67 +205,71 @@ class Gallery extends HTMLElement {
         position: absolute;
         cursor: pointer;
         color: white;
-        right:10px;
-        top:10px;        
+        right: 10px;
+        top: 10px;
         transition: all 0.3s;
+        opacity: 0;
+      }
+
+      .card-container:hover .close-icon{
+        opacity: 1;
       }
 
       .close-icon svg{
         width: 1.5rem;
       }
 
-      .card-container:hover {
-        transform:scale(1.1)
+      .close-icon:hover {
+        transform: scale(1.2);
       }
 
       .card-container img {
         width: 180px; 
         height: 180px;         
-        transition: all 0.3s ease;
       }
 
       .card-container-container {
         display: flex;
         flex-wrap: wrap;
-        padding-bottom:1rem;
-        position:relative;
+        padding-bottom: 1rem;
+        position: relative;
       }
 
-      .gallery{
-        flex-direction:column;
-        margin-top:2rem;
-        display:flex;
-        gap:1rem;
+      .gallery {
+        flex-direction: column;
+        margin-top: 2rem;
+        display: flex;
+        gap: 1rem;
       }
 
-      .title-form{
-        justify-content:center;
-        display:flex;
+      .title-form {
+        justify-content: center;
+        display: flex;
       }
 
-      .upload-button{
+      .upload-button {
         transition: all 0.3s ease;
-        justify-content:center;
-        align-items:center;
-        position:absolute;
-        font-size:24px;
-        display:flex;
-        padding:1rem;
-        height:3rem;
-        bottom:2rem;
-        width:8rem;
-        right:2rem;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        font-size: 24px;
+        display: flex;
+        padding: 1rem;
+        height: 3rem;
+        bottom: 2rem;
+        width: 8rem;
+        right: 2rem;
       }
 
-      .upload-button:hover{
-        border-radius:0.5rem;
+      .upload-button:hover {
+        border-radius: 0.5rem;
       }
 
       .tab-content-upload {
         padding: 1rem 5rem 0rem 5rem;
-        background-color:rgb(10, 104, 10);
+        background-color: rgb(10, 104, 10);
         text-align: center;
-        color:white;
+        color: white;
       }
 
       button {
@@ -258,61 +277,61 @@ class Gallery extends HTMLElement {
         transition: all 0.3s;
         padding: 10px 40px;
         cursor: pointer;
-        margin-top:1rem;
+        margin-top: 1rem;
         font-size: 16px;
         color: green;
         border: none;
       }
 
       button:hover {
-        color:white;
-        }
+        color: white;
+      }
 
       input[type="file"] {
         display: none;
       }
 
       input[type="text"] {
-        height:3rem;
-        font-size:2rem;
-        text-indent:0.3rem;
-        border-radius:0.5rem;
-        padding:0.5rem;
-        border:none;
-        outline:none;
+        height: 3rem;
+        font-size: 2rem;
+        text-indent: 0.3rem;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        border: none;
+        outline: none;
       }
 
-      input[type="text"]:focus{
-        outline:none;
+      input[type="text"]:focus {
+        outline: none;
       }
 
       label {
-        font-size:30px;
+        font-size: 30px;
       }
 
       .uploadFile {
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background-color:lightgreen;
-        border:darkgreen dashed 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: lightgreen;
+        border: darkgreen dashed 5px;
         transition: transform 0.3s ease;
-        width:180px;
-        height:180px;
+        width: 180px;
+        height: 180px;
         margin: 10px;
-        border-radius:1rem;
-        cursor:pointer;
+        border-radius: 1rem;
+        cursor: pointer;
       }
 
-      .uploadFile:hover{
-        background-color:lightgrey;
-        transform:scale(1.02)
+      .uploadFile:hover {
+        background-color: lightgrey;
+        transform: scale(1.02)
       }
 
-      .uploadFile svg{
-        width:5rem;
-        fill:darkgreen;
-        position:static;
+      .uploadFile svg {
+        width: 5rem;
+        fill: darkgreen;
+        position: static;
       }
 
     </style>
@@ -333,50 +352,19 @@ class Gallery extends HTMLElement {
         <div class="tab-content active" data-tab="gallery">
           <div class="tab-content-images">
             <div class="card-container-container">
-              <div class="upload">
-                <div class="uploadFile">
-                  <input type="file" class="imagen" name="file" accept="image/*">
-                    <svg width="389" height="324" viewBox="0 0 389 324" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M164.9 164.301L228.6 212.101L260.5 196.201L324.2 234.401V259.901H133V196.201L164.9 164.301Z"/>
-                      <path d="M324.3 156.3C324.3 169.5 313.6 180.2 300.4 180.2C287.2 180.2 276.5 169.5 276.5 156.3C276.5 143.1 287.2 132.4 300.4 132.4C313.6 132.4 324.3 143.1 324.3 156.3Z"/>
-                      <path d="M64 0H106.7V170.7H64V0Z"/>
-                      <path d="M0 64H170.7V106.7H0V64Z"/>
-                      <path d="M356.2 68.6992H207.3V100.599H356.2V291.799H101.2V207.699H69.2998V291.799C69.2998 309.299 83.5998 323.699 101.2 323.699H356.2C373.7 323.699 388.1 309.399 388.1 291.799V100.499C388 82.9992 373.7 68.6992 356.2 68.6992Z"/>
-                    </svg>
-                  </div>
-                </div>
+            <div class="upload">
 
-              <div class="card-container">
-                <div class="close-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="14" fill="red"/>
-                    <path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/>
+              <div class="uploadFile">
+                <input type="file" class="imagen" name="file" accept="image/*">
+                  <svg width="389" height="324" viewBox="0 0 389 324" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M164.9 164.301L228.6 212.101L260.5 196.201L324.2 234.401V259.901H133V196.201L164.9 164.301Z"/>
+                    <path d="M324.3 156.3C324.3 169.5 313.6 180.2 300.4 180.2C287.2 180.2 276.5 169.5 276.5 156.3C276.5 143.1 287.2 132.4 300.4 132.4C313.6 132.4 324.3 143.1 324.3 156.3Z"/>
+                    <path d="M64 0H106.7V170.7H64V0Z"/>
+                    <path d="M0 64H170.7V106.7H0V64Z"/>
+                    <path d="M356.2 68.6992H207.3V100.599H356.2V291.799H101.2V207.699H69.2998V291.799C69.2998 309.299 83.5998 323.699 101.2 323.699H356.2C373.7 323.699 388.1 309.399 388.1 291.799V100.499C388 82.9992 373.7 68.6992 356.2 68.6992Z"/>
                   </svg>
                 </div>
-                <img src="https://i.imgflip.com/5ltiyp.png" alt="Imagen meme">
               </div>
-              
-
-              <div class="card-container">
-                <div class="close-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="14" fill="red"/>
-                    <path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/>
-                  </svg>
-                </div>
-                <img src="https://i.redd.it/ux74bsifrpda1.jpg" alt="Imagen meme">
-              </div>
-
-              <div class="card-container">
-                <div class="close-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="14" fill="red"/>
-                    <path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/>
-                  </svg>
-                </div>
-                <img src="https://cdn-icons-png.flaticon.com/512/168/168726.png" alt="Imagen meme">
-              </div>
-
             </div>
           </div>
           <div class="tab-content-form">
@@ -400,13 +388,6 @@ class Gallery extends HTMLElement {
       </div>
     </div>
     `
-    const modal = this.shadow.querySelector('.modal-gallery-back')
-    document.addEventListener('showGalleryModal', event => {
-      modal.classList.add('active')
-    })
-
-    const closeButton = this.shadow.querySelector('.close-button')
-    closeButton.addEventListener('click', () => modal.classList.remove('active'))
   }
 
   uploadImage = async (file) => {
@@ -421,30 +402,27 @@ class Gallery extends HTMLElement {
     const filenames = await result.json()
 
     filenames.forEach(filename => {
-      const card = document.createElement('div')
-      card.classList.add('card')
-
-      const cardContainer = document.createElement('div')
-      cardContainer.classList.add('card-container')
-      card.appendChild(cardContainer)
-
-      const closeIcon = document.createElement('div')
-      closeIcon.classList.add('close-icon')
-      closeIcon.innerHTML = /* html */ `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="14" fill="red"/>
-          <path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/>
-        </svg>
-      `
-      cardContainer.appendChild(closeIcon)
-
-      const imgElement = document.createElement('img')
-      imgElement.src = `${import.meta.env.VITE_API_URL}/api/admin/images/${filename}`
-      cardContainer.appendChild(imgElement)
-
-      const uploadDiv = this.shadow.querySelector('.card-container-container')
-      uploadDiv.appendChild(card)
+      this.appendImage(filename)
     })
+  }
+
+  appendImage (filename) {
+    const uploadDiv = this.shadow.querySelector('.card-container-container')
+
+    const cardContainer = document.createElement('div')
+    cardContainer.classList.add('card-container')
+    uploadDiv.appendChild(cardContainer)
+
+    const imgElement = document.createElement('img')
+    imgElement.src = `${import.meta.env.VITE_API_URL}/api/admin/images/${filename}`
+    cardContainer.appendChild(imgElement)
+
+    const closeIcon = document.createElement('div')
+    closeIcon.classList.add('close-icon')
+    closeIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="14" fill="red"/><path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/></svg>'
+    cardContainer.appendChild(closeIcon)
+
+    this.setupImageContainerEvents(cardContainer)
   }
 }
 
