@@ -1,3 +1,4 @@
+const moment = require('moment')
 const mongooseDb = require('../../models/mongoose')
 const Image = mongooseDb.Image
 
@@ -11,31 +12,44 @@ exports.create = async (req, res) => {
   res.status(200).send(result)
 }
 
-exports.findAll = (req, res) => {
-  const page = req.query.page || 1
-  const limit = parseInt(req.query.size) || 10
-  const offset = (page - 1) * limit
+exports.findAll = async (req, res) => {
+  try {
+    const page = req.query.page || 1
+    const limit = parseInt(req.query.size) || 10
+    const offset = (page - 1) * limit
+    const whereStatement = {}
+    whereStatement.deletedAt = { $exists: false }
 
-  Image.findAndCountAll({
-    attributes: ['id', 'entity', 'name', 'title', 'languageAlias', 'createdAt', 'updatedAt'],
-    limit,
-    offset,
-    order: [['createdAt', 'DESC']]
-  })
-    .then(result => {
-      result.meta = {
-        total: result.count,
-        pages: Math.ceil(result.count / limit),
+    const result = await Image.find(whereStatement)
+      .skip(offset)
+      .limit(limit)
+      .sort({ createdAt: -1 })
+      .lean()
+      .exec()
+
+    const count = await Image.countDocuments(whereStatement)
+
+    const response = {
+      rows: result.map(doc => ({
+        ...doc,
+        id: doc._id,
+        _id: undefined,
+        createdAt: moment(doc.createdAt).format('YYYY-MM-DD HH:mm'),
+        updatedAt: moment(doc.updatedAt).format('YYYY-MM-DD HH:mm')
+      })),
+      meta: {
+        total: count,
+        pages: Math.ceil(count / limit),
         currentPage: page
       }
+    }
 
-      res.status(200).send(result)
+    res.status(200).send(response)
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || 'Algún error ha surgido al recuperar los datos.'
     })
-    .catch(err => {
-      res.status(500).send({
-        message: err.errors || 'Algún error ha surgido al recuperar los datos.'
-      })
-    })
+  }
 }
 
 exports.findOne = (req, res) => {

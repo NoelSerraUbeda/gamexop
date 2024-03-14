@@ -8,6 +8,50 @@ class Gallery extends HTMLElement {
   connectedCallback () {
     this.render()
     this.addEventListeners()
+    this.getThumbnails()
+  }
+
+  async getThumbnails () {
+    try {
+      const result = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/images`)
+      const thumbnails = await result.json()
+      this.printThumbnails(thumbnails)
+    } catch (error) {
+      console.error('Error al obtener miniaturas:', error)
+    }
+  }
+
+  printThumbnails (thumbnails) {
+    console.log(thumbnails)
+    thumbnails.rows.forEach(thumbnail => {
+      const uploadDiv = this.shadow.querySelector('.card-container-container')
+
+      const cardContainer = document.createElement('div')
+      cardContainer.classList.add('card-container')
+      uploadDiv.appendChild(cardContainer)
+
+      const imgElement = document.createElement('img')
+      imgElement.src = `${import.meta.env.VITE_API_URL}/api/admin/images/${thumbnail.filename}`
+      cardContainer.appendChild(imgElement)
+
+      const closeIcon = document.createElement('div')
+      closeIcon.classList.add('close-icon')
+      closeIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="14" fill="red"/><path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/></svg>'
+      cardContainer.appendChild(closeIcon)
+
+      cardContainer.imgElement = imgElement
+      this.setupImageContainerEvents(cardContainer)
+
+      imgElement.addEventListener('click', () => {
+        this.toggleImageSelection(imgElement)
+      })
+    })
+  }
+
+  toggleImageSelection (imgElement) {
+    if (imgElement && imgElement.classList) {
+      imgElement.classList.toggle('selected')
+    }
   }
 
   addEventListeners () {
@@ -34,11 +78,18 @@ class Gallery extends HTMLElement {
     imageContainers.forEach(container => this.setupImageContainerEvents(container))
   }
 
-  setupImageContainerEvents (container) {
+  setupImageContainerEvents (container, imgElement) {
     const closeIcon = container.querySelector('.close-icon')
     closeIcon.addEventListener('click', () => {
-      alert('Eliminar')
+      this.deleteImage()
     })
+    container.addEventListener('click', () => {
+      this.toggleImageSelection(imgElement)
+    })
+  }
+
+  async deleteImage () {
+    alert('Eliminar')
   }
 
   toggleModal () {
@@ -55,7 +106,6 @@ class Gallery extends HTMLElement {
       }
 
       img {
-        border: 2px solid #ccc; 
         border-radius: 1rem;
       }
 
@@ -186,7 +236,6 @@ class Gallery extends HTMLElement {
 
       .card-container {
         position: relative;
-        background-color: darkgreen;
         justify-content: center;
         align-items: center;
         border-radius: 1rem;
@@ -197,8 +246,10 @@ class Gallery extends HTMLElement {
         display: flex;
         height: 190px;
         width: 190px;
-        margin: 10px;
+        margin: 3px;
         transition: all 0.3s;
+        border: 8px solid #90ee90;  
+        padding:0;
       }
 
       .close-icon {
@@ -225,7 +276,7 @@ class Gallery extends HTMLElement {
 
       .card-container img {
         width: 180px; 
-        height: 180px;         
+        height: 180px;    
       }
 
       .card-container-container {
@@ -334,6 +385,10 @@ class Gallery extends HTMLElement {
         position: static;
       }
 
+      .selected {
+        border: 8px solid steelblue;
+      }
+
     </style>
     
     <div class="modal-gallery-back">
@@ -423,6 +478,10 @@ class Gallery extends HTMLElement {
     cardContainer.appendChild(closeIcon)
 
     this.setupImageContainerEvents(cardContainer)
+
+    imgElement.addEventListener('click', () => {
+      this.toggleImageSelection(imgElement)
+    })
   }
 }
 
