@@ -1,8 +1,12 @@
-const sequelizeDb = require('../../models/sequelize')
-const Image = sequelizeDb.Image
+const mongooseDb = require('../../models/mongoose')
+const Image = mongooseDb.Image
 
 exports.create = async (req, res) => {
   const result = await req.imageService.uploadImage(req.files)
+
+  for (const filename of result) {
+    await Image.create({ filename })
+  }
 
   res.status(200).send(result)
 }
