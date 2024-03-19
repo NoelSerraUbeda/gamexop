@@ -34,8 +34,8 @@ class SaveNotification extends HTMLElement {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background-color: green;
-        border:solid 10px darkgreen;
+        background-color: blue;
+        border:solid 10px green;
         color: #fff;
         padding: 10px;
         border-radius: 5px;
@@ -100,7 +100,7 @@ class SaveNotification extends HTMLElement {
     </style>
 
     <div class="notification-container">
-      <p>Todos los datos son correctos</p>
+      <p>Acción realizada correctamente</p>
     </div>
     `
   }

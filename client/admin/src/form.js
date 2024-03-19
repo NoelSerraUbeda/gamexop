@@ -33,8 +33,14 @@ class Form extends HTMLElement {
       }
 
       textarea {
-        height:10rem;
+        height: 15rem;
         resize: none;
+        overflow: auto;
+        scrollbar-width: none; 
+      }
+
+      textarea::-webkit-scrollbar {
+          display: none; 
       }
 
       input {
