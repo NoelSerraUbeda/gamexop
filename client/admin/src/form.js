@@ -33,7 +33,7 @@ class Form extends HTMLElement {
       }
 
       textarea {
-        height:15rem;
+        height:10rem;
         resize: none;
       }
 
@@ -133,7 +133,7 @@ class Form extends HTMLElement {
       .create-button button svg,
       .store-button button svg {
         fill: white;
-        width: 3.5rem;
+        width: 3rem;
         background-color:green;
         padding:0.5rem;
         border-radius:1rem;
@@ -462,13 +462,30 @@ class Form extends HTMLElement {
     })
   }
 
-  showElement (element) {
-    console.log(element)
+  showElement (element, parentKey = '') {
     Object.entries(element).forEach(([key, value]) => {
-      const input = this.shadow.querySelector(`input[name="${key}"]`)
+      const currentKey = parentKey ? `${parentKey}.${key}` : key
+      if (typeof value === 'object' && value !== null) {
+        this.showElement(value, currentKey)
+      } else {
+        try {
+          console.log(`${currentKey}`)
+          const input = this.shadow.querySelector(`input[name="${currentKey}"]`)
+          if (input) {
+            input.value = value
+          }
+        } catch {
 
-      if (input) {
-        input.value = value
+        }
+        try {
+          console.log(`${currentKey}`)
+          const textarea = this.shadow.querySelector(`textarea[name="${currentKey}"]`)
+          if (textarea) {
+            textarea.value = value
+          }
+        } catch {
+
+        }
       }
     })
   }

@@ -1,15 +1,21 @@
 const moment = require('moment')
-const mongooseDb = require('../../models/mongoose')
-const Image = mongooseDb.Image
+const mongoose = require('mongoose')
+const Image = mongoose.model('Image')
 
 exports.create = async (req, res) => {
-  const result = await req.imageService.uploadImage(req.files)
+  try {
+    const result = await req.imageService.uploadImage(req.files)
 
-  for (const filename of result) {
-    await Image.create({ filename })
+    for (const filename of result) {
+      await Image.create({ filename })
+    }
+
+    res.status(200).send(result)
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || 'Algún error ha surgido al crear la imagen.'
+    })
   }
-
-  res.status(200).send(result)
 }
 
 exports.findAll = async (req, res) => {
@@ -17,17 +23,15 @@ exports.findAll = async (req, res) => {
     const page = req.query.page || 1
     const limit = parseInt(req.query.size) || 10
     const offset = (page - 1) * limit
-    const whereStatement = {}
-    whereStatement.deletedAt = { $exists: false }
 
-    const result = await Image.find(whereStatement)
+    const result = await Image.find({ deletedAt: { $exists: false } })
       .skip(offset)
       .limit(limit)
       .sort({ createdAt: -1 })
       .lean()
       .exec()
 
-    const count = await Image.countDocuments(whereStatement)
+    const count = await Image.countDocuments({ deletedAt: { $exists: false } })
 
     const response = {
       rows: result.map(doc => ({
@@ -67,52 +71,48 @@ exports.findOne = (req, res) => {
   res.sendFile(fileName, options)
 }
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
   const id = req.params.id
 
-  Image.update(req.body, {
-    where: { id }
-  })
-    .then(([numberRowsAffected]) => {
-      if (numberRowsAffected === 1) {
-        res.status(200).send({
-          message: 'El elemento ha sido actualizado correctamente.'
-        })
-      } else {
-        res.status(404).send({
-          message: `No se puede actualizar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento o el cuerpo de la petición está vacío.`
-        })
-      }
-    })
-    .catch(_ => {
-      res.status(500).send({
-        message: 'Algún error ha surgido al actualizar la id=' + id
+  try {
+    const updatedImage = await Image.findByIdAndUpdate(id, req.body, { new: true })
+
+    if (updatedImage) {
+      res.status(200).send({
+        message: 'La imagen ha sido actualizada correctamente.'
       })
+    } else {
+      res.status(404).send({
+        message: `No se puede actualizar la imagen con la id=${id}.`
+      })
+    }
+  } catch (err) {
+    res.status(500).send({
+      message: 'Algún error ha surgido al actualizar la imagen con la id=' + id
     })
+  }
 }
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
   const id = req.params.id
 
-  Image.destroy({
-    where: { id }
-  })
-    .then((numberRowsAffected) => {
-      if (numberRowsAffected === 1) {
-        res.status(200).send({
-          message: 'El elemento ha sido borrado correctamente'
-        })
-      } else {
-        res.status(404).send({
-          message: `No se puede borrar el elemento con la id=${id}. Tal vez no se ha encontrado el elemento.`
-        })
-      }
-    })
-    .catch(_ => {
-      res.status(500).send({
-        message: 'Algún error ha surgido al borrar la id=' + id
+  try {
+    const deletedImage = await Image.findByIdAndUpdate(id, { deletedAt: new Date() })
+
+    if (deletedImage) {
+      res.status(200).send({
+        message: 'La imagen ha sido borrada correctamente'
       })
+    } else {
+      res.status(404).send({
+        message: `No se puede borrar la imagen con la id=${id}.`
+      })
+    }
+  } catch (err) {
+    res.status(500).send({
+      message: 'Algún error ha surgido al borrar la imagen con la id=' + id
     })
+  }
 }
 
 exports.getImage = (req, res) => {

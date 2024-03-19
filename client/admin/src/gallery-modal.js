@@ -9,6 +9,11 @@ class Gallery extends HTMLElement {
     this.render()
     this.addEventListeners()
     this.getThumbnails()
+    this.shadow.querySelector('.upload-button').addEventListener('click', this.sendImage)
+  }
+
+  sendImage () {
+    alert('Se envió la imagen')
   }
 
   async getThumbnails () {
@@ -24,7 +29,7 @@ class Gallery extends HTMLElement {
   printThumbnails (thumbnails) {
     console.log(thumbnails)
     thumbnails.rows.forEach(thumbnail => {
-      const uploadDiv = this.shadow.querySelector('.card-container-container')
+      const uploadDiv = this.shadow.querySelector('.gallery-container')
 
       const cardContainer = document.createElement('div')
       cardContainer.classList.add('card-container')
@@ -49,9 +54,28 @@ class Gallery extends HTMLElement {
   }
 
   toggleImageSelection (imgElement) {
-    if (imgElement && imgElement.classList) {
-      imgElement.classList.toggle('selected')
+    const images = this.shadow.querySelectorAll('.card-container img')
+    const isSelected = imgElement.classList.contains('selected')
+
+    if (isSelected) {
+      imgElement.classList.remove('selected')
+      this.shadow.querySelector('.upload-button').classList.remove('active')
+      this.shadow.querySelector('.upload-button').disabled = true
+    } else {
+      images.forEach(image => {
+        image.classList.remove('selected')
+      })
+
+      imgElement.classList.add('selected')
+      this.shadow.querySelector('.upload-button').classList.add('active')
+      this.shadow.querySelector('.upload-button').disabled = false
     }
+
+    this.displayImageData(imgElement)
+  }
+
+  async displayImageData (imgElement) {
+    alert('Pillar datos de Nombre y Nombre Alternativo')
   }
 
   addEventListeners () {
@@ -80,16 +104,32 @@ class Gallery extends HTMLElement {
 
   setupImageContainerEvents (container, imgElement) {
     const closeIcon = container.querySelector('.close-icon')
+    const imgSrc = container.querySelector('img').src
     closeIcon.addEventListener('click', () => {
-      this.deleteImage()
+      const filename = imgSrc.substring(imgSrc.lastIndexOf('/') + 1)
+      this.deleteImage(filename)
     })
     container.addEventListener('click', () => {
       this.toggleImageSelection(imgElement)
     })
   }
 
-  async deleteImage () {
-    alert('Eliminar')
+  async deleteImage (filename) {
+    const cardContainers = this.shadow.querySelectorAll('.card-container')
+    cardContainers.forEach(container => {
+      const imgElement = container.querySelector('img')
+      const imgSrc = imgElement.src
+      if (imgSrc.includes(filename)) {
+        if (imgElement.classList.contains('selected')) {
+          imgElement.classList.remove('selected')
+          const uploadButton = this.shadow.querySelector('.upload-button')
+          uploadButton.classList.remove('active')
+          uploadButton.disabled = true
+        }
+        container.remove()
+        alert('Imagen borrada correctamente.')
+      }
+    })
   }
 
   toggleModal () {
@@ -181,8 +221,7 @@ class Gallery extends HTMLElement {
       }
 
       .tab {
-        width: 5rem;
-        font-size: 26px;
+        font-size: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -244,9 +283,8 @@ class Gallery extends HTMLElement {
         cursor: pointer;
         color: #ffffff;
         display: flex;
-        height: 190px;
-        width: 190px;
-        margin: 3px;
+        height: 180px;
+        width: 180px;
         transition: all 0.3s;
         border: 8px solid #90ee90;  
         padding:0;
@@ -279,11 +317,14 @@ class Gallery extends HTMLElement {
         height: 180px;    
       }
 
-      .card-container-container {
+      .gallery-container {
         display: flex;
         flex-wrap: wrap;
         padding-bottom: 1rem;
         position: relative;
+        justify-content:start;
+        align-items:center;
+        gap:0.5rem;
       }
 
       .gallery {
@@ -299,23 +340,34 @@ class Gallery extends HTMLElement {
       }
 
       .upload-button {
+        text-shadow: 1px 1px 2px black;
         transition: all 0.3s ease;
         justify-content: center;
         align-items: center;
+        height: fit-content;
         position: absolute;
+        width: fit-content;
         font-size: 24px;
         display: flex;
         padding: 1rem;
-        height: 3rem;
         bottom: 2rem;
-        width: 8rem;
         right: 2rem;
-      }
+        color: white;
+        filter: brightness(50%);
+        }
 
-      .upload-button:hover {
-        border-radius: 0.5rem;
-      }
+        .upload-button.active {
+        filter: brightness(100%);
+        }
 
+        .upload-button.active:hover {
+        border-radius:1rem;
+        cursor: pointer;
+        }
+
+        .selected .upload-button {
+        pointer-events: all;
+        }
       .tab-content-upload {
         padding: 1rem 5rem 0rem 5rem;
         background-color: rgb(10, 104, 10);
@@ -332,10 +384,6 @@ class Gallery extends HTMLElement {
         font-size: 16px;
         color: green;
         border: none;
-      }
-
-      button:hover {
-        color: white;
       }
 
       input[type="file"] {
@@ -364,11 +412,11 @@ class Gallery extends HTMLElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: lightgreen;
+        background-color: white;
         border: darkgreen dashed 5px;
         transition: transform 0.3s ease;
-        width: 180px;
-        height: 180px;
+        width: 170px;
+        height: 170px;
         margin: 10px;
         border-radius: 1rem;
         cursor: pointer;
@@ -399,15 +447,15 @@ class Gallery extends HTMLElement {
         <span>
           <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8L10.67,8.09C9.81,7.07 7.4,4.5 5,4.5C5,4.5 3.03,7.46 4.96,11.41C4.41,12.24 4.07,12.67 4,13.66L2.07,13.95L2.28,14.93L4.04,14.67L4.18,15.38L2.61,16.32L3.08,17.21L4.53,16.32C5.68,18.76 8.59,20 12,20C15.41,20 18.32,18.76 19.47,16.32L20.92,17.21L21.39,16.32L19.82,15.38L19.96,14.67L21.72,14.93L21.93,13.95L20,13.66C19.93,12.67 19.59,12.24 19.04,11.41C20.97,7.46 19,4.5 19,4.5C16.6,4.5 14.19,7.07 13.33,8.09L12,8M9,11A1,1 0 0,1 10,12A1,1 0 0,1 9,13A1,1 0 0,1 8,12A1,1 0 0,1 9,11M15,11A1,1 0 0,1 16,12A1,1 0 0,1 15,13A1,1 0 0,1 14,12A1,1 0 0,1 15,11M11,14H13L12.3,15.39C12.5,16.03 13.06,16.5 13.75,16.5A1.5,1.5 0 0,0 15.25,15H15.75A2,2 0 0,1 13.75,17C13,17 12.35,16.59 12,16V16H12C11.65,16.59 11,17 10.25,17A2,2 0 0,1 8.25,15H8.75A1.5,1.5 0 0,0 10.25,16.5C10.94,16.5 11.5,16.03 11.7,15.39L11,14Z" /></svg>
         </span>
-        <div class="modal-gallery-title">Images</div>
+        <div class="modal-gallery-title">Galería de Imágenes</div>
         <div class="tabs">
-          <div class="tab active" data-tab="gallery">Gallery</div>
+          <div class="tab active" data-tab="gallery">Imágenes Disponibles</div>
         </div>
     
         <div class="tab-content active" data-tab="gallery">
           <div class="tab-content-images">
-            <div class="card-container-container">
-            <div class="upload">
+            <div class="gallery-container">
+              <div class="upload">
 
               <div class="uploadFile">
                 <input type="file" class="imagen" name="file" accept="image/*">
@@ -420,17 +468,18 @@ class Gallery extends HTMLElement {
                   </svg>
                 </div>
               </div>
+
             </div>
           </div>
           <div class="tab-content-form">
             <form class="gallery">
-              <label class="title">Name:</label>
-              <input type="text">
+              <label class="title">Nombre:</label>
+              <input type="text" class="nombre-input">
               <br>
-              <label class="alternative">Alternative Name:</label>
-              <input type="text">
+              <label class="alternative">Nombre Alternativo:</label>
+              <input type="text" class="alternative-input">
             </form>
-            <button class="upload-button">Upload</button>
+            <button class="upload-button"disabled>Subir Imágen</button>
           </div>
         </div>
 
@@ -461,8 +510,13 @@ class Gallery extends HTMLElement {
     })
   }
 
-  appendImage (filename) {
-    const uploadDiv = this.shadow.querySelector('.card-container-container')
+  async appendImage (filename) {
+    const uploadDiv = this.shadow.querySelector('.gallery-container')
+
+    const images = uploadDiv.querySelectorAll('img')
+    images.forEach(image => {
+      image.classList.remove('selected')
+    })
 
     const cardContainer = document.createElement('div')
     cardContainer.classList.add('card-container')
@@ -470,6 +524,7 @@ class Gallery extends HTMLElement {
 
     const imgElement = document.createElement('img')
     imgElement.src = `${import.meta.env.VITE_API_URL}/api/admin/images/${filename}`
+    imgElement.classList.add('selected')
     cardContainer.appendChild(imgElement)
 
     const closeIcon = document.createElement('div')
@@ -478,6 +533,11 @@ class Gallery extends HTMLElement {
     cardContainer.appendChild(closeIcon)
 
     this.setupImageContainerEvents(cardContainer)
+
+    const uploadButton = this.shadow.querySelector('.upload-button')
+    if (!uploadButton.classList.contains('active')) {
+      uploadButton.classList.add('active')
+    }
 
     imgElement.addEventListener('click', () => {
       this.toggleImageSelection(imgElement)

@@ -119,7 +119,7 @@ class CategoryFilter extends HTMLElement {
         align-items: center;
         background-color: black;
         border-radius: 1rem;
-        box-shadow: inset 0 0 1rem darkgrey;
+        box-shadow: inset 0 0 1rem orange;
         cursor: pointer;
         display: flex;
         flex: 0 0 100px;
@@ -127,11 +127,13 @@ class CategoryFilter extends HTMLElement {
         padding: 0 0.55rem;
         filter: brightness(0.8);
         transition: all 0.3s;
+        border: 2px solid white;
       }
 
       .category:hover {
         filter: brightness(1.2);
-        transform:scale(1.1)
+        transform:scale(1.1);
+        border: 2px solid orange;
       }
 
       .category h3 {

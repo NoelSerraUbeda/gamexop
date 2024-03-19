@@ -211,7 +211,7 @@ class ProductGallery extends HTMLElement {
         justify-content: center;
         overflow: hidden;
         filter: brightness(0.8);
-        transition: transform 0.5s ease;
+        transition: transform 0.3s ease;
         border: solid 6px white;
       }
 
