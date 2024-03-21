@@ -57,7 +57,7 @@ exports.findAll = async (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  const fileName = req.params.filename
+  const filename = req.params.filename
 
   const options = {
     root: __dirname + '../../../storage/images/gallery/thumbnail/',
@@ -68,7 +68,7 @@ exports.findOne = (req, res) => {
     }
   }
 
-  res.sendFile(fileName, options)
+  res.sendFile(filename, options)
 }
 
 exports.update = async (req, res) => {
@@ -94,25 +94,21 @@ exports.update = async (req, res) => {
 }
 
 exports.delete = async (req, res) => {
-  const id = req.params.id
+  const filename = req.params.filename
 
   try {
-    const deletedImage = await Image.findByIdAndUpdate(id, { deletedAt: new Date() })
-
-    if (deletedImage) {
-      res.status(200).send({
-        message: 'La imagen ha sido borrada correctamente'
-      })
-    } else {
-      res.status(404).send({
-        message: `No se puede borrar la imagen con la id=${id}.`
-      })
-    }
-  } catch (err) {
+    await req.imageService.deleteImages(filename)
+    await Image.deleteOne({ filename })
+    res.status(200).send({
+      message: 'El elemento ha sido borrado correctamente'
+    })
+  } catch (error) {
     res.status(500).send({
-      message: 'Algún error ha surgido al borrar la imagen con la id=' + id
+      message: error.message || 'Algún error ha surgido al borrar el dato.'
     })
   }
+
+  console.log(filename)
 }
 
 exports.getImage = (req, res) => {
