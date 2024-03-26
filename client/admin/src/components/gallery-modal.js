@@ -1,3 +1,5 @@
+import { store } from '../redux/store.js'
+
 class Gallery extends HTMLElement {
   constructor () {
     super()
@@ -9,11 +11,6 @@ class Gallery extends HTMLElement {
     this.render()
     this.addEventListeners()
     this.getThumbnails()
-    this.shadow.querySelector('.upload-button').addEventListener('click', this.sendImage)
-  }
-
-  sendImage () {
-    alert('Se envió la imagen')
   }
 
   async getThumbnails () {
@@ -40,25 +37,22 @@ class Gallery extends HTMLElement {
       cardContainer.appendChild(imgElement)
 
       const closeIcon = document.createElement('div')
-      closeIcon.dataset.filename = thumbnail.filename
+      imgElement.dataset.filename = thumbnail.filename
       closeIcon.classList.add('close-icon')
       closeIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="14" fill="red"/><path fill="white" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z"/></svg>'
       cardContainer.appendChild(closeIcon)
 
       cardContainer.imgElement = imgElement
-      this.setupImageContainerEvents(cardContainer)
-
-      imgElement.addEventListener('click', () => {
-        this.toggleImageSelection(imgElement)
-      })
+      this.setupImageContainerEvents(cardContainer, imgElement)
     })
   }
 
   toggleImageSelection (imgElement) {
+    console.log(imgElement)
     const images = this.shadow.querySelectorAll('.card-container img')
-    const isSelected = imgElement.classList.contains('selected')
-
-    if (isSelected) {
+    // const isSelected = imgElement.classList.contains('selected')
+    // console.log(isSelected)
+    if (imgElement.classList.contains('selected')) {
       imgElement.classList.remove('selected')
       this.shadow.querySelector('.upload-button').classList.remove('active')
       this.shadow.querySelector('.upload-button').disabled = true
@@ -71,12 +65,12 @@ class Gallery extends HTMLElement {
       this.shadow.querySelector('.upload-button').classList.add('active')
       this.shadow.querySelector('.upload-button').disabled = false
     }
-
-    this.displayImageData(imgElement)
   }
 
   async displayImageData (imgElement) {
-    alert('Pillar datos de Nombre y Nombre Alternativo')
+    const selectedElement = this.shadow.querySelector('.selected')
+    const name = selectedElement.dataset.filename
+    console.log(name)
   }
 
   addEventListeners () {
@@ -112,6 +106,7 @@ class Gallery extends HTMLElement {
     })
     container.addEventListener('click', () => {
       this.toggleImageSelection(imgElement)
+      // this.displayImageData(imgElement)
     })
   }
 
@@ -359,20 +354,21 @@ class Gallery extends HTMLElement {
         right: 2rem;
         color: white;
         filter: brightness(50%);
-        }
+      }
 
-        .upload-button.active {
+      .upload-button.active {
         filter: brightness(100%);
-        }
+      }
 
-        .upload-button.active:hover {
+      .upload-button.active:hover {
         border-radius:1rem;
         cursor: pointer;
-        }
+      }
 
-        .selected .upload-button {
+      .selected .upload-button {
         pointer-events: all;
-        }
+      }
+
       .tab-content-upload {
         padding: 1rem 5rem 0rem 5rem;
         background-color: rgb(10, 104, 10);
@@ -411,6 +407,11 @@ class Gallery extends HTMLElement {
 
       label {
         font-size: 30px;
+      }
+
+      img {
+        border: 4px solid darkgreen;
+        background-color:green;
       }
 
       .uploadFile {
@@ -497,6 +498,11 @@ class Gallery extends HTMLElement {
       </div>
     </div>
     `
+    this.shadow.querySelector('.upload-button').addEventListener('click', () => {
+      const selectedElement = this.shadow.querySelector('.selected')
+      const image = store.getState().images.imageGallery
+      console.log(image)
+    })
   }
 
   uploadImage = async (file) => {

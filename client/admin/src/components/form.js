@@ -33,7 +33,7 @@ class Form extends HTMLElement {
       }
 
       textarea {
-        height: 15rem;
+        height: 13.5rem;
         resize: none;
         overflow: auto;
         scrollbar-width: none; 
@@ -48,8 +48,8 @@ class Form extends HTMLElement {
       }
 
       label {
-        font-size: 22px;
-        text-shadow: 1px 1px 2px black;      
+        font-size: 20px;
+        text-shadow: 1px 1px 2px black;    
       }
 
       .form {
@@ -226,6 +226,11 @@ class Form extends HTMLElement {
       .errors ul li {
         list-style-type: none;
       }
+      
+      label {
+        font-size:26px;
+        text-shadow: 1px 1px 2px black;
+      }
     </style>
     <div class="form">
       <div class="form-top-bar">
@@ -336,18 +341,12 @@ class Form extends HTMLElement {
             </div>
           </div>
         </div>
+
         <!-- image Gallery -->
         <div class="tab-content" data-tab="images">
-            <upload-image-component></upload-image-component>
+          <label>Imagen destacada</label>
+          <upload-image-component name="feature-image"></upload-image-component>
         </div>
-        <!-- Specifications 
-        <div class="tab-content" data-tab="specifications">
-
-        </div> -->
-        <!-- prices 
-        <div class="tab-content" data-tab="prices"> 
-        
-        </div>-->
     </form>
     </div>
   </div>

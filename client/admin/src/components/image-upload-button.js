@@ -1,3 +1,6 @@
+import { store } from '../redux/store.js'
+import { setImageGallery } from '../redux/images-slice.js'
+
 class UploadImage extends HTMLElement {
   constructor () {
     super()
@@ -15,7 +18,8 @@ class UploadImage extends HTMLElement {
         display:flex;
         justify-content:start;
         align-items:start;
-        gap:8rem;
+        gap:8rem; 
+        margin:1rem 0 1rem 0;
       }
 
       .form-element-input{
@@ -26,11 +30,6 @@ class UploadImage extends HTMLElement {
         width:100%;
       }
 
-      .form-element-input label {
-        font-size:20px;
-        text-shadow: 1px 1px 2px black;
-      }
-
       .open-gallery {
         width: 100px;
         height: 100px;
@@ -38,8 +37,6 @@ class UploadImage extends HTMLElement {
         border: none;
         background-color:green;
         text-align: center;
-        line-height: 100px;
-        margin: 10px;
         cursor: pointer;
         border-radius:1rem;
         transition: transform 0.3s ease;
@@ -55,24 +52,24 @@ class UploadImage extends HTMLElement {
         fill:white;
       }
 
-      img{
-        border-radius:1rem;
-        width:180px;
-        height:180px;
-      }
-
       .gallery {
         width:100%;
         display:flex;
         flex-direction:row;
-        justify-content:start;
-        align-items:start;
+        align-items:center;
+        justify-content:space-around;
         flex-wrap:wrap;
+      }
+
+      .choosed {
+        border: 5px dashed darkgreen;
+        border-radius:1rem;
+        width:120px;
+        height:120px;
       }
 
     </style>
 
-  <label>Imagen del producto</label>
     <div class="form-row">
       <div class="form-element">
         <div class="form-element-input">
@@ -82,8 +79,19 @@ class UploadImage extends HTMLElement {
                 <path d='M20 18H4V8H20M20 6H12L10 4H4A2 2 0 0 0 2 6V18A2 2 0 0 0 4 20H20A2 2 0 0 0 22 18V8A2 2 0 0 0 20 6M16 17H14V13H11L15 9L19 13H16Z' />
               </svg>
             </div>
-          </div>
+            <div class="choosed">
 
+            </div>
+            <div class="choosed">
+  
+            </div>
+            <div class="choosed">
+  
+            </div>
+            <div class="choosed">
+  
+            </div>
+          </div>
         </div>
       </div>
       </div>
@@ -92,6 +100,11 @@ class UploadImage extends HTMLElement {
     const upButtons = this.shadow.querySelectorAll('.open-gallery')
     upButtons.forEach(button => {
       button.addEventListener('click', () => {
+        const image = {
+          name: this.getAttribute('name')
+        }
+
+        store.dispatch(setImageGallery(image))
         document.dispatchEvent(new CustomEvent('showGalleryModal', {
         }))
       })
