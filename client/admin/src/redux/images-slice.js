@@ -4,7 +4,6 @@ export const imagesSlice = createSlice({
   name: 'images',
   initialState: {
     imageGallery: null,
-    showedImage: null,
     showedImages: [],
     selectedImages: []
   },
@@ -13,6 +12,7 @@ export const imagesSlice = createSlice({
       state.imageGallery = action.payload
     },
     showImage: (state, action) => {
+      state.showedImages.push(action.payload)
     },
     showImages: (state, action) => {
     },

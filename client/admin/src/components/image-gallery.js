@@ -1,4 +1,5 @@
 import { store } from '../redux/store.js'
+import { showImage, removeImage } from '../redux/images-slice.js'
 
 class Gallery extends HTMLElement {
   constructor () {
@@ -24,7 +25,6 @@ class Gallery extends HTMLElement {
   }
 
   printThumbnails (thumbnails) {
-    console.log(thumbnails)
     thumbnails.rows.forEach(thumbnail => {
       const uploadDiv = this.shadow.querySelector('.gallery-container')
 
@@ -48,10 +48,7 @@ class Gallery extends HTMLElement {
   }
 
   toggleImageSelection (imgElement) {
-    console.log(imgElement)
     const images = this.shadow.querySelectorAll('.card-container img')
-    // const isSelected = imgElement.classList.contains('selected')
-    // console.log(isSelected)
     if (imgElement.classList.contains('selected')) {
       imgElement.classList.remove('selected')
       this.shadow.querySelector('.upload-button').classList.remove('active')
@@ -480,10 +477,10 @@ class Gallery extends HTMLElement {
           <div class="tab-content-form">
             <form class="gallery">
               <label class="title">Nombre:</label>
-              <input type="text" class="nombre-input">
+              <input type="text" class="nombre-input" name="title">
               <br>
               <label class="alternative">Nombre Alternativo:</label>
-              <input type="text" class="alternative-input">
+              <input type="text" class="alternative-input" name="alt">
             </form>
             <button class="upload-button"disabled>Subir Imágen</button>
           </div>
@@ -499,9 +496,16 @@ class Gallery extends HTMLElement {
     </div>
     `
     this.shadow.querySelector('.upload-button').addEventListener('click', () => {
-      const selectedElement = this.shadow.querySelector('.selected')
-      const image = store.getState().images.imageGallery
+      const filename = this.shadow.querySelector('.selected').dataset.filename
+      let image = store.getState().images.imageGallery
+      const alt = this.shadow.querySelector('input[name="alt"]').value
+      const title = this.shadow.querySelector('input[name="title"]').value
+      image = { ...image, alt, title, filename }
       console.log(image)
+
+      store.dispatch(showImage(image))
+
+      this.toggleModal()
     })
   }
 
