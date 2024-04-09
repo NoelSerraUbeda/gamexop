@@ -1,5 +1,5 @@
 import { store } from '../redux/store.js'
-import { showImage, removeImage } from '../redux/images-slice.js'
+import { showImage } from '../redux/images-slice.js'
 
 class Gallery extends HTMLElement {
   constructor () {
@@ -497,6 +497,7 @@ class Gallery extends HTMLElement {
     `
     this.shadow.querySelector('.upload-button').addEventListener('click', () => {
       const filename = this.shadow.querySelector('.selected').dataset.filename
+      this.shadow.querySelector('.selected').classList.remove('selected')
       let image = store.getState().images.imageGallery
       const alt = this.shadow.querySelector('input[name="alt"]').value
       const title = this.shadow.querySelector('input[name="title"]').value

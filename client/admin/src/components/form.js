@@ -1,3 +1,6 @@
+import { store } from '../redux/store.js'
+import { removeImages } from '../redux/images-slice.js'
+
 class Form extends HTMLElement {
   constructor () {
     super()
@@ -276,7 +279,7 @@ class Form extends HTMLElement {
                   <label for="address" style="margin-left:1rem;">Orden</label>
                 </div>
                 <div class="form-element-input">
-                  <input type="email" name="order" value="" style="text-align:center;">
+                  <input type="number" name="order" value="" style="text-align:center;" maxlength="5">
                 </div>
               </div>
             </div>
@@ -345,7 +348,25 @@ class Form extends HTMLElement {
         <!-- image Gallery -->
         <div class="tab-content" data-tab="images">
           <label>Imagen destacada</label>
-          <upload-image-component name="feature-image"></upload-image-component>
+          <upload-image-component name="feature-image" image-configuration='{
+            "xs": {
+              "widthPx": "60",
+              "heightPx": "60"
+            },
+            "sm": {
+              "widthPx": "80",
+              "heightPx": "80"
+            },
+            "md": {
+              "widthPx": "120",
+              "heightPx": "120"
+            },
+            "lg": {
+              "widthPx": "180",
+              "heightPx": "180"
+            }
+          }'>
+          </upload-image-component>
         </div>
     </form>
     </div>
@@ -353,10 +374,13 @@ class Form extends HTMLElement {
   `
     const save = this.shadow.querySelector('.store-button')
     save?.addEventListener('click', async () => {
+      console.log(store.getState().images.selectedImages)
+
       const form = this.shadow.querySelector('.admin-form')
       const formData = new FormData(form)
 
       const formDataJson = {}
+      formDataJson.images = store.getState().images.selectedImages
 
       for (const [key, value] of formData.entries()) {
         if (key.includes('locales')) {
@@ -460,10 +484,8 @@ class Form extends HTMLElement {
 
     const createButton = this.shadow.querySelector('.create-button button')
     createButton.addEventListener('click', () => {
-      const inputs = this.shadow.querySelectorAll('input, textarea')
-      inputs.forEach(input => {
-        input.value = ''
-      })
+      this.shadow.querySelector('form').reset()
+      store.dispatch(removeImages())
     })
   }
 

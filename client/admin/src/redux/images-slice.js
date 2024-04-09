@@ -17,10 +17,34 @@ export const imagesSlice = createSlice({
     showImages: (state, action) => {
     },
     addImage: (state, action) => {
+      if (!state.selectedImages.some(image =>
+        image.name === action.payload.name &&
+        image.filename === action.payload.filename)) {
+        state.selectedImages.push(action.payload)
+      }
     },
     removeImage: (state, action) => {
+      const selectedImage = state.selectedImages.findIndex(image =>
+        image.filename === action.payload.filename &&
+        image.name === action.payload.name
+      )
+
+      if (selectedImage !== -1) {
+        state.selectedImages.splice(selectedImage, 1)
+      }
+
+      const showedImage = state.showedImages.findIndex(image =>
+        image.filename === action.payload.filename &&
+        image.name === action.payload.name
+      )
+
+      if (showedImage !== -1) {
+        state.showedImages.splice(showedImage, 1)
+      }
     },
     removeImages: (state, action) => {
+      state.selectedImages = []
+      state.showedImages = []
     }
   }
 })

@@ -1,5 +1,6 @@
 import { store } from '../redux/store.js'
-import { setImageGallery, removeImage } from '../redux/images-slice.js'
+import { setImageGallery, removeImage, addImage } from '../redux/images-slice.js'
+import isEqual from 'lodash-es/isEqual'
 
 class UploadImage extends HTMLElement {
   constructor () {
@@ -10,13 +11,20 @@ class UploadImage extends HTMLElement {
   }
 
   connectedCallback () {
+    this.render()
+
     this.unsubscribe = store.subscribe(() => {
       const currentState = store.getState()
-      this.images = currentState.images.showedImages
-      this.showThumbnails(this.images)
-    })
 
-    this.render()
+      if (currentState.images.showedImages.length > 0 && !isEqual(this.images, currentState.images.showedImages)) {
+        this.images = currentState.images.showedImages
+        this.showThumbnails(this.images)
+      }
+
+      if (currentState.images.showedImages.length === 0) {
+        this.render()
+      }
+    })
   }
 
   render () {
@@ -72,16 +80,9 @@ class UploadImage extends HTMLElement {
       .choosed {
         border: 5px dashed darkgreen;
         border-radius:5px;
-        width:120px;
-        height:120px;
+        width:130px;
+        height:130px;
         position:relative
-      }
-
-      .choosed img{
-        overflow:hidden;
-        width:120px;
-        height:120px;
-        z-index:1;
       }
 
       .close {
@@ -173,23 +174,23 @@ class UploadImage extends HTMLElement {
       </div>
     </div>
     `
-    const upButtons = this.shadow.querySelectorAll('.open-gallery')
-    upButtons.forEach(button => {
+    const gallery = this.shadow.querySelectorAll('.open-gallery')
+    gallery.forEach(button => {
       button.addEventListener('click', () => {
         const image = {
           name: this.getAttribute('name')
         }
 
-        store.dispatch(setImageGallery(image))
-        document.dispatchEvent(new CustomEvent('showGalleryModal', {
-        }))
-      })
-    })
+        const allChoosedHaveImage = Array.from(this.shadow.querySelectorAll('.choosed'))
+          .every(choosed => choosed.classList.contains('thumbnail'))
 
-    const closeButtons = this.shadow.querySelectorAll('.close')
-    closeButtons.forEach(button => {
-      button.addEventListener('click', (event) => {
-        alert('eliminar')
+        if (allChoosedHaveImage) {
+          alert('Por favor borra una imagen antes de abrir la galería.')
+        } else {
+          store.dispatch(setImageGallery(image))
+          document.dispatchEvent(new CustomEvent('showGalleryModal', {
+          }))
+        }
       })
     })
   }
@@ -204,6 +205,16 @@ class UploadImage extends HTMLElement {
         div.style.backgroundImage = `url('${import.meta.env.VITE_API_URL}/api/admin/images/${images[index].filename}')`
         div.querySelector('.close').classList.add('close')
         div.querySelector('.close').style.display = 'block'
+        store.dispatch(addImage(
+          {
+            ...images[index],
+            imageConfiguration: JSON.parse(this.getAttribute('image-configuration'))
+          }
+        ))
+
+        div.querySelector('.close').addEventListener('click', (event) => {
+          store.dispatch(removeImage(images[index]))
+        })
       } else {
         div.querySelector('.close').style.display = 'none'
       }

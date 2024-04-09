@@ -4,9 +4,12 @@ const Faq = mongooseDb.Faq
 
 exports.create = async (req, res) => {
   try {
+    req.body.images = await req.imageService.resizeImages(req.body.images)
     const data = await Faq.create(req.body)
+
     res.status(200).send(data)
   } catch (err) {
+    console.log(err)
     res.status(500).send({
       message: err.errors || 'Algún error ha surgido al insertar el dato.'
     })
@@ -27,6 +30,7 @@ exports.findAll = async (req, res) => {
   }
 
   try {
+    await req.emailService.sendEmail()
     const result = await Faq.find(whereStatement)
       .skip(offset)
       .limit(limit)
@@ -88,6 +92,7 @@ exports.update = async (req, res) => {
   const id = req.params.id
 
   try {
+    req.body.images = await req.imageService.resizeImages(req.body.images)
     const data = await Faq.findByIdAndUpdate(id, req.body, { new: true })
 
     if (data) {
