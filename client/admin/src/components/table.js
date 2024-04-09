@@ -148,9 +148,14 @@ class Table extends HTMLElement {
         gap: 0.5rem;
       }
 
-      .table-data ul li span {
+      .table-data ul li span:first-child {
         color:lightgreen;
         text-shadow: none;  
+      }
+
+      .table-data ul li span:first-child::after{
+        content: ':';
+        margin-right: 0.5rem;
       }
 
       .records {
@@ -191,6 +196,7 @@ class Table extends HTMLElement {
       <div class="records"></div>
     </div>
     `
+
     const recordsContainer = this.shadow.querySelector('.records')
     this.rows.forEach(row => {
       const recordDiv = document.createElement('div')
@@ -224,12 +230,24 @@ class Table extends HTMLElement {
 
       const tableDataDiv = document.createElement('div')
       tableDataDiv.classList.add('table-data')
-      tableDataDiv.innerHTML = /* html */ `
-        <ul>
-          <li><span>Nombre: </span>${row.name}</li>
-          <li><span>Orden: </span>${row.order}</li>
-          <li><span>Fecha de creación: </span>${row.createdAt}</li>
-        </ul>`
+
+      const tableDataList = document.createElement('ul')
+      tableDataDiv.appendChild(tableDataList)
+
+      this.rows.forEach(row => {
+        Object.entries(row).forEach(([key, value]) => {
+          const row = document.createElement('li')
+          tableDataList.appendChild(row)
+
+          const spanKey = document.createElement('span')
+          row.appendChild(spanKey)
+          spanKey.textContent = key
+
+          const spanValue = document.createElement('span')
+          row.appendChild(spanValue)
+          spanValue.textContent = value
+        })
+      })
 
       recordDiv.appendChild(tableButtonsDiv)
       recordDiv.appendChild(tableDataDiv)

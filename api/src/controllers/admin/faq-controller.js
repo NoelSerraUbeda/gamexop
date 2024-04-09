@@ -42,11 +42,12 @@ exports.findAll = async (req, res) => {
 
     const response = {
       rows: result.map(doc => ({
-        ...doc,
-        id: doc._id,
-        _id: undefined,
-        createdAt: moment(doc.createdAt).format('YYYY-MM-DD HH:mm'),
-        updatedAt: moment(doc.updatedAt).format('YYYY-MM-DD HH:mm')
+        // id: doc._id,
+        // _id: undefined,
+        Nombre: doc.name,
+        Orden: doc.order,
+        // Creado: moment(doc.createdAt).format('YYYY-MM-DD HH:mm'),
+        Actualizado: moment(doc.updatedAt).format('YYYY-MM-DD HH:mm')
       })),
       meta: {
         total: count,
