@@ -9,7 +9,6 @@ exports.create = async (req, res) => {
 
     res.status(200).send(data)
   } catch (err) {
-    console.log(err)
     res.status(500).send({
       message: err.errors || 'Algún error ha surgido al insertar el dato.'
     })
@@ -42,12 +41,11 @@ exports.findAll = async (req, res) => {
 
     const response = {
       rows: result.map(doc => ({
-        // id: doc._id,
-        // _id: undefined,
-        Nombre: doc.name,
-        Orden: doc.order,
+        id: doc._id,
+        _id: undefined,
+        nombre: doc.name,
         // Creado: moment(doc.createdAt).format('YYYY-MM-DD HH:mm'),
-        Actualizado: moment(doc.updatedAt).format('YYYY-MM-DD HH:mm')
+        actualizado: moment(doc.updatedAt).format('YYYY-MM-DD HH:mm')
       })),
       meta: {
         total: count,

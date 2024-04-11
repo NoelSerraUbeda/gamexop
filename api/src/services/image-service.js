@@ -39,7 +39,6 @@ module.exports = class ImageService {
   resizeImages = async (images) => {
     const resizedImages = {}
     for (const image of images) {
-      console.log(image.imageConfiguration)
       for (const size in image.imageConfiguration) {
         try {
           let newFilename = image.filename.split('.')
@@ -61,17 +60,20 @@ module.exports = class ImageService {
             title: image.title,
             alt: image.alt,
             widthPx: image.imageConfiguration[size].widthPx,
-            heightPx: image.imageConfiguration[size].heightPx
+            heightPx: image.imageConfiguration[size].heightPx,
+            adminImages: [{
+              name: image.filename,
+              file: newFilename,
+              title: image.title,
+              alt: image.alt
+            }]
           }
-
-          console.log(resizedImages)
         } catch (error) {
           console.log(error)
         }
       }
     }
 
-    console.log(resizedImages)
     return resizedImages
   }
 

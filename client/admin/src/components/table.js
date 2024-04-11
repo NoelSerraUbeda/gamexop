@@ -20,7 +20,6 @@ class Table extends HTMLElement {
   }
 
   async loadData () {
-    console.log(`${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}`)
     const response = await fetch(`${import.meta.env.VITE_API_URL}${this.getAttribute('endpoint')}`)
     const data = await response.json()
     this.rows = data.rows
@@ -234,19 +233,17 @@ class Table extends HTMLElement {
       const tableDataList = document.createElement('ul')
       tableDataDiv.appendChild(tableDataList)
 
-      this.rows.forEach(row => {
-        Object.entries(row).forEach(([key, value]) => {
-          const row = document.createElement('li')
-          tableDataList.appendChild(row)
+      Object.entries(row).forEach(([key, value]) => {
+        const row = document.createElement('li')
+        tableDataList.appendChild(row)
 
-          const spanKey = document.createElement('span')
-          row.appendChild(spanKey)
-          spanKey.textContent = key
+        const spanKey = document.createElement('span')
+        row.appendChild(spanKey)
+        spanKey.textContent = key
 
-          const spanValue = document.createElement('span')
-          row.appendChild(spanValue)
-          spanValue.textContent = value
-        })
+        const spanValue = document.createElement('span')
+        row.appendChild(spanValue)
+        spanValue.textContent = value
       })
 
       recordDiv.appendChild(tableButtonsDiv)

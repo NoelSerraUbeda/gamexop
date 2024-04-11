@@ -15,13 +15,13 @@ class UploadImage extends HTMLElement {
 
     this.unsubscribe = store.subscribe(() => {
       const currentState = store.getState()
-
       if (currentState.images.showedImages.length > 0 && !isEqual(this.images, currentState.images.showedImages)) {
         this.images = currentState.images.showedImages
         this.showThumbnails(this.images)
       }
 
       if (currentState.images.showedImages.length === 0) {
+        this.images = []
         this.render()
       }
     })
