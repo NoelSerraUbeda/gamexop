@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Codificación de carácteres -->
+    <meta charset="utf-8">
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/324/324125.png">
+
+    <!-- Etiquetas con proposito de SEO, el título y la descripción aparecerán en los resultados de Google,
+      la etiqueta keywords se ha quedado obsoleta -->
+    <title>Panel de Administración</title>
+    <meta name="description" content="descripción de la web, se recomienda 90 caracteres">
+    <meta name="keywords" content="palabras clave, separadas, por comas">
+
+    <!-- Compartir closees sociales -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Título" />
+    <meta property="og:description" content="descripción de la web, se recomienda 90 caracteres" />
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/1245/1245778.png" />
+
+    <!-- Fuentes de la web -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Documentos enlazados -->
+    <link rel="stylesheet" href="app.css">
+    <script type="module" src="src/app.js"></script>
+  </head>
+
+  <body>
+    <div class="background-modal"></div>
+    <header>
+    <!-- Cabecera -->
+      <title-component title="USERS"></title-component>
+    <!-- Menu -->
+      <menu-component></menu-component>
+    </header>
+    <main>
+      <!-- Modal Eliminar registro -->
+      <modal-destroy-component></modal-destroy-component>
+      <!-- Modal Filtrar registro -->
+      <filter-modal></filter-modal>
+      <div class="crud-container">
+        <div class="table">
+          <!-- Tabla -->
+          <table-component endpoint="/api/admin/clients"></table-component>
+          <pages-component></pages-component>
+        </div>
+        <div class="form">
+          <!-- Formulario -->
+          <form-client-component endpoint="/api/admin/clients"></form-client-component>
+        </div>
+        <!-- Notificaciones -->
+        <save-notification-component></save-notification-component>
+      </div>
+      <!-- Modal de imagenes -->
+      <gallery-modal-component></gallery-modal-component>
+    </main>
+  </body>
+</html>
